@@ -6,11 +6,11 @@ Biloo is a premium, minimal, technical, and human technology brand rooted in Eth
 
 ## Core palette
 
-| Color | Hex | Primary use |
-| --- | --- | --- |
-| Midnight Graphite | `#0F172A` | Primary backgrounds, typography, authority |
-| Royal Sapphire Blue | `#1E3A8A` | Signature accent, interaction, emphasis |
-| Ivory White | `#F8FAFC` | Space, clarity, contrast |
+| Color               | Hex       | Primary use                                |
+| ------------------- | --------- | ------------------------------------------ |
+| Midnight Graphite   | `#0F172A` | Primary backgrounds, typography, authority |
+| Royal Sapphire Blue | `#1E3A8A` | Signature accent, interaction, emphasis    |
+| Ivory White         | `#F8FAFC` | Space, clarity, contrast                   |
 
 Tints and opacity variations may be derived from these colors for interface states. New permanent brand colors should not be introduced casually.
 

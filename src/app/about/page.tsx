@@ -28,18 +28,20 @@ export default function AboutPage() {
         <div className="container-shell grid gap-16 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <p className="eyebrow text-sapphire">The name</p>
-            <h2 className="mt-6 text-3xl font-semibold tracking-tight">Bilo → Biloo</h2>
+            <h2 className="mt-6 text-3xl font-semibold tracking-tight">
+              Bilo → Biloo
+            </h2>
           </div>
           <div className="space-y-6 text-lg leading-8 text-muted">
             <p>
               Biloo is inspired by Bilo, the great-grandfather of founder Mahir
-              Aman. The adapted double “oo” creates a distinctive modern identity
-              while preserving the family connection.
+              Aman. The adapted double “oo” creates a distinctive modern
+              identity while preserving the family connection.
             </p>
             <p>
-              The paired circles represent continuity, partnership, and a horizon
-              beyond a single founder or product. The goal is to create an
-              institution capable of earning trust across generations.
+              The paired circles represent continuity, partnership, and a
+              horizon beyond a single founder or product. The goal is to create
+              an institution capable of earning trust across generations.
             </p>
           </div>
         </div>
@@ -48,11 +50,15 @@ export default function AboutPage() {
       <section className="border-y border-graphite/10 bg-white py-24">
         <div className="container-shell grid gap-8 md:grid-cols-2">
           <article className="rounded-3xl border border-graphite/10 p-8">
-            <p className="text-sm font-bold uppercase tracking-[0.16em] text-sapphire">Mission</p>
+            <p className="text-sm font-bold uppercase tracking-[0.16em] text-sapphire">
+              Mission
+            </p>
             <p className="mt-6 text-2xl leading-9">{company.mission}</p>
           </article>
           <article className="rounded-3xl border border-graphite/10 p-8">
-            <p className="text-sm font-bold uppercase tracking-[0.16em] text-sapphire">Vision</p>
+            <p className="text-sm font-bold uppercase tracking-[0.16em] text-sapphire">
+              Vision
+            </p>
             <p className="mt-6 text-2xl leading-9">{company.vision}</p>
           </article>
         </div>

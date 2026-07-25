@@ -39,7 +39,10 @@ export function Hero() {
               businesses, and institutions across Africa—guided by legacy,
               trust, and long-term thinking.
             </motion.p>
-            <motion.div className="mt-10 flex flex-wrap gap-4" variants={reveal}>
+            <motion.div
+              className="mt-10 flex flex-wrap gap-4"
+              variants={reveal}
+            >
               <Link
                 className="focus-ring rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-graphite transition hover:-translate-y-0.5"
                 href="#vision"
@@ -59,7 +62,11 @@ export function Hero() {
             animate={{ opacity: 1, scale: 1 }}
             className="relative mx-auto aspect-square w-full max-w-[28rem]"
             initial={{ opacity: 0, scale: 0.88 }}
-            transition={{ delay: 0.25, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            transition={{
+              delay: 0.25,
+              duration: 0.9,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
             <div className="absolute inset-0 rounded-full border border-white/10" />
             <div className="absolute inset-[12%] rounded-full border border-white/10" />

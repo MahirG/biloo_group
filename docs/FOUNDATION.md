@@ -6,7 +6,7 @@
 **Public brand:** Biloo  
 **Founder & CEO:** Mahir Aman  
 **Origin:** Ethiopia  
-**Stage:** Foundation and validation  
+**Stage:** Foundation and validation
 
 Biloo Group is being established as a long-term African technology company. Its purpose is to build dependable digital platforms that improve how people, businesses, and institutions work.
 

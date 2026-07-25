@@ -8,7 +8,10 @@ export function SiteFooter() {
     <footer className="border-t border-graphite/10 bg-white">
       <div className="container-shell grid gap-10 py-12 md:grid-cols-[1fr_auto] md:items-end">
         <div>
-          <Link className="focus-ring inline-flex items-center gap-3 rounded-xl" href="/">
+          <Link
+            className="focus-ring inline-flex items-center gap-3 rounded-xl"
+            href="/"
+          >
             <BrandMark />
             <span className="font-semibold">Biloo Group</span>
           </Link>

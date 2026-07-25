@@ -30,8 +30,12 @@ export default function ContactPage() {
               </p>
             </div>
             <div className="rounded-[2rem] border border-white/15 bg-white/5 p-8 backdrop-blur">
-              <p className="text-sm uppercase tracking-[0.16em] text-white/45">Founder & CEO</p>
-              <p className="mt-4 text-2xl font-semibold">{company.founder.name}</p>
+              <p className="text-sm uppercase tracking-[0.16em] text-white/45">
+                Founder & CEO
+              </p>
+              <p className="mt-4 text-2xl font-semibold">
+                {company.founder.name}
+              </p>
               <a
                 className="focus-ring mt-8 inline-flex rounded-full bg-white px-6 py-3 text-sm font-semibold text-graphite"
                 href={`mailto:${company.email}`}

@@ -27,17 +27,21 @@ export default function Home() {
               A family name carried into the future.
             </h2>
           </Reveal>
-          <Reveal className="space-y-6 text-lg leading-8 text-muted" delay={0.08}>
+          <Reveal
+            className="space-y-6 text-lg leading-8 text-muted"
+            delay={0.08}
+          >
             <p>
-              Biloo takes its name from founder Mahir Aman&apos;s great-grandfather,
-              Bilo—an Afaan Oromo-rooted family name now carried forward as a
-              commitment to legacy, trust, and responsible ambition.
+              Biloo takes its name from founder Mahir Aman&apos;s
+              great-grandfather, Bilo—an Afaan Oromo-rooted family name now
+              carried forward as a commitment to legacy, trust, and responsible
+              ambition.
             </p>
             <p>
               The company is not designed as a collection of fashionable labels.
               It is being built as a disciplined technology group: validate one
-              meaningful problem, deliver one dependable product, and expand only
-              when the evidence and capabilities justify it.
+              meaningful problem, deliver one dependable product, and expand
+              only when the evidence and capabilities justify it.
             </p>
           </Reveal>
         </div>
@@ -86,8 +90,14 @@ export default function Home() {
           </Reveal>
           <div className="divide-y divide-graphite/10 border-y border-graphite/10">
             {principles.map((principle, index) => (
-              <Reveal className="flex gap-6 py-6" delay={index * 0.05} key={principle}>
-                <span className="font-mono text-sm text-sapphire">0{index + 1}</span>
+              <Reveal
+                className="flex gap-6 py-6"
+                delay={index * 0.05}
+                key={principle}
+              >
+                <span className="font-mono text-sm text-sapphire">
+                  0{index + 1}
+                </span>
                 <p className="max-w-xl text-lg leading-7">{principle}</p>
               </Reveal>
             ))}
