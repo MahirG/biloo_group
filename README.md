@@ -1,98 +1,145 @@
-# Biloo Group
+# Biloo ERP — production foundation
 
-Official website and living company documentation for **Biloo Group**, an Ethiopia-rooted technology company founded by **Mahir Aman**.
+Biloo ERP is a multilingual Next.js application for Ethiopian businesses. The native application includes a production-oriented Supabase/PostgreSQL foundation while retaining the original HTML prototype at `/legacy` as a clearly marked demonstration.
 
-> Technology built for generations.
-
-## What this repository contains
-
-- A production-oriented Next.js company website
-- A responsive hamburger navigation system
-- Color Sort, an offline-friendly Montessori-inspired toddler IQ game
-- Search-ready project pages for Qabeza ERP and Mezgeb
-- Search-ready solution pages for Biloo's strategic capability areas
-- An editorial insights library with substantive long-form articles
-- Biloo Group foundation and origin story
-- Brand identity guidance
-- Product and company roadmap
-- Technical architecture, security, and SEO operating principles
-
-## Public website structure
-
-- `/` — company homepage
-- `/about` — origin, founder, mission, and operating commitments
-- `/projects` — Biloo Group project portfolio
-- `/projects/qabeza-erp` — enterprise resource planning project
-- `/projects/mezgeb` — Ethiopian business-ledger project
-- `/iq-game` — Color Sort toddler bead-sorting game
-- `/solutions` — technology capability overview
-- `/solutions/[slug]` — AI, cloud, payments, commerce, labs, and public-sector technology pages
-- `/insights` — technology perspectives
-- `/insights/[slug]` — long-form editorial articles
-- `/contact` — company contact and partnership information
-- `/robots.txt` — crawler directives
-- `/sitemap.xml` — generated sitemap
-
-## Color Sort MVP
-
-Color Sort includes 16 Easy and Medium levels, touch and mouse drag controls, tap-to-place fallback, pattern and memory challenges, positive-only rewards, saved progress, sticker collection, accessibility patterns, adjustable bead size, a parent gate, sound controls, and offline caching after the first successful load.
-
-The game contains no accounts, ads, in-app purchases, leaderboards, lives, or numeric IQ score. It is designed as an educational play experience, not a clinical assessment.
-
-## Technology
-
-- Next.js App Router
-- React and TypeScript
-- Tailwind CSS
-- Motion for React
-- Pointer Events and Web Audio APIs
-- Progressive Web App manifest and service worker
-- Browser localStorage for game progress
-- Next.js Metadata APIs and structured data
-- ESLint and Prettier
-- GitHub Actions
-
-## Local development
+## Run locally
 
 ```bash
-npm install
 cp .env.example .env.local
+npm install
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+Without Supabase variables the application runs in **safe demo mode** using sample data. Live write actions are disabled.
 
-## Environment variables
+## Enable live mode
 
-```bash
-NEXT_PUBLIC_SITE_URL=https://biloogroup.com
-NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=
+1. Create a Supabase project.
+2. Run every ordered SQL file in `supabase/migrations/` by migration timestamp.
+3. Add the public Supabase URL and publishable key to `.env.local` and Vercel.
+4. Add the production `/auth/callback` URL to Supabase Auth redirects.
+5. Create an account and finish organization onboarding.
+
+The connected Biloo Group Supabase project already has the Finance, Sales and shared operational-module migrations applied. The committed migration files keep new environments and disaster-recovery restores reproducible.
+
+## Google OAuth configuration
+
+Google sign-in is handled by Supabase Auth. Keep the Google OAuth client secret only in the Supabase dashboard—never commit it to GitHub or expose it as a public environment variable.
+
+For the production Google **Web application** OAuth client, configure:
+
+**Authorized JavaScript origins**
+
+```text
+https://erp.biloogroup.com
+https://erp.biloogroup.com
+http://localhost:3000
 ```
 
-Set the site URL to the exact production origin. The Google verification token is optional and should be supplied only when using Search Console's HTML verification method.
+**Authorized redirect URIs**
+
+```text
+https://amwpbnczylbarqqcprev.supabase.co/auth/v1/callback
+```
+
+In Supabase **Authentication → URL Configuration**, use `https://erp.biloogroup.com` as the production Site URL and allow these application redirects:
+
+```text
+https://erp.biloogroup.com/auth/callback
+https://erp.biloogroup.com/auth/callback
+http://localhost:3000/auth/callback
+```
+
+After changing Google OAuth settings, start a completely new sign-in attempt from the Biloo ERP login page. Do not reuse an old Google error or callback tab because its OAuth state may have expired.
+
+## Production architecture
+
+- Next.js App Router and React Server Components
+- Persistent authenticated workspace shell with docked navigation
+- Supabase Auth using cookie-based SSR clients
+- PostgreSQL with organization-level Row Level Security
+- Double-entry general ledger and atomic operational posting
+- Fiscal periods with soft-close and hard-lock controls
+- VAT configuration, cash/bank records, receipts and payment allocation
+- Quote-to-cash workflow with multi-line commercial documents
+- Shared operational record and event-history foundation for every remaining ERP module
+- Role-aware creation and status workflows with unique document numbers and audit events
+- English, Amharic and Tigrinya labels with server-resolved language cookies
+- Persistent light and dark appearance modes
+- Global branded loading transitions and translated completion confirmations
+- CSP/security headers, route protection, health checks and CI
+
+## Finance & Accounting — Phase 1
+
+The `/finance` workspace is the financial source of truth for sales, expenses, payments, taxes, assets and closing periods. It includes:
+
+- overview with current-month profit and loss, balance-sheet position and trial-balance integrity
+- chart of accounts and cash/bank account creation
+- balanced manual journal posting with immutable posted history
+- customer receipts, supplier payments, expenses and invoice allocation
+- input/output VAT position
+- asset registration, acquisition posting and monthly straight-line depreciation
+- accounting periods with open, soft-closed and locked states
+- organization, role and accounting-period validation on every posting RPC
+
+## Sales & Invoicing — Phase 1
+
+The `/sales` workspace manages the complete customer workflow:
+
+- multi-line quotations with validity dates, discounts, VAT and status tracking
+- direct sales orders or conversion from quotations
+- direct invoices or atomic order-to-invoice conversion
+- stock issue, receivable, sales revenue, output VAT and COGS posting in one transaction
+- customer receipts with optional invoice allocation and automatic status updates
+- customer returns with inventory, COGS, VAT and receivable reversal
+- customer statements with invoiced, received, returned, outstanding and available-credit balances
+- role, tenant, credit-limit, inventory and accounting-period validation
+
+## Remaining operational modules
+
+Every remaining roadmap module now opens an operational workspace with live organization-scoped records, owners, counterparties, amounts, priorities, due dates, status history, activity, translated labels and governance controls:
+
+- Purchasing & Expenses
+- Inventory & Warehouse
+- Customers & Suppliers
+- Security, Approvals & Audit
+- Reports & Analytics
+- Localization & Compliance
+- Human Resources & Payroll
+- Fixed Assets operations
+- Budgeting & Projects
+- Integrations & Automation
+
+The shared operational foundation is an extensible workflow layer. Domain-specific statutory calculations, payroll tax engines, banking connectors and third-party integrations still require their respective production configuration and professional review.
+
+## Product experience
+
+- all internal navigation and form submissions use the branded Hisab orbit loader
+- successful create, update and monetary actions show translated completion messages with document numbers and ETB amounts
+- the appearance toggle persists light or dark mode locally
+- the language toggle refreshes English, Amharic and Tigrinya server and client content
+- responsive cards, tables, forms, focus states and reduced-motion support are included
+- the docked footer identifies Biloo ERP.com and links to biloogroup.com
+
+## Main routes
+
+- `/` dashboard using live data when authenticated
+- `/finance` Finance & Accounting workspace
+- `/sales` Sales & Invoicing workspace
+- `/modules/[slug]` operational workspaces for all remaining modules
+- `/customers` customer directory and creation
+- `/inventory` stock and product creation
+- `/modules` ERP architecture and module directory
+- `/reports` financial dashboard reporting and CSV export
+- `/docs/setup` deployment checklist
+- `/legacy` browser-only demonstration; never use for real data
 
 ## Validation
 
 ```bash
-npm run lint
 npm run typecheck
+npm test
 npm run build
-npm run format:check
 ```
 
-## Important brand and project status
-
-Biloo Group is in its foundation stage. Product names such as Biloo AI, Biloo Cloud, Biloo Pay, Biloo Commerce, Biloo Labs, and Biloo Gov are **strategic directions**, not representations that all products are currently launched.
-
-Qabeza ERP is a product project under validation and development. Mezgeb is an interactive prototype and early product-development project. Color Sort is an educational web-game MVP. Public material must not imply unverified customers, production readiness, learning outcomes, or clinical IQ measurement.
-
-The public domain is `biloogroup.com`. The contact email, corporate address, and telephone details must be verified before they are presented as finalized corporate information.
-
-## Documentation
-
-- [`docs/FOUNDATION.md`](docs/FOUNDATION.md)
-- [`docs/BRAND.md`](docs/BRAND.md)
-- [`docs/ROADMAP.md`](docs/ROADMAP.md)
-- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
-- [`docs/SEO.md`](docs/SEO.md)
-- [`SECURITY.md`](SECURITY.md)
+Read `SECURITY.md`, `docs/IMPLEMENTATION_STATUS.md` and `docs/BACKUP_AND_RECOVERY.md` before production use.

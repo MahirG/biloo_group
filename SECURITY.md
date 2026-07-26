@@ -1,18 +1,17 @@
-# Security Policy
+# Security policy
 
 ## Reporting
 
-Until a dedicated security address is verified, report suspected vulnerabilities privately to the founder through the confirmed Biloo Group contact channel. Do not include sensitive exploit details in a public GitHub issue.
+Do not open public issues containing credentials, customer data, financial data or exploit details. Contact the repository owner privately and include the affected route, impact and reproduction steps.
 
-## Baseline controls
+## Production requirements
 
-- Never commit passwords, private keys, API tokens, or production environment files.
-- Use least-privilege access for GitHub, hosting, domains, and cloud accounts.
-- Require multi-factor authentication for administrative accounts.
-- Review dependency alerts and supported framework versions regularly.
-- Protect the default branch and require successful checks before merge.
-- Treat payment, identity, government, and financial-market products as regulated or high-risk until legal review confirms otherwise.
+- Revoke any GitHub, Supabase or Vercel credential pasted into chat, logs or source control.
+- Keep `SUPABASE_SERVICE_ROLE_KEY` server-only.
+- Enable MFA for administrators and owners.
+- Apply the SQL migration before enabling live forms.
+- Keep RLS enabled on every exposed table.
+- Review audit events and authentication logs.
+- Run dependency and backup-restore checks before each release.
 
-## Supported versions
-
-Biloo Group is currently in the foundation stage. Security support applies to the latest code on the default branch after a public release is declared.
+The `/legacy` route is a demonstration and must never contain real business data.
