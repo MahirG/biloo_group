@@ -11,7 +11,7 @@ export type Project = {
   plannedDomain?: string;
 };
 
-export const projects = [
+export const projects: readonly Project[] = [
   {
     slug: "qabeza-erp",
     name: "Qabeza ERP",
@@ -62,7 +62,7 @@ export const projects = [
     ],
     plannedDomain: "mezgeb.com.et",
   },
-] as const satisfies readonly Project[];
+];
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug);
