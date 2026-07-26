@@ -177,12 +177,16 @@ export default function ErpPage() {
         </div>
       </section>
 
-      <section className="border-y border-graphite/10 bg-white py-24 sm:py-32" id="modules">
+      <section
+        className="border-y border-graphite/10 bg-white py-24 sm:py-32"
+        id="modules"
+      >
         <div className="container-shell">
           <div className="max-w-3xl">
             <p className="eyebrow text-sapphire">ERP modules</p>
             <h2 className="mt-6 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">
-              A complete operational navigation, not a collection of disconnected tools.
+              A complete operational navigation, not a collection of
+              disconnected tools.
             </h2>
           </div>
           <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -191,7 +195,9 @@ export default function ErpPage() {
                 className="flex min-h-[22rem] flex-col rounded-[2rem] border border-graphite/10 bg-ivory p-7 sm:p-8"
                 key={module.name}
               >
-                <p className="font-mono text-sm text-sapphire">{module.number}</p>
+                <p className="font-mono text-sm text-sapphire">
+                  {module.number}
+                </p>
                 <h3 className="mt-10 text-2xl font-semibold tracking-[-0.035em]">
                   {module.name}
                 </h3>

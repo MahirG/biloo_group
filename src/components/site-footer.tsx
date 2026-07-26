@@ -62,10 +62,7 @@ export function SiteFooter() {
               </li>
             ))}
             <li>
-              <Link
-                className="transition hover:text-sapphire"
-                href="/iq-game"
-              >
+              <Link className="transition hover:text-sapphire" href="/iq-game">
                 Nature Match
               </Link>
             </li>
