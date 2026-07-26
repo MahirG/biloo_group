@@ -152,7 +152,7 @@ export default function AboutPage() {
         <div className="container-shell">
           <p className="eyebrow text-sapphire">Operating commitments</p>
           <h2 className="mt-6 max-w-3xl text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
-            The standards intended to guide Biloo's growth.
+            The standards intended to guide Biloo&apos;s growth.
           </h2>
           <div className="mt-14 grid gap-6 md:grid-cols-2">
             {commitments.map((commitment, index) => (
