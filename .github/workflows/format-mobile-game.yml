@@ -1,0 +1,43 @@
+name: Format mobile game fix
+
+on:
+  push:
+    branches: [agent/fix-mobile-game-scroll]
+
+permissions:
+  contents: write
+
+jobs:
+  format:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/fix-mobile-game-scroll
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Format files
+        run: npm run format
+
+      - name: Commit formatting
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No formatting changes required."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/app/iq-game/page.tsx src/app/iq-game/iq-game.module.css
+          git commit -m "Format mobile game fix"
+          git push origin HEAD:agent/fix-mobile-game-scroll
