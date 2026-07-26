@@ -1,5 +1,5 @@
 export const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://biloogroups.com"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://biloogroup.com"
 ).replace(/\/$/, "");
 
 export function absoluteUrl(path = "/") {

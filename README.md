@@ -7,6 +7,7 @@ Official website and living company documentation for **Biloo Group**, an Ethiop
 ## What this repository contains
 
 - A production-oriented Next.js company website
+- Search-ready project pages for Qabeza ERP and Mezgeb
 - Search-ready solution pages for Biloo's strategic capability areas
 - An editorial insights library with substantive long-form articles
 - Biloo Group foundation and origin story
@@ -18,6 +19,9 @@ Official website and living company documentation for **Biloo Group**, an Ethiop
 
 - `/` — company homepage
 - `/about` — origin, founder, mission, and operating commitments
+- `/projects` — Biloo Group project portfolio
+- `/projects/qabeza-erp` — enterprise resource planning project
+- `/projects/mezgeb` — Ethiopian business-ledger project
 - `/solutions` — technology capability overview
 - `/solutions/[slug]` — AI, cloud, payments, commerce, labs, and public-sector technology pages
 - `/insights` — technology perspectives
@@ -49,7 +53,7 @@ Open `http://localhost:3000`.
 ## Environment variables
 
 ```bash
-NEXT_PUBLIC_SITE_URL=https://biloogroups.com
+NEXT_PUBLIC_SITE_URL=https://biloogroup.com
 NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=
 ```
 
@@ -64,11 +68,13 @@ npm run build
 npm run format:check
 ```
 
-## Important brand status
+## Important brand and project status
 
 Biloo Group is in its foundation stage. Product names such as Biloo AI, Biloo Cloud, Biloo Pay, Biloo Commerce, Biloo Labs, and Biloo Gov are **strategic directions**, not representations that all products are currently launched.
 
-The public domain, contact email, corporate address, and telephone details must be confirmed before they are presented as finalized corporate information.
+Qabeza ERP is a product project under validation and development. Mezgeb is an interactive prototype and early product-development project. Neither page should imply customers, production readiness, or verified operational availability unless those facts are confirmed.
+
+The public domain is `biloogroup.com`. The contact email, corporate address, and telephone details must be verified before they are presented as finalized corporate information.
 
 ## Documentation
 

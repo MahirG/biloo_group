@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { company } from "@/data/company";
 import { insights } from "@/data/insights";
+import { projects } from "@/data/projects";
 import { solutions } from "@/data/solutions";
 
 const principles = [
@@ -105,7 +106,63 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 sm:py-32" id="ecosystem">
+      <section className="py-24 sm:py-32" id="projects">
+        <div className="container-shell">
+          <Reveal className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-3xl">
+              <p className="eyebrow text-sapphire">Active projects</p>
+              <h2 className="mt-6 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+                Focused products before a broad ecosystem.
+              </h2>
+              <p className="mt-6 text-lg leading-8 text-muted">
+                Qabeza ERP and Mezgeb represent current Biloo product work.
+                Their pages explain the intended users, capabilities, and
+                readiness limits without presenting unfinished work as launched
+                services.
+              </p>
+            </div>
+            <Link
+              className="focus-ring inline-flex w-fit rounded-full border border-graphite/15 px-6 py-3.5 text-sm font-semibold transition hover:border-sapphire hover:text-sapphire"
+              href="/projects"
+            >
+              View all projects
+            </Link>
+          </Reveal>
+          <div className="mt-14 grid gap-6 lg:grid-cols-2">
+            {projects.map((project, index) => (
+              <Reveal delay={index * 0.06} key={project.slug}>
+                <Link
+                  className="group flex min-h-96 flex-col rounded-[2rem] border border-graphite/10 bg-white p-8 transition hover:border-sapphire/40 hover:bg-ivory sm:p-10"
+                  href={`/projects/${project.slug}`}
+                >
+                  <div className="flex items-start justify-between gap-6">
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-sapphire">
+                      {project.category}
+                    </p>
+                    <span className="text-right text-xs font-semibold text-muted">
+                      {project.status}
+                    </span>
+                  </div>
+                  <h3 className="mt-14 text-4xl font-semibold tracking-[-0.04em]">
+                    {project.name}
+                  </h3>
+                  <p className="mt-5 max-w-xl text-lg leading-8 text-muted">
+                    {project.description}
+                  </p>
+                  <span className="mt-auto pt-10 text-sm font-semibold text-sapphire">
+                    Explore project <span aria-hidden="true">→</span>
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="border-y border-graphite/10 bg-white py-24 sm:py-32"
+        id="ecosystem"
+      >
         <div className="container-shell">
           <Reveal className="max-w-3xl">
             <p className="eyebrow text-sapphire">Strategic capabilities</p>
@@ -151,7 +208,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-y border-graphite/10 bg-white py-24 sm:py-32">
+      <section className="py-24 sm:py-32">
         <div className="container-shell grid gap-14 lg:grid-cols-2">
           <Reveal>
             <p className="eyebrow text-sapphire">How we intend to operate</p>
@@ -182,7 +239,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 sm:py-32">
+      <section className="border-y border-graphite/10 bg-white py-24 sm:py-32">
         <div className="container-shell">
           <Reveal className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <div className="max-w-3xl">

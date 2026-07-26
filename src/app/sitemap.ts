@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { insights } from "@/data/insights";
+import { projects } from "@/data/projects";
 import { solutions } from "@/data/solutions";
 import { absoluteUrl } from "@/lib/site";
 
@@ -19,6 +20,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "yearly",
       priority: 0.8,
+    },
+    {
+      url: absoluteUrl("/projects"),
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.9,
     },
     {
       url: absoluteUrl("/solutions"),
@@ -40,6 +47,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
+    url: absoluteUrl(`/projects/${project.slug}`),
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
   const solutionPages: MetadataRoute.Sitemap = solutions.map((solution) => ({
     url: absoluteUrl(`/solutions/${solution.slug}`),
     lastModified,
@@ -54,5 +68,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...corePages, ...solutionPages, ...insightPages];
+  return [...corePages, ...projectPages, ...solutionPages, ...insightPages];
 }
