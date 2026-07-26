@@ -1,0 +1,59 @@
+
+> biloo-group@0.1.0 lint
+> eslint .
+
+
+/home/runner/work/biloo_group/biloo_group/src/components/color-sort-game.tsx
+  360:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/runner/work/biloo_group/biloo_group/src/components/color-sort-game.tsx:360:9
+  358 |         const allowed = availableThemes(merged);
+  359 |         if (!allowed.includes(merged.theme)) merged.theme = "classic";
+> 360 |         setProgress(merged);
+      |         ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  361 |         setLevelNumber(Math.min(16, Math.max(1, merged.highestUnlocked)));
+  362 |         setShowDemo(!merged.demoSeen);
+  363 |       } else {  react-hooks/set-state-in-effect
+  381:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/runner/work/biloo_group/biloo_group/src/components/color-sort-game.tsx:381:5
+  379 |   useEffect(() => {
+  380 |     const state = createLevelState(level);
+> 381 |     setPool(state.pool);
+      |     ^^^^^^^ Avoid calling setState() directly within an effect
+  382 |     setRods(state.rods);
+  383 |     setSelectedBeadId(null);
+  384 |     setDrag(null);                                                                                                                               react-hooks/set-state-in-effect
+
+/home/runner/work/biloo_group/biloo_group/src/components/site-header.tsx
+  23:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/runner/work/biloo_group/biloo_group/src/components/site-header.tsx:23:5
+  21 |
+  22 |   useEffect(() => {
+> 23 |     setMenuOpen(false);
+     |     ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  24 |   }, [pathname]);
+  25 |
+  26 |   useEffect(() => {  react-hooks/set-state-in-effect
+
+✖ 3 problems (3 errors, 0 warnings)
+
