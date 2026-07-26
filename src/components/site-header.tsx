@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BrandMark } from "@/components/brand-mark";
 
 const navItems = [
+  { href: "/projects", label: "Projects" },
   { href: "/solutions", label: "Solutions" },
   { href: "/insights", label: "Insights" },
   { href: "/about", label: "About" },
@@ -26,7 +27,7 @@ export function SiteHeader() {
 
         <nav
           aria-label="Primary navigation"
-          className="hidden items-center gap-8 md:flex"
+          className="hidden items-center gap-7 md:flex"
         >
           {navItems.map((item) => (
             <Link
