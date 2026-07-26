@@ -1,0 +1,4 @@
+Biloo Group production revision
+Feature: Professional Mezgeb and HisabTech app launcher
+Source merge: 02278da9c2d9ea74215cec97a322cce947f809ad
+Triggered: 2026-07-27
