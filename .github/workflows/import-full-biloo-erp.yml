@@ -63,13 +63,21 @@ jobs:
           npm run typecheck
           npm run build
 
-      - name: Validate imported Biloo ERP application
+      - name: Install Biloo ERP dependencies
         working-directory: apps/erp
-        run: |
-          npm install
-          npm run typecheck
-          npm test
-          npm run build
+        run: npm install
+
+      - name: Typecheck Biloo ERP
+        working-directory: apps/erp
+        run: npm run typecheck
+
+      - name: Test Biloo ERP
+        working-directory: apps/erp
+        run: npm test
+
+      - name: Build Biloo ERP
+        working-directory: apps/erp
+        run: npm run build
 
       - name: Remove workflow trigger
         run: rm -f .import-biloo-erp-trigger
