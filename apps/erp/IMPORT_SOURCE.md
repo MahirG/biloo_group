@@ -1,8 +1,10 @@
-# Biloo ERP import source
+# Biloo ERP ownership and import source
 
-This application is an independent Biloo-owned copy of the ERP platform.
+This directory contains the complete, independently maintained **Biloo ERP** application inside `MahirG/biloo_group`.
 
-- Source snapshot: `MahirG/HisabERP` branch `archive/biloo-erp-copy`
-- Original HisabERP repository and `hisabtech.com` deployment remain independent.
-- Biloo deployment root directory: `apps/erp`
-- Intended product domain: `erp.biloogroup.com`
+- Biloo source location: `apps/erp`
+- Independent deployment branch: `biloo-erp-production`
+- Preserved migration snapshot: `MahirG/HisabERP` branch `archive/biloo-erp-copy`
+- Original HisabERP repository and `hisabtech.com` deployment remain separate and must not be changed by Biloo ERP releases.
+- Biloo ERP production builds must originate from `MahirG/biloo_group`, not from `MahirG/HisabERP`.
+- Intended Biloo product domain: `erp.biloogroup.com`
