@@ -1,1 +1,1 @@
-Copy the preserved MezgebOfficial snapshot into Biloo, apply the Biloo identity, and run all validation gates.
+Run the default-branch Biloo Mezgeb importer against the preserved source snapshot and commit the validated result.
