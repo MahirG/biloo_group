@@ -219,7 +219,9 @@ function NaturePieceVisual({
       style={{
         width: diameter,
         height: compact ? 32 : diameter,
-        borderRadius: compact ? "45% 55% 48% 52%" : "44% 56% 52% 48% / 52% 45% 55% 48%",
+        borderRadius: compact
+          ? "45% 55% 48% 52%"
+          : "44% 56% 52% 48% / 52% 45% 55% 48%",
         backgroundColor: details.colorHex,
         backgroundImage: progress.colorblind ? details.pattern : undefined,
         backgroundSize: progress.colorblind ? "18px 18px" : undefined,
@@ -241,12 +243,21 @@ function NaturePieceVisual({
   );
 }
 
-function NatureParticles({ seed, intense = false }: { seed: number; intense?: boolean }) {
+function NatureParticles({
+  seed,
+  intense = false,
+}: {
+  seed: number;
+  intense?: boolean;
+}) {
   const icons = ["🍃", "🌸", "✨", "🌼", "🍂", "🦋"];
   const count = intense ? 34 : 12;
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-[90] overflow-hidden" aria-hidden="true">
+    <div
+      className="pointer-events-none fixed inset-0 z-[90] overflow-hidden"
+      aria-hidden="true"
+    >
       {Array.from({ length: count }).map((_, index) => {
         const direction = ((index * 67 + seed * 17) % 520) - 260;
         return (
@@ -331,13 +342,20 @@ function Modal({
         role="dialog"
         transition={{ type: "spring", stiffness: 260, damping: 24 }}
       >
-        <div className="pointer-events-none absolute -right-7 -top-8 text-8xl opacity-10" aria-hidden="true">
+        <div
+          className="pointer-events-none absolute -right-7 -top-8 text-8xl opacity-10"
+          aria-hidden="true"
+        >
           🍃
         </div>
         <div className="flex items-start justify-between gap-6">
           <div>
-            <h2 className="text-3xl font-black tracking-[-0.04em] text-[#214d35]">{title}</h2>
-            {subtitle ? <p className="mt-2 leading-7 text-[#55705d]">{subtitle}</p> : null}
+            <h2 className="text-3xl font-black tracking-[-0.04em] text-[#214d35]">
+              {title}
+            </h2>
+            {subtitle ? (
+              <p className="mt-2 leading-7 text-[#55705d]">{subtitle}</p>
+            ) : null}
           </div>
           <button
             aria-label="Close"
@@ -424,7 +442,10 @@ export function ColorSortGame() {
           };
           setProgress(merged);
           setLevelNumber(
-            Math.min(colorSortLevels.length, Math.max(1, merged.highestUnlocked)),
+            Math.min(
+              colorSortLevels.length,
+              Math.max(1, merged.highestUnlocked),
+            ),
           );
           setShowDemo(!merged.demoSeen);
         } else {
@@ -530,7 +551,10 @@ export function ColorSortGame() {
       });
     };
 
-    void context.resume().then(playPhrase).catch(() => undefined);
+    void context
+      .resume()
+      .then(playPhrase)
+      .catch(() => undefined);
     const interval = window.setInterval(playPhrase, 6500);
     return () => {
       window.clearInterval(interval);
@@ -807,7 +831,10 @@ export function ColorSortGame() {
     return (
       <div className="grid min-h-screen place-items-center bg-[#dbe9c5]">
         <motion.div
-          animate={{ rotate: reduceMotion ? 0 : 360, scale: [0.95, 1.05, 0.95] }}
+          animate={{
+            rotate: reduceMotion ? 0 : 360,
+            scale: [0.95, 1.05, 0.95],
+          }}
           className="grid h-24 w-24 place-items-center rounded-[2rem] bg-white/75 text-5xl shadow-xl"
           transition={{ duration: 1.5, ease: "linear", repeat: Infinity }}
         >
@@ -825,7 +852,10 @@ export function ColorSortGame() {
         touchAction: "none",
       }}
     >
-      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      <div
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+        aria-hidden="true"
+      >
         <motion.div
           animate={reduceMotion ? undefined : { x: ["-12%", "112%"] }}
           className="absolute top-[10%] text-5xl opacity-70"
@@ -835,7 +865,9 @@ export function ColorSortGame() {
           ☁️
         </motion.div>
         <motion.div
-          animate={reduceMotion ? undefined : { x: ["108%", "-10%"], y: [0, -15, 0] }}
+          animate={
+            reduceMotion ? undefined : { x: ["108%", "-10%"], y: [0, -15, 0] }
+          }
           className="absolute top-[19%] text-3xl"
           initial={{ x: "108%" }}
           transition={{ duration: 22, ease: "linear", repeat: Infinity }}
@@ -879,7 +911,9 @@ export function ColorSortGame() {
         </button>
 
         <div className="flex min-w-0 items-center gap-3 rounded-2xl border border-white/45 bg-white/60 px-4 py-2 shadow-sm backdrop-blur">
-          <span className="text-3xl" aria-hidden="true">🌿</span>
+          <span className="text-3xl" aria-hidden="true">
+            🌿
+          </span>
           <div className="min-w-0">
             <p className="truncate text-[10px] font-black uppercase tracking-[0.18em] text-[#4f775e]">
               Biloo nature game
@@ -891,7 +925,11 @@ export function ColorSortGame() {
         <div className="flex items-center gap-2">
           <IconButton
             active={!progress.sound}
-            label={progress.sound ? "Turn nature sounds off" : "Turn nature sounds on"}
+            label={
+              progress.sound
+                ? "Turn nature sounds off"
+                : "Turn nature sounds on"
+            }
             onClick={() =>
               setProgress((current) => ({ ...current, sound: !current.sound }))
             }
@@ -911,7 +949,10 @@ export function ColorSortGame() {
             aria-label={`Happy animal companion in ${season.name}`}
             className="grid h-13 w-13 place-items-center rounded-2xl border border-white/55 bg-white/78 text-3xl shadow-lg backdrop-blur"
             role="img"
-            transition={{ duration: companionMood === "happy" ? 0.6 : 2.4, repeat: companionMood === "calm" ? Infinity : 0 }}
+            transition={{
+              duration: companionMood === "happy" ? 0.6 : 2.4,
+              repeat: companionMood === "calm" ? Infinity : 0,
+            }}
           >
             {season.companion}
           </motion.div>
@@ -938,11 +979,17 @@ export function ColorSortGame() {
                 </button>
               ) : null}
             </div>
-            <h1 className="mt-4 text-3xl font-black tracking-[-0.045em] sm:text-4xl">{levelName}</h1>
+            <h1 className="mt-4 text-3xl font-black tracking-[-0.045em] sm:text-4xl">
+              {levelName}
+            </h1>
             <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-[#56705d] sm:text-base">
-              Match each animal, flower, leaf, or mushroom with the nature pattern growing above its tree.
+              Match each animal, flower, leaf, or mushroom with the nature
+              pattern growing above its tree.
             </p>
-            <div className="mt-4 flex flex-wrap gap-2" aria-label="Nature colors in this level">
+            <div
+              className="mt-4 flex flex-wrap gap-2"
+              aria-label="Nature colors in this level"
+            >
               {colorsInLevel.map((color) => {
                 const details = naturePieces[color];
                 return (
@@ -967,16 +1014,22 @@ export function ColorSortGame() {
               {tree.icon}
             </motion.span>
             <div className="min-w-0 flex-1">
-              <p className="text-xs font-black uppercase tracking-[0.14em] text-[#5e7b65]">Growing tree</p>
+              <p className="text-xs font-black uppercase tracking-[0.14em] text-[#5e7b65]">
+                Growing tree
+              </p>
               <p className="mt-1 font-black">{tree.name}</p>
               <div className="mt-3 h-2 overflow-hidden rounded-full bg-[#d7e3c9]">
                 <motion.div
-                  animate={{ width: `${Math.min(100, (count / tree.next) * 100)}%` }}
+                  animate={{
+                    width: `${Math.min(100, (count / tree.next) * 100)}%`,
+                  }}
                   className="h-full rounded-full bg-gradient-to-r from-[#76a96b] to-[#dc923c]"
                   initial={false}
                 />
               </div>
-              <p className="mt-1 text-xs font-semibold text-[#69806e]">{count} of {tree.next} forest discoveries</p>
+              <p className="mt-1 text-xs font-semibold text-[#69806e]">
+                {count} of {tree.next} forest discoveries
+              </p>
             </div>
           </div>
         </section>
@@ -996,7 +1049,14 @@ export function ColorSortGame() {
                 <motion.div
                   animate={
                     hintTree === treeIndex
-                      ? { scale: [1, 1.07, 1], filter: ["brightness(1)", "brightness(1.15)", "brightness(1)"] }
+                      ? {
+                          scale: [1, 1.07, 1],
+                          filter: [
+                            "brightness(1)",
+                            "brightness(1.15)",
+                            "brightness(1)",
+                          ],
+                        }
                       : undefined
                   }
                   aria-label={`Nature tree ${treeIndex + 1}`}
@@ -1021,7 +1081,9 @@ export function ColorSortGame() {
                         />
                       ))
                     ) : (
-                      <span className="text-4xl font-black text-[#4f7059]/45">🍃?</span>
+                      <span className="text-4xl font-black text-[#4f7059]/45">
+                        🍃?
+                      </span>
                     )}
                   </div>
 
@@ -1040,7 +1102,11 @@ export function ColorSortGame() {
                               ? `Return ${naturePieces[piece.color].colorName} ${naturePieces[piece.color].name} to the meadow`
                               : `${naturePieces[piece.color].colorName} ${naturePieces[piece.color].name}`
                           }
-                          className={isTop ? "cursor-pointer rounded-full" : "pointer-events-none rounded-full"}
+                          className={
+                            isTop
+                              ? "cursor-pointer rounded-full"
+                              : "pointer-events-none rounded-full"
+                          }
                           key={piece.id}
                           onClick={(event) => {
                             event.stopPropagation();
@@ -1048,7 +1114,10 @@ export function ColorSortGame() {
                           }}
                           type="button"
                         >
-                          <NaturePieceVisual piece={piece} progress={progress} />
+                          <NaturePieceVisual
+                            piece={piece}
+                            progress={progress}
+                          />
                         </motion.button>
                       );
                     })}
@@ -1062,12 +1131,17 @@ export function ColorSortGame() {
         <section className="mt-5 rounded-[2rem] border border-white/65 bg-white/58 p-4 shadow-[0_18px_42px_rgba(31,77,48,.16)] backdrop-blur-md sm:p-5">
           <div className="flex items-center justify-between gap-4 px-2 pb-3">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.15em] text-[#66806c]">Nature basket</p>
-              <p className="text-sm font-bold text-[#355c40]">Drag or tap a friend, then choose its matching tree.</p>
+              <p className="text-xs font-black uppercase tracking-[0.15em] text-[#66806c]">
+                Nature basket
+              </p>
+              <p className="text-sm font-bold text-[#355c40]">
+                Drag or tap a friend, then choose its matching tree.
+              </p>
             </div>
             {selectedPiece ? (
               <span className="rounded-full bg-[#214d35] px-4 py-2 text-xs font-black text-white">
-                {naturePieces[selectedPiece.color].colorName} {naturePieces[selectedPiece.color].name}
+                {naturePieces[selectedPiece.color].colorName}{" "}
+                {naturePieces[selectedPiece.color].name}
               </span>
             ) : null}
           </div>
@@ -1143,7 +1217,9 @@ export function ColorSortGame() {
         </div>
       ) : null}
 
-      <AnimatePresence>{burstId > 0 ? <NatureParticles key={burstId} seed={burstId} /> : null}</AnimatePresence>
+      <AnimatePresence>
+        {burstId > 0 ? <NatureParticles key={burstId} seed={burstId} /> : null}
+      </AnimatePresence>
 
       <AnimatePresence>
         {showDemo && pool[0] ? (
@@ -1155,7 +1231,15 @@ export function ColorSortGame() {
             transition={{ duration: 4 }}
           >
             <motion.div
-              animate={reduceMotion ? { opacity: [0, 1, 0] } : { x: ["18vw", "50vw"], y: ["76vh", "38vh"], scale: [1, 1.2, 1] }}
+              animate={
+                reduceMotion
+                  ? { opacity: [0, 1, 0] }
+                  : {
+                      x: ["18vw", "50vw"],
+                      y: ["76vh", "38vh"],
+                      scale: [1, 1.2, 1],
+                    }
+              }
               className="absolute left-0 top-0 text-6xl drop-shadow-xl"
               transition={{ duration: 2.8, ease: "easeInOut", repeat: 1 }}
             >
@@ -1181,7 +1265,11 @@ export function ColorSortGame() {
             >
               <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#dcebc4] to-transparent" />
               <motion.div
-                animate={reduceMotion ? undefined : { rotate: [0, -8, 8, 0], scale: [1, 1.14, 1] }}
+                animate={
+                  reduceMotion
+                    ? undefined
+                    : { rotate: [0, -8, 8, 0], scale: [1, 1.14, 1] }
+                }
                 className="relative text-7xl"
                 transition={{ repeat: Infinity, repeatDelay: 1.2 }}
               >
@@ -1190,15 +1278,22 @@ export function ColorSortGame() {
               <div className="relative mt-4 flex justify-center gap-2 text-5xl">
                 {Array.from({ length: 3 }).map((_, index) => (
                   <motion.span
-                    animate={{ scale: index < completeStars ? 1 : 0.55, opacity: index < completeStars ? 1 : 0.18 }}
+                    animate={{
+                      scale: index < completeStars ? 1 : 0.55,
+                      opacity: index < completeStars ? 1 : 0.18,
+                    }}
                     key={index}
                   >
                     ⭐
                   </motion.span>
                 ))}
               </div>
-              <p className="relative mt-5 text-3xl font-black tracking-[-0.04em] text-[#214d35]">{collectible.name}</p>
-              <p className="relative mt-2 font-bold text-[#617663]">A {collectible.color} discovery joined your gallery.</p>
+              <p className="relative mt-5 text-3xl font-black tracking-[-0.04em] text-[#214d35]">
+                {collectible.name}
+              </p>
+              <p className="relative mt-2 font-bold text-[#617663]">
+                A {collectible.color} discovery joined your gallery.
+              </p>
               {level.id % 4 === 0 ? (
                 <div className="relative mt-5 rounded-2xl bg-[#e5efd9] px-4 py-3 font-black text-[#355c40]">
                   Your tree grew into a new stage 🌿
@@ -1209,7 +1304,9 @@ export function ColorSortGame() {
                 onClick={nextLevel}
                 type="button"
               >
-                {level.id < 16 ? "Next forest path →" : "Visit the meadow again ↻"}
+                {level.id < 16
+                  ? "Next forest path →"
+                  : "Visit the meadow again ↻"}
               </button>
             </motion.div>
           </motion.div>
@@ -1235,11 +1332,21 @@ export function ColorSortGame() {
               initial={{ x: "-105%" }}
               transition={{ type: "spring", stiffness: 260, damping: 28 }}
             >
-              <div className="pointer-events-none absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "repeating-linear-gradient(12deg, #6b4a2e 0 2px, transparent 2px 20px)" }} />
+              <div
+                className="pointer-events-none absolute inset-0 opacity-[0.07]"
+                style={{
+                  backgroundImage:
+                    "repeating-linear-gradient(12deg, #6b4a2e 0 2px, transparent 2px 20px)",
+                }}
+              />
               <div className="relative flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#6b806d]">Nature menu</p>
-                  <h2 className="mt-1 text-3xl font-black tracking-[-0.045em] text-[#214d35]">Explore the forest</h2>
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#6b806d]">
+                    Nature menu
+                  </p>
+                  <h2 className="mt-1 text-3xl font-black tracking-[-0.045em] text-[#214d35]">
+                    Explore the forest
+                  </h2>
                 </div>
                 <button
                   aria-label="Close menu"
@@ -1255,9 +1362,15 @@ export function ColorSortGame() {
                 <div className="flex items-center gap-4">
                   <span className="text-6xl">{tree.icon}</span>
                   <div>
-                    <p className="text-xs font-black uppercase tracking-[0.14em] text-[#617663]">Your living world</p>
-                    <p className="mt-1 text-xl font-black text-[#214d35]">{season.name}</p>
-                    <p className="mt-1 text-sm font-semibold leading-5 text-[#5e775f]">{season.description}</p>
+                    <p className="text-xs font-black uppercase tracking-[0.14em] text-[#617663]">
+                      Your living world
+                    </p>
+                    <p className="mt-1 text-xl font-black text-[#214d35]">
+                      {season.name}
+                    </p>
+                    <p className="mt-1 text-sm font-semibold leading-5 text-[#5e775f]">
+                      {season.description}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1265,10 +1378,26 @@ export function ColorSortGame() {
               <nav className="relative mt-7 grid gap-3">
                 {[
                   { label: "Play / New Game", icon: "▶", action: startNewGame },
-                  { label: "Levels & Modes", icon: "🗺️", action: () => openPanel("levels") },
-                  { label: "Settings", icon: "⚙️", action: () => openPanel("settings") },
-                  { label: "Nature Gallery", icon: "🐾", action: () => openPanel("gallery") },
-                  { label: "Credits", icon: "🍃", action: () => openPanel("credits") },
+                  {
+                    label: "Levels & Modes",
+                    icon: "🗺️",
+                    action: () => openPanel("levels"),
+                  },
+                  {
+                    label: "Settings",
+                    icon: "⚙️",
+                    action: () => openPanel("settings"),
+                  },
+                  {
+                    label: "Nature Gallery",
+                    icon: "🐾",
+                    action: () => openPanel("gallery"),
+                  },
+                  {
+                    label: "Credits",
+                    icon: "🍃",
+                    action: () => openPanel("credits"),
+                  },
                 ].map((item) => (
                   <button
                     className="flex items-center gap-4 rounded-[1.4rem] border border-[#d9e4cc] bg-white/82 px-4 py-4 text-left font-black text-[#214d35] shadow-sm transition hover:-translate-y-0.5 hover:border-[#8fb285] hover:bg-white active:scale-[0.98]"
@@ -1276,7 +1405,12 @@ export function ColorSortGame() {
                     onClick={item.action}
                     type="button"
                   >
-                    <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#e7efdc] text-xl" aria-hidden="true">{item.icon}</span>
+                    <span
+                      className="grid h-11 w-11 place-items-center rounded-2xl bg-[#e7efdc] text-xl"
+                      aria-hidden="true"
+                    >
+                      {item.icon}
+                    </span>
                     {item.label}
                   </button>
                 ))}
@@ -1303,15 +1437,21 @@ export function ColorSortGame() {
             <div className="mb-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
               <div className="rounded-2xl bg-[#e7f1db] p-4">
                 <p className="font-black text-[#355c40]">Meadow Start</p>
-                <p className="mt-1 text-sm text-[#617663]">Levels 1–7 · color families</p>
+                <p className="mt-1 text-sm text-[#617663]">
+                  Levels 1–7 · color families
+                </p>
               </div>
               <div className="rounded-2xl bg-[#eee7f6] p-4">
                 <p className="font-black text-[#59477a]">Woodland Patterns</p>
-                <p className="mt-1 text-sm text-[#726486]">Levels 8–16 · sequences and memory</p>
+                <p className="mt-1 text-sm text-[#726486]">
+                  Levels 8–16 · sequences and memory
+                </p>
               </div>
               <div className="rounded-2xl bg-[#f7e5cf] p-4">
                 <p className="font-black text-[#70461f]">Season path</p>
-                <p className="mt-1 text-sm text-[#856545]">The world changes every four discoveries</p>
+                <p className="mt-1 text-sm text-[#856545]">
+                  The world changes every four discoveries
+                </p>
               </div>
             </div>
             <div className="grid grid-cols-4 gap-3 sm:grid-cols-5">
@@ -1333,7 +1473,9 @@ export function ColorSortGame() {
                   >
                     {unlocked ? natureCollectibles[item.id - 1].icon : "🔒"}
                     <span className="mt-1 block text-xs">{item.id}</span>
-                    <span className="block text-[9px] tracking-[-0.08em]">{stars ? "⭐".repeat(stars) : "•"}</span>
+                    <span className="block text-[9px] tracking-[-0.08em]">
+                      {stars ? "⭐".repeat(stars) : "•"}
+                    </span>
                   </button>
                 );
               })}
@@ -1354,18 +1496,30 @@ export function ColorSortGame() {
                 const unlocked = progress.collectibles.includes(item.name);
                 return (
                   <motion.div
-                    animate={unlocked && !reduceMotion ? { y: [0, -4, 0] } : undefined}
+                    animate={
+                      unlocked && !reduceMotion ? { y: [0, -4, 0] } : undefined
+                    }
                     className={`rounded-[1.4rem] border-2 p-4 text-center ${
                       unlocked
                         ? "border-[#b9cfaa] bg-gradient-to-b from-white to-[#edf5e4]"
                         : "border-slate-200 bg-slate-50 opacity-48"
                     }`}
                     key={item.name}
-                    transition={{ duration: 2.5, delay: index * 0.04, repeat: Infinity }}
+                    transition={{
+                      duration: 2.5,
+                      delay: index * 0.04,
+                      repeat: Infinity,
+                    }}
                   >
-                    <div className="text-5xl">{unlocked ? item.icon : "🌫️"}</div>
-                    <p className="mt-3 text-sm font-black text-[#355c40]">{unlocked ? item.name : `Discovery ${index + 1}`}</p>
-                    <p className="mt-1 text-xs font-semibold text-[#6a806e]">{unlocked ? item.color : "Hidden in the forest"}</p>
+                    <div className="text-5xl">
+                      {unlocked ? item.icon : "🌫️"}
+                    </div>
+                    <p className="mt-3 text-sm font-black text-[#355c40]">
+                      {unlocked ? item.name : `Discovery ${index + 1}`}
+                    </p>
+                    <p className="mt-1 text-xs font-semibold text-[#6a806e]">
+                      {unlocked ? item.color : "Hidden in the forest"}
+                    </p>
                   </motion.div>
                 );
               })}
@@ -1390,7 +1544,12 @@ export function ColorSortGame() {
                 <Toggle
                   checked={progress.sound}
                   label="Nature sounds"
-                  onChange={() => setProgress((current) => ({ ...current, sound: !current.sound }))}
+                  onChange={() =>
+                    setProgress((current) => ({
+                      ...current,
+                      sound: !current.sound,
+                    }))
+                  }
                 />
               </SettingRow>
               <SettingRow
@@ -1401,7 +1560,12 @@ export function ColorSortGame() {
                 <Toggle
                   checked={progress.music}
                   label="Meadow music"
-                  onChange={() => setProgress((current) => ({ ...current, music: !current.music }))}
+                  onChange={() =>
+                    setProgress((current) => ({
+                      ...current,
+                      music: !current.music,
+                    }))
+                  }
                 />
               </SettingRow>
               <SettingRow
@@ -1412,7 +1576,12 @@ export function ColorSortGame() {
                 <Toggle
                   checked={progress.colorblind}
                   label="Colorblind patterns"
-                  onChange={() => setProgress((current) => ({ ...current, colorblind: !current.colorblind }))}
+                  onChange={() =>
+                    setProgress((current) => ({
+                      ...current,
+                      colorblind: !current.colorblind,
+                    }))
+                  }
                 />
               </SettingRow>
               <SettingRow
@@ -1425,7 +1594,12 @@ export function ColorSortGame() {
                     <button
                       className={`rounded-full px-4 py-2 text-sm font-black ${progress.pieceSize === size ? "bg-[#28796b] text-white" : "bg-[#e7efdc] text-[#355c40]"}`}
                       key={size}
-                      onClick={() => setProgress((current) => ({ ...current, pieceSize: size }))}
+                      onClick={() =>
+                        setProgress((current) => ({
+                          ...current,
+                          pieceSize: size,
+                        }))
+                      }
                       type="button"
                     >
                       {size === "large" ? "Large" : "Extra large"}
@@ -1454,10 +1628,20 @@ export function ColorSortGame() {
           >
             <div className="rounded-[1.7rem] bg-gradient-to-br from-[#e5efd8] via-white to-[#f5dfb0] p-6 text-center">
               <div className="text-7xl">🌳</div>
-              <p className="mt-4 text-2xl font-black text-[#214d35]">Nature Match</p>
-              <p className="mt-2 leading-7 text-[#5e775f]">Designed and built by Biloo Group as an educational color, pattern, memory, and hand-eye coordination experience.</p>
-              <p className="mt-4 text-sm font-bold text-[#355c40]">Founder & CEO: Mahir Aman</p>
-              <p className="mt-2 text-sm text-[#6a806e]">Built with Next.js, React, Motion, SVG-friendly CSS shapes, Web Audio, Pointer Events, and local browser storage.</p>
+              <p className="mt-4 text-2xl font-black text-[#214d35]">
+                Nature Match
+              </p>
+              <p className="mt-2 leading-7 text-[#5e775f]">
+                Designed and built by Biloo Group as an educational color,
+                pattern, memory, and hand-eye coordination experience.
+              </p>
+              <p className="mt-4 text-sm font-bold text-[#355c40]">
+                Founder & CEO: Mahir Aman
+              </p>
+              <p className="mt-2 text-sm text-[#6a806e]">
+                Built with Next.js, React, Motion, SVG-friendly CSS shapes, Web
+                Audio, Pointer Events, and local browser storage.
+              </p>
             </div>
           </Modal>
         ) : null}
@@ -1476,7 +1660,9 @@ export function ColorSortGame() {
           >
             <div className="text-center">
               <div className="text-6xl">🦉</div>
-              <p className="mx-auto mt-4 max-w-sm font-bold leading-7 text-[#55705d]">Press and hold the forest button until the ring completes.</p>
+              <p className="mx-auto mt-4 max-w-sm font-bold leading-7 text-[#55705d]">
+                Press and hold the forest button until the ring completes.
+              </p>
               <motion.button
                 animate={holdingGate ? { scale: [1, 1.04, 1] } : undefined}
                 className="relative mt-6 h-28 w-28 overflow-hidden rounded-full border-8 border-[#c9d9bb] bg-[#28796b] text-4xl shadow-xl"
@@ -1511,7 +1697,9 @@ export function ColorSortGame() {
             <div>
               <div className="text-7xl">🌙</div>
               <p className="mt-4 text-3xl font-black">The forest is resting</p>
-              <p className="mt-2 text-white/75">Return to continue exactly where you paused.</p>
+              <p className="mt-2 text-white/75">
+                Return to continue exactly where you paused.
+              </p>
             </div>
           </motion.div>
         ) : null}
@@ -1534,10 +1722,17 @@ function SettingRow({
   return (
     <div className="flex flex-col gap-4 rounded-[1.4rem] border border-[#dce6d1] bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex gap-3">
-        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-[#e8f0de] text-xl" aria-hidden="true">{icon}</span>
+        <span
+          className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-[#e8f0de] text-xl"
+          aria-hidden="true"
+        >
+          {icon}
+        </span>
         <div>
           <p className="font-black text-[#355c40]">{label}</p>
-          <p className="mt-1 max-w-md text-sm leading-6 text-[#687e6c]">{description}</p>
+          <p className="mt-1 max-w-md text-sm leading-6 text-[#687e6c]">
+            {description}
+          </p>
         </div>
       </div>
       <div className="shrink-0">{children}</div>

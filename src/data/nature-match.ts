@@ -158,8 +158,10 @@ export function themeForProgress(completed: number): NatureTheme {
 }
 
 export function treeStage(completed: number) {
-  if (completed >= 16) return { icon: "🌳", name: "Great Forest Tree", next: 16 };
-  if (completed >= 12) return { icon: "🌲", name: "Strong Woodland Tree", next: 16 };
+  if (completed >= 16)
+    return { icon: "🌳", name: "Great Forest Tree", next: 16 };
+  if (completed >= 12)
+    return { icon: "🌲", name: "Strong Woodland Tree", next: 16 };
   if (completed >= 8) return { icon: "🌸", name: "Flowering Tree", next: 12 };
   if (completed >= 4) return { icon: "🌿", name: "Young Leafy Tree", next: 8 };
   return { icon: "🌱", name: "Little Seedling", next: 4 };
