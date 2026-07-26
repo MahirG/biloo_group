@@ -1,0 +1,5 @@
+-- Retired migration placeholder.
+--
+-- The original draft assumed an empty project and used generic table names that
+-- conflict with the existing schema in the connected Mezgeb Supabase project.
+-- Use 202607230002_mezgeb_authentication_and_business_foundation.sql instead.

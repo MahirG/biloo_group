@@ -10,6 +10,7 @@ export default defineConfig([
     "out/**",
     "build/**",
     "apps/erp/**",
+    "apps/mezgeb/**",
     "next-env.d.ts",
   ]),
 ]);

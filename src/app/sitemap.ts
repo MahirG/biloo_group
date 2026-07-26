@@ -22,6 +22,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
     },
     {
+      url: absoluteUrl("/mezgeb"),
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.95,
+    },
+    {
       url: absoluteUrl("/about"),
       lastModified,
       changeFrequency: "yearly",
