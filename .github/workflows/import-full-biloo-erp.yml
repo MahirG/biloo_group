@@ -1,0 +1,78 @@
+name: Import full Biloo ERP application
+
+on:
+  push:
+    branches: [agent/import-full-biloo-erp]
+
+permissions:
+  contents: write
+
+jobs:
+  import-and-validate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Biloo repository branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/import-full-biloo-erp
+
+      - name: Checkout preserved Biloo ERP source
+        uses: actions/checkout@v4
+        with:
+          repository: MahirG/HisabERP
+          ref: archive/biloo-erp-copy
+          path: _erp_source
+
+      - name: Copy complete ERP application into Biloo monorepo
+        shell: bash
+        run: |
+          rm -rf apps/erp
+          mkdir -p apps/erp
+          rsync -a \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='.vercel' \
+            --exclude='.next' \
+            --exclude='node_modules' \
+            _erp_source/ apps/erp/
+          rm -rf _erp_source
+          cat > apps/erp/IMPORT_SOURCE.md <<'EOF'
+          # Biloo ERP import source
+
+          This application is an independent Biloo-owned copy of the ERP platform.
+
+          - Source snapshot: `MahirG/HisabERP` branch `archive/biloo-erp-copy`
+          - Original HisabERP repository and `hisabtech.com` deployment remain independent.
+          - Biloo deployment root directory: `apps/erp`
+          - Intended product domain: `erp.biloogroup.com`
+          EOF
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate Biloo Group site
+        run: |
+          npm install
+          npm run lint
+          npm run typecheck
+          npm run build
+
+      - name: Validate imported Biloo ERP application
+        working-directory: apps/erp
+        run: |
+          npm install
+          npm run typecheck
+          npm test
+          npm run build
+
+      - name: Commit imported ERP application
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps/erp
+          git commit -m "Import full Biloo ERP application"
+          git push origin HEAD:agent/import-full-biloo-erp
