@@ -6,7 +6,7 @@ export const company = {
     title: "Founder & CEO",
   },
   origin: "Ethiopia",
-  email: "mahir@biloogroups.com",
+  email: "mahir@biloogroup.com",
   mission:
     "Build dependable digital platforms that improve how people, businesses, and institutions work.",
   vision:
