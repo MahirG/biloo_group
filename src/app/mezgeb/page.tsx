@@ -93,7 +93,9 @@ export default function MezgebPage() {
         <div className="container-shell relative grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
           <div>
             <div className="flex flex-wrap items-center gap-3">
-              <p className="eyebrow text-white/55">Biloo financial operations</p>
+              <p className="eyebrow text-white/55">
+                Biloo financial operations
+              </p>
               <span className="rounded-full border border-white/15 bg-white/8 px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white/75">
                 Mezgeb · መዝገብ
               </span>
@@ -232,16 +234,22 @@ export default function MezgebPage() {
         </div>
       </section>
 
-      <section className="bg-graphite py-24 text-white sm:py-32" id="continuity">
+      <section
+        className="bg-graphite py-24 text-white sm:py-32"
+        id="continuity"
+      >
         <div className="container-shell grid gap-14 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <p className="eyebrow text-white/50">Continuity without data migration</p>
+            <p className="eyebrow text-white/50">
+              Continuity without data migration
+            </p>
             <h2 className="mt-6 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">
               Existing accounts and data stay connected.
             </h2>
             <p className="mt-6 max-w-xl text-lg leading-8 text-white/60">
               The Biloo migration preserves technical identifiers that existing
-              users, authentication sessions and database policies already rely on.
+              users, authentication sessions and database policies already rely
+              on.
             </p>
           </div>
           <div className="grid gap-3">
@@ -266,15 +274,16 @@ export default function MezgebPage() {
             <div>
               <p className="eyebrow text-sapphire">Production integrity</p>
               <h2 className="mt-6 max-w-3xl text-4xl font-semibold tracking-[-0.045em]">
-                Authentication and business onboarding are live; transaction persistence remains staged.
+                Authentication and business onboarding are live; transaction
+                persistence remains staged.
               </h2>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-muted">
                 Supabase authentication, protected dashboards and business
-                workspaces are connected. The inherited `/app` transaction screens
-                still contain browser-local prototype storage for selected ledger,
-                Dube, receipt, inventory and reporting workflows. Those screens
-                should use sample data until their existing Mezgeb tables are fully
-                connected.
+                workspaces are connected. The inherited `/app` transaction
+                screens still contain browser-local prototype storage for
+                selected ledger, Dube, receipt, inventory and reporting
+                workflows. Those screens should use sample data until their
+                existing Mezgeb tables are fully connected.
               </p>
             </div>
             <Link
