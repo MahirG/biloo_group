@@ -1,1 +1,1 @@
-Import the validated Mezgeb source, apply Biloo branding, run all application and browser tests, and commit the complete product.
+Rerun the validated Biloo Mezgeb import and preserve the exact Playwright browser diagnostics before enforcing the release gate.
