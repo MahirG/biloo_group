@@ -6,7 +6,7 @@ import { solutions } from "@/data/solutions";
 import { absoluteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date("2026-07-26T00:00:00.000Z");
+  const lastModified = new Date("2026-07-27T00:00:00.000Z");
 
   const corePages: MetadataRoute.Sitemap = [
     {
@@ -14,6 +14,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "monthly",
       priority: 1,
+    },
+    {
+      url: absoluteUrl("/apps"),
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.98,
     },
     {
       url: absoluteUrl("/erp"),
