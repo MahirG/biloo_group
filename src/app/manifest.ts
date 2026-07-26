@@ -22,9 +22,10 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
     shortcuts: [
       {
-        name: "Play Color Sort",
-        short_name: "Color Sort",
-        description: "Open the toddler bead-sorting IQ game.",
+        name: "Play Nature Match",
+        short_name: "Nature Match",
+        description:
+          "Open Biloo's animal, plant, color, pattern, and memory puzzle game.",
         url: "/iq-game",
       },
     ],
