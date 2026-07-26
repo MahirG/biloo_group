@@ -1,0 +1,47 @@
+name: Format professional app launcher
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: format-professional-app-launcher
+  cancel-in-progress: true
+
+jobs:
+  format:
+    if: github.actor != 'github-actions[bot]' && github.head_ref == 'agent/professional-app-launcher'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout app launcher branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/professional-app-launcher
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund --silent
+
+      - name: Format repository
+        run: npm run format
+
+      - name: Commit formatter output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/app/apps/page.tsx src/app/globals.css src/app/sitemap.ts src/components/product-app-launcher.tsx src/components/product-quick-launch.tsx src/components/site-footer.tsx src/components/site-header.tsx src/data/product-access.ts
+          if git diff --cached --quiet; then
+            echo "No formatting changes required."
+            exit 0
+          fi
+          git commit -m "Format professional app launcher"
+          git push origin HEAD:agent/professional-app-launcher
