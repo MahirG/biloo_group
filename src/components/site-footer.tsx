@@ -145,8 +145,9 @@ export function SiteFooter() {
 
       <div className="container-shell border-t border-graphite/10 py-6">
         <p className="text-xs leading-5 text-muted">
-          App launch links open the existing production services. Authentication,
-          Supabase data, and account ownership remain with each product.
+          App launch links open the existing production services.
+          Authentication, Supabase data, and account ownership remain with each
+          product.
         </p>
       </div>
     </footer>

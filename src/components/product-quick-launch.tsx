@@ -2,10 +2,7 @@
 
 import Link from "next/link";
 
-import {
-  getProductAccess,
-  type ProductAccessId,
-} from "@/data/product-access";
+import { getProductAccess, type ProductAccessId } from "@/data/product-access";
 
 function ExternalArrow() {
   return (

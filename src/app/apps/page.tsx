@@ -60,16 +60,19 @@ export default function AppsPage() {
             Windows desktops.
           </p>
           <div className="mt-9 flex flex-wrap gap-3 text-sm font-semibold">
-            {["48px touch targets", "Keyboard accessible", "High contrast", "Secure external launch"].map(
-              (item) => (
-                <span
-                  className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-white"
-                  key={item}
-                >
-                  {item}
-                </span>
-              ),
-            )}
+            {[
+              "48px touch targets",
+              "Keyboard accessible",
+              "High contrast",
+              "Secure external launch",
+            ].map((item) => (
+              <span
+                className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-white"
+                key={item}
+              >
+                {item}
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -145,10 +148,22 @@ export default function AppsPage() {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {[
-              ["Mobile", "Large touch targets, pressed feedback, safe scrolling, and links that can open an installed web app when the operating system supports it."],
-              ["Windows", "Keyboard focus, clear hover states, readable labels, and secure new-tab launches for desktop workflows."],
-              ["Authentication", "The buttons use the products’ existing sign-in routes. No account, callback, or Supabase identifier is changed."],
-              ["Data continuity", "Mezgeb and HisabTech continue to use their current production services and data connections."],
+              [
+                "Mobile",
+                "Large touch targets, pressed feedback, safe scrolling, and links that can open an installed web app when the operating system supports it.",
+              ],
+              [
+                "Windows",
+                "Keyboard focus, clear hover states, readable labels, and secure new-tab launches for desktop workflows.",
+              ],
+              [
+                "Authentication",
+                "The buttons use the products’ existing sign-in routes. No account, callback, or Supabase identifier is changed.",
+              ],
+              [
+                "Data continuity",
+                "Mezgeb and HisabTech continue to use their current production services and data connections.",
+              ],
             ].map(([title, copy]) => (
               <article
                 className="rounded-2xl border border-graphite/10 bg-ivory p-6"

@@ -118,11 +118,7 @@ function ProductCard({
           </span>
         ))}
       </div>
-      <ProductLaunchButtons
-        className="mt-5"
-        productId={product.id}
-        stacked
-      />
+      <ProductLaunchButtons className="mt-5" productId={product.id} stacked />
       <Link
         className="focus-ring mt-4 inline-flex min-h-11 touch-manipulation items-center gap-2 rounded-lg px-2 text-sm font-bold text-sapphire transition hover:bg-sapphire/5 hover:text-graphite active:scale-[0.98]"
         href={product.productHref}
