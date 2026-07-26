@@ -3,8 +3,8 @@ import Link from "next/link";
 import { BrandMark } from "@/components/brand-mark";
 
 const navItems = [
-  { href: "/#vision", label: "Vision" },
-  { href: "/#ecosystem", label: "Ecosystem" },
+  { href: "/solutions", label: "Solutions" },
+  { href: "/insights", label: "Insights" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
@@ -14,6 +14,7 @@ export function SiteHeader() {
     <header className="absolute inset-x-0 top-0 z-30 border-b border-white/10 text-white">
       <div className="container-shell flex h-20 items-center justify-between">
         <Link
+          aria-label="Biloo Group home"
           className="focus-ring flex items-center gap-3 rounded-xl"
           href="/"
         >
