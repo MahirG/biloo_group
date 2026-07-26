@@ -10,13 +10,13 @@ permissions:
 
 jobs:
   fix-nature:
-    if: github.event_name == 'pull_request' && github.head_ref == 'agent/nature-match-expansion' && github.actor != 'github-actions[bot]'
+    if: github.event_name == 'pull_request' && github.head_ref == 'agent/nature-match-expansion-validation' && github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout feature branch
         uses: actions/checkout@v4
         with:
-          ref: agent/nature-match-expansion
+          ref: agent/nature-match-expansion-validation
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -73,6 +73,18 @@ jobs:
       - name: Format expansion
         run: npm run format
 
+      - name: Lint repaired expansion
+        run: npm run lint
+
+      - name: Type check repaired expansion
+        run: npm run typecheck
+
+      - name: Build repaired expansion
+        run: npm run build
+
+      - name: Check repaired formatting
+        run: npm run format:check
+
       - name: Restore normal CI and remove temporary files
         shell: bash
         run: |
@@ -121,7 +133,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "Fix and format Nature Match expansion"
-          git push origin HEAD:agent/nature-match-expansion
+          git push origin HEAD:agent/nature-match-expansion-validation
 
   quality:
     runs-on: ubuntu-latest
