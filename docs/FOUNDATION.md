@@ -46,6 +46,12 @@ Mezgeb is an Ethiopian business-ledger project for small businesses. Its product
 
 **Status:** Interactive prototype and early product development. It must not be described as suitable for real financial records until security, data protection, reliability, and operational readiness are verified. The planned project domain is `mezgeb.com.et`.
 
+### Color Sort
+
+Color Sort is a Montessori-inspired educational bead-sorting game for toddlers. The first web MVP includes Easy and Medium levels focused on color recognition, pattern matching, memory, and hand-eye coordination. It uses positive-only rewards, local progress, accessibility patterns, a parent gate, and no advertising, accounts, purchases, leaderboards, or numeric IQ score.
+
+**Status:** Playable educational web-game MVP. It is not a clinical IQ test, and public communication must not promise measured cognitive outcomes without appropriate evidence.
+
 ## Strategic fields
 
 Biloo may explore the following fields over time:
@@ -55,6 +61,7 @@ Biloo may explore the following fields over time:
 - Financial technology and payments
 - Digital commerce, marketplaces, and logistics enablement
 - Business operating systems and enterprise software
+- Educational technology and child-safe digital experiences
 - Public-sector digital services
 - Product design and applied research
 
@@ -62,7 +69,7 @@ Product-line names including Biloo AI, Biloo Cloud, Biloo Pay, Biloo Commerce, B
 
 ## Founder profile
 
-Mahir Aman is the Founder and CEO of Biloo Group. His stated areas of interest include technology, artificial intelligence, cloud systems, digital commerce, fintech, marketplaces, public-sector digital systems, dropshipping and cross-border commerce, and financial markets.
+Mahir Aman is the Founder and CEO of Biloo Group. His stated areas of interest include technology, artificial intelligence, cloud systems, digital commerce, fintech, marketplaces, public-sector digital systems, dropshipping and cross-border commerce, educational products, and financial markets.
 
 Public biographies must remain accurate. They may describe demonstrated work, active study, and stated interests, but must not invent credentials, awards, partnerships, customers, revenue, or institutional endorsements.
 
@@ -90,4 +97,5 @@ The founder email is `mahir@biloogroup.com`. It should be published only after d
 3. Use written criteria before entering regulated sectors.
 4. Protect customer data by default.
 5. Avoid naming a product before validating the problem it solves.
-6. Preserve institutional knowledge so the company can outlast its founder.
+6. Treat child-facing products as a high-trust category with strict safety and privacy requirements.
+7. Preserve institutional knowledge so the company can outlast its founder.

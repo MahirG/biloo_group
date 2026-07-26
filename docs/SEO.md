@@ -11,7 +11,7 @@ Before requesting indexing, confirm all of the following:
 3. The domain resolves to the production deployment.
 4. Every public route returns a successful response and is usable on mobile devices.
 5. The contact email is active and monitored.
-6. Claims, project status, leadership information, and contact details remain accurate.
+6. Claims, project status, leadership information, educational outcomes, and contact details remain accurate.
 
 ## Generated search endpoints
 
@@ -22,7 +22,7 @@ The Next.js application automatically generates:
 - `/manifest.webmanifest`
 - `/opengraph-image`
 
-The sitemap includes the home, about, projects, solutions, insights, and contact pages plus every project, solution, and insight detail page.
+The sitemap includes the home, about, projects, IQ game, solutions, insights, and contact pages plus every project, solution, and insight detail page.
 
 ## Google Search Console
 
@@ -40,6 +40,7 @@ The sitemap includes the home, about, projects, solutions, insights, and contact
 - `/projects`
 - `/projects/qabeza-erp`
 - `/projects/mezgeb`
+- `/iq-game`
 - `/solutions`
 - `/solutions/artificial-intelligence`
 - `/solutions/digital-commerce`
@@ -52,11 +53,15 @@ Biloo Group should publish content only when it provides useful original informa
 
 - a specific user purpose;
 - a unique title and description;
-- a descriptive heading;
-- visible explanatory text;
+- a descriptive heading or clearly understandable interactive purpose;
+- visible explanatory content where appropriate;
 - internal links from relevant pages;
 - accurate company and product-status language;
 - a clear review owner and update process.
+
+## Child-facing educational content
+
+The Color Sort page may describe color recognition, pattern matching, memory practice, and hand-eye coordination as the intended learning activities. It must not claim to diagnose intelligence, produce a clinical IQ score, guarantee developmental outcomes, or replace professional assessment. Search copy should use terms such as educational game, toddler sorting game, Montessori-inspired play, and pattern-matching game accurately rather than making medical or performance promises.
 
 ## Project-status standard
 
@@ -70,10 +75,11 @@ A sustainable starting cadence is one strong insight per month. Useful topics in
 - responsible multilingual AI;
 - digital commerce and marketplace operations;
 - cloud reliability and security;
+- child-safe educational technology;
 - accessible digital public services;
 - lessons from validated Biloo prototypes and products.
 
-Never publish invented customers, case studies, awards, performance data, funding, partnerships, or credentials.
+Never publish invented customers, case studies, awards, performance data, funding, partnerships, credentials, or learning results.
 
 ## Measurement
 
@@ -86,5 +92,7 @@ Search performance should be evaluated with Google Search Console and privacy-re
 - crawl and indexing errors;
 - Core Web Vitals;
 - qualified contact inquiries.
+
+For child-facing experiences, avoid behavioral advertising, cross-site tracking, or collecting personal data merely for analytics.
 
 Rankings are an outcome, not the operating objective. The objective is to publish a fast, credible, useful website that accurately represents Biloo Group.

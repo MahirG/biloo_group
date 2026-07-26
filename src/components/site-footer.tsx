@@ -7,6 +7,7 @@ import { solutions } from "@/data/solutions";
 
 const companyLinks = [
   { href: "/projects", label: "Projects" },
+  { href: "/iq-game", label: "IQ Game" },
   { href: "/about", label: "About" },
   { href: "/insights", label: "Insights" },
   { href: "/contact", label: "Contact" },
@@ -51,6 +52,14 @@ export function SiteFooter() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                className="font-semibold text-sapphire transition hover:text-graphite"
+                href="/iq-game"
+              >
+                Color Sort IQ Game
+              </Link>
+            </li>
           </ul>
         </nav>
 
