@@ -1,6 +1,5 @@
 .next
-out
-build
 node_modules
-apps/erp
-apps/mezgeb
+coverage
+playwright-report
+test-results

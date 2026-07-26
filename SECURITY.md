@@ -1,18 +1,17 @@
-# Security Policy
+# Security policy
 
-## Reporting
+## Supported version
 
-Until a dedicated security address is verified, report suspected vulnerabilities privately to the founder through the confirmed Biloo Group contact channel. Do not include sensitive exploit details in a public GitHub issue.
+Only the latest commit on `main` is supported.
 
-## Baseline controls
+## Reporting vulnerabilities
 
-- Never commit passwords, private keys, API tokens, or production environment files.
-- Use least-privilege access for GitHub, hosting, domains, and cloud accounts.
-- Require multi-factor authentication for administrative accounts.
-- Review dependency alerts and supported framework versions regularly.
-- Protect the default branch and require successful checks before merge.
-- Treat payment, identity, government, and financial-market products as regulated or high-risk until legal review confirms otherwise.
+Use GitHub private vulnerability reporting or contact the repository owner privately. Do not disclose vulnerabilities in public issues.
 
-## Supported versions
+## Secrets
 
-Biloo Group is currently in the foundation stage. Security support applies to the latest code on the default branch after a public release is declared.
+Never commit `.env` files, Supabase service-role keys, database passwords, payment credentials, SMTP secrets or GitHub tokens. Rotate any secret that has ever been exposed.
+
+## Financial-data warning
+
+Do not use this project with real financial or customer data until a dedicated production backend, RLS verification, legal review, backups, monitoring and incident response are complete.

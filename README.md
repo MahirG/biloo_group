@@ -1,98 +1,86 @@
-# Biloo Group
+# Biloo Mezgeb መዝገብ
 
-Official website and living company documentation for **Biloo Group**, an Ethiopia-rooted technology company founded by **Mahir Aman**.
+Official Next.js application for an Ethiopian small-business ledger covering sales, expenses, VAT-ready receipts, Dube customer credit, mobile money, reports, inventory and business operations.
 
-> Technology built for generations.
+## Status
 
-## What this repository contains
+The marketing website and native `/app` workspace share one Biloo Mezgeb design system. Production Supabase authentication is connected to project `vcyzgoiconxjmntoreto`, and the protected account dashboard can create and load RLS-isolated business workspaces.
 
-- A production-oriented Next.js company website
-- A responsive hamburger navigation system
-- Color Sort, an offline-friendly Montessori-inspired toddler IQ game
-- Search-ready project pages for Qabeza ERP and Mezgeb
-- Search-ready solution pages for Biloo's strategic capability areas
-- An editorial insights library with substantive long-form articles
-- Biloo Group foundation and origin story
-- Brand identity guidance
-- Product and company roadmap
-- Technical architecture, security, and SEO operating principles
+The visual application at `/app` still uses browser-local prototype transactions. Do not enter real financial data there until its ledger, Dube, receipts, inventory and reports are switched from local storage to the deployed `mezgeb_*` tables.
 
-## Public website structure
+## Authentication routes
 
-- `/` — company homepage
-- `/about` — origin, founder, mission, and operating commitments
-- `/projects` — Biloo Group project portfolio
-- `/projects/qabeza-erp` — enterprise resource planning project
-- `/projects/mezgeb` — Ethiopian business-ledger project
-- `/iq-game` — Color Sort toddler bead-sorting game
-- `/solutions` — technology capability overview
-- `/solutions/[slug]` — AI, cloud, payments, commerce, labs, and public-sector technology pages
-- `/insights` — technology perspectives
-- `/insights/[slug]` — long-form editorial articles
-- `/contact` — company contact and partnership information
-- `/robots.txt` — crawler directives
-- `/sitemap.xml` — generated sitemap
+- `/auth/sign-up` — full-name, email and password registration
+- `/auth/callback` — email-confirmation and recovery-code exchange
+- `/auth/sign-in` — password authentication with safe return paths
+- `/auth/forgot-password` — secure recovery email request
+- `/auth/update-password` — authenticated password replacement
+- `/auth/sign-out` — session termination
+- `/dashboard` — protected business onboarding and workspace selection
 
-## Color Sort MVP
+Supabase SSR sessions are refreshed through `proxy.ts`. New Auth users automatically receive a `mezgeb_profiles` row through a locked database trigger.
 
-Color Sort includes 16 Easy and Medium levels, touch and mouse drag controls, tap-to-place fallback, pattern and memory challenges, positive-only rewards, saved progress, sticker collection, accessibility patterns, adjustable bead size, a parent gate, sound controls, and offline caching after the first successful load.
+## Application routes
 
-The game contains no accounts, ads, in-app purchases, leaderboards, lives, or numeric IQ score. It is designed as an educational play experience, not a clinical assessment.
+- `/app` — native Next.js Biloo Mezgeb workspace with dashboard, ledger, receipts, Dube, reports and operations
+- `/demo` — lightweight public product demo
+- `/dashboard` — authenticated account and business workspace selector
 
-## Technology
+## Connected database
 
-- Next.js App Router
-- React and TypeScript
-- Tailwind CSS
-- Motion for React
-- Pointer Events and Web Audio APIs
-- Progressive Web App manifest and service worker
-- Browser localStorage for game progress
-- Next.js Metadata APIs and structured data
-- ESLint and Prettier
-- GitHub Actions
+The connected project already contained unrelated live-streaming tables. Biloo Mezgeb therefore uses conflict-safe namespaced tables and does not modify those existing records:
 
-## Local development
+- `mezgeb_profiles`
+- `mezgeb_businesses`
+- `mezgeb_customers`
+- `mezgeb_transactions`
+- `mezgeb_receipts`
+- `mezgeb_audit_logs`
+- `mezgeb_deletion_requests`
+
+All Biloo Mezgeb tables have Row Level Security enabled. Ownership policies restrict business data to the authenticated owner. The Supabase security advisor reports no unresolved findings after deployment.
+
+## Stack
+
+- Next.js 16 App Router, React 19 and TypeScript
+- Supabase Auth with cookie-based SSR sessions
+- PostgreSQL Row Level Security
+- Vitest, Playwright, ESLint and Prettier
+- GitHub Actions CI, CodeQL and Dependabot
+
+## Local setup
 
 ```bash
-npm install
 cp .env.example .env.local
+npm install
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+Open `http://localhost:3000`. Authentication uses the connected Biloo Mezgeb Supabase project defined in `.env.example` and `lib/supabase/config.ts`.
 
-## Environment variables
+## Database migration
 
-```bash
-NEXT_PUBLIC_SITE_URL=https://biloogroup.com
-NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=
+The deployed schema is tracked at:
+
+```text
+supabase/migrations/202607230002_mezgeb_authentication_and_business_foundation.sql
 ```
 
-Set the site URL to the exact production origin. The Google verification token is optional and should be supplied only when using Search Console's HTML verification method.
+The earlier `202607230001_initial_schema.sql` is intentionally retired because it assumed an empty project and conflicted with the existing `profiles` table.
+
+Never expose or commit `SUPABASE_SERVICE_ROLE_KEY`.
 
 ## Validation
 
 ```bash
+npm run format:check
 npm run lint
 npm run typecheck
+npm test
 npm run build
-npm run format:check
+npm run test:e2e
 ```
 
-## Important brand and project status
+## Data safety
 
-Biloo Group is in its foundation stage. Product names such as Biloo AI, Biloo Cloud, Biloo Pay, Biloo Commerce, Biloo Labs, and Biloo Gov are **strategic directions**, not representations that all products are currently launched.
-
-Qabeza ERP is a product project under validation and development. Mezgeb is an interactive prototype and early product-development project. Color Sort is an educational web-game MVP. Public material must not imply unverified customers, production readiness, learning outcomes, or clinical IQ measurement.
-
-The public domain is `biloogroup.com`. The contact email, corporate address, and telephone details must be verified before they are presented as finalized corporate information.
-
-## Documentation
-
-- [`docs/FOUNDATION.md`](docs/FOUNDATION.md)
-- [`docs/BRAND.md`](docs/BRAND.md)
-- [`docs/ROADMAP.md`](docs/ROADMAP.md)
-- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
-- [`docs/SEO.md`](docs/SEO.md)
-- [`SECURITY.md`](SECURITY.md)
+Authentication and business onboarding are backed by Supabase. The `/app` transaction screens remain browser-local until the next database-integration phase. Use sample data there only.

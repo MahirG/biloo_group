@@ -1,16 +1,18 @@
-import { defineConfig, globalIgnores } from "eslint/config";
-import nextVitals from "eslint-config-next/core-web-vitals";
-import nextTypeScript from "eslint-config-next/typescript";
+import { defineConfig, globalIgnores } from 'eslint/config';
+import nextVitals from 'eslint-config-next/core-web-vitals';
+import nextTs from 'eslint-config-next/typescript';
 
 export default defineConfig([
   ...nextVitals,
-  ...nextTypeScript,
-  globalIgnores([
-    ".next/**",
-    "out/**",
-    "build/**",
-    "apps/erp/**",
-    "apps/mezgeb/**",
-    "next-env.d.ts",
-  ]),
+  ...nextTs,
+  {
+    files: ['components/mezgeb-application.tsx'],
+    rules: {
+      // This client workspace refreshes Supabase data after hydration and evaluates
+      // due dates against the current browser clock for operational status labels.
+      'react-hooks/set-state-in-effect': 'off',
+      'react-hooks/purity': 'off'
+    }
+  },
+  globalIgnores(['.next/**', 'out/**', 'coverage/**', 'playwright-report/**'])
 ]);
