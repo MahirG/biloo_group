@@ -1,0 +1,69 @@
+name: Build Biloo ERP production branch
+
+on:
+  push:
+    branches: [biloo-erp-production]
+
+permissions:
+  contents: write
+
+jobs:
+  build-erp-branch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Biloo ERP deployment branch
+        uses: actions/checkout@v4
+        with:
+          ref: biloo-erp-production
+
+      - name: Checkout preserved Biloo ERP source
+        uses: actions/checkout@v4
+        with:
+          repository: MahirG/HisabERP
+          ref: archive/biloo-erp-copy
+          path: _erp_source
+
+      - name: Replace branch root with complete ERP application
+        shell: bash
+        run: |
+          find . -mindepth 1 -maxdepth 1 \
+            ! -name '.git' \
+            ! -name '_erp_source' \
+            -exec rm -rf {} +
+          rsync -a \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='.vercel' \
+            --exclude='.next' \
+            --exclude='node_modules' \
+            _erp_source/ ./
+          rm -rf _erp_source
+          cat > BILOO_DEPLOYMENT.md <<'EOF'
+          # Biloo ERP deployment branch
+
+          This branch contains the complete Biloo ERP application at repository root for an independent Vercel deployment.
+
+          The original `MahirG/HisabERP` repository and `hisabtech.com` deployment remain separate and unchanged.
+          EOF
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate complete ERP application
+        run: |
+          npm install
+          npm run typecheck
+          npm test
+          npm run build
+
+      - name: Commit Biloo ERP deployment source
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Publish full Biloo ERP application"
+          git push origin HEAD:biloo-erp-production
