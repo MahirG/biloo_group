@@ -17,10 +17,13 @@ const companyLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
+const footerLinkClass =
+  "focus-ring app-action inline-flex min-h-11 touch-manipulation items-center rounded-lg px-2 transition hover:bg-sapphire/5 hover:text-sapphire active:scale-[0.98]";
+
 export function SiteFooter() {
   return (
     <footer className="border-t border-graphite/10 bg-white">
-      <div className="container-shell grid gap-12 py-14 lg:grid-cols-[1.2fr_0.9fr_1fr_0.7fr]">
+      <div className="container-shell grid gap-12 py-14 lg:grid-cols-[1.2fr_1fr_0.8fr_1fr_0.7fr]">
         <div>
           <Link
             className="focus-ring app-action inline-flex min-h-11 touch-manipulation items-center gap-3 rounded-xl active:scale-[0.98]"
@@ -55,7 +58,10 @@ export function SiteFooter() {
               </Link>
             </li>
             {productAccess.map((product) => (
-              <li className="rounded-xl border border-graphite/10 bg-ivory p-3" key={product.id}>
+              <li
+                className="rounded-xl border border-graphite/10 bg-ivory p-3"
+                key={product.id}
+              >
                 <Link
                   className="focus-ring app-action inline-flex min-h-11 touch-manipulation items-center rounded-lg px-2 font-bold text-graphite transition hover:bg-white hover:text-sapphire active:scale-[0.98]"
                   href={product.productHref}
@@ -80,11 +86,11 @@ export function SiteFooter() {
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted">
             Products
           </p>
-          <ul className="mt-5 grid gap-3 text-sm">
+          <ul className="mt-5 grid gap-1 text-sm">
             {projects.map((project) => (
               <li key={project.slug}>
                 <Link
-                  className="focus-ring app-action inline-flex min-h-11 touch-manipulation items-center rounded-lg px-2 transition hover:bg-sapphire/5 hover:text-sapphire active:scale-[0.98]"
+                  className={footerLinkClass}
                   href={`/projects/${project.slug}`}
                 >
                   {project.name}
@@ -92,13 +98,28 @@ export function SiteFooter() {
               </li>
             ))}
             <li>
-              <Link
-                className="focus-ring app-action inline-flex min-h-11 touch-manipulation items-center rounded-lg px-2 transition hover:bg-sapphire/5 hover:text-sapphire active:scale-[0.98]"
-                href="/iq-game"
-              >
+              <Link className={footerLinkClass} href="/iq-game">
                 Nature Match
               </Link>
             </li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Solutions navigation">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted">
+            Solutions
+          </p>
+          <ul className="mt-5 grid gap-1 text-sm">
+            {solutions.map((solution) => (
+              <li key={solution.slug}>
+                <Link
+                  className={footerLinkClass}
+                  href={`/solutions/${solution.slug}`}
+                >
+                  {solution.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
 
@@ -109,10 +130,7 @@ export function SiteFooter() {
           <ul className="mt-5 grid gap-1 text-sm">
             {companyLinks.map((item) => (
               <li key={item.href}>
-                <Link
-                  className="focus-ring app-action inline-flex min-h-11 touch-manipulation items-center rounded-lg px-2 transition hover:bg-sapphire/5 hover:text-sapphire active:scale-[0.98]"
-                  href={item.href}
-                >
+                <Link className={footerLinkClass} href={item.href}>
                   {item.label}
                 </Link>
               </li>
