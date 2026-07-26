@@ -1,0 +1,25 @@
+name: Export Vercel production bundle
+
+on:
+  pull_request:
+
+jobs:
+  export:
+    if: github.head_ref == 'agent/vercel-production-bundle'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout merged source
+        uses: actions/checkout@v4
+
+      - name: Upload production source
+        uses: actions/upload-artifact@v4
+        with:
+          name: biloo-vercel-source
+          include-hidden-files: true
+          retention-days: 1
+          path: |
+            .
+            !.git
+            !.github
+            !node_modules
+            !.next
