@@ -1,1 +1,1 @@
-Import the corrected Mezgeb source, run the complete application and Playwright suites, and commit the Biloo Mezgeb release candidate.
+Import the fully validated Mezgeb source, run all Biloo and desktop/mobile browser gates, and commit the deployable Biloo Mezgeb application.
