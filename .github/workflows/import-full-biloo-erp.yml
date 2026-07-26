@@ -3,13 +3,16 @@ name: Import full Biloo ERP application
 on:
   push:
     branches: [agent/import-full-biloo-erp]
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
 
 permissions:
   contents: write
 
 jobs:
   import-and-validate:
-    if: github.actor != 'github-actions[bot]'
+    if: github.actor != 'github-actions[bot]' && (github.event_name != 'pull_request' || github.head_ref == 'agent/import-full-biloo-erp')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Biloo repository branch
@@ -68,11 +71,14 @@ jobs:
           npm test
           npm run build
 
+      - name: Remove workflow trigger
+        run: rm -f .import-biloo-erp-trigger
+
       - name: Commit imported ERP application
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add apps/erp
+          git add -A
           git commit -m "Import full Biloo ERP application"
           git push origin HEAD:agent/import-full-biloo-erp
