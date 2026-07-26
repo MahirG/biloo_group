@@ -1,4 +1,4 @@
-const CACHE_NAME = "biloo-color-sort-v1";
+const CACHE_NAME = "biloo-nature-match-world-v4";
 const APP_SHELL = ["/iq-game", "/manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {

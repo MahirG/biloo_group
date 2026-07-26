@@ -1,29 +1,29 @@
 import type { Metadata, Viewport } from "next";
 
-import { ColorSortGame } from "@/components/color-sort-game";
 import { JsonLd } from "@/components/json-ld";
+import { NatureMatchExperience } from "@/components/nature-match-experience";
 import { absoluteUrl } from "@/lib/site";
 
 import styles from "./iq-game.module.css";
 
 export const metadata: Metadata = {
-  title: "Nature Match — Animal and Plant Puzzle Game",
+  title: "Nature Match World — Calm Animal and Plant Puzzle Game",
   description:
-    "Play Nature Match, a calm, colorful animal-and-plant sorting game for young children with seasonal forests, named nature colors, pattern memory, tree growth, and positive-only rewards.",
+    "Explore Nature Match World, a calm, ad-free collection of animal, plant, habitat, pattern, counting, memory, sorting, and free-play activities for young children.",
   alternates: { canonical: "/iq-game" },
-  applicationName: "Nature Match by Biloo Group",
+  applicationName: "Nature Match World by Biloo Group",
   openGraph: {
-    title: "Nature Match — Biloo's Nature Puzzle Game",
+    title: "Nature Match World — Biloo's Nature Puzzle Game",
     description:
-      "A polished, ad-free matching game with cute animals, leaves, flowers, seasonal worlds, and a growing nature gallery.",
+      "A positive-only educational game with daily nature adventures, animal reactions, adaptive puzzles, a permanent garden, and creative free play.",
     url: "/iq-game",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nature Match — Animal and Plant Puzzle Game",
+    title: "Nature Match World — Animal and Plant Puzzle Game",
     description:
-      "A calm nature-themed sorting and pattern game with positive rewards and no fail states.",
+      "Calm nature sorting, habitats, families, patterns, shadows, counting, and free play with no timers or fail states.",
   },
 };
 
@@ -44,8 +44,8 @@ export default function IqGamePage() {
         data={{
           "@context": "https://schema.org",
           "@type": "VideoGame",
-          name: "Nature Match",
-          alternateName: ["Biloo Nature Game", "Biloo IQ Game"],
+          name: "Nature Match World",
+          alternateName: ["Nature Match", "Biloo Nature Game", "Biloo IQ Game"],
           description: metadata.description,
           url: absoluteUrl("/iq-game"),
           applicationCategory: "EducationalGame",
@@ -55,14 +55,19 @@ export default function IqGamePage() {
             "Color recognition",
             "Pattern matching",
             "Memory",
+            "Early counting",
+            "Size comparison",
+            "Visual categorization",
             "Hand-eye coordination",
             "Nature vocabulary",
+            "Creative free play",
           ],
           keywords: [
             "animal matching game",
             "nature sorting game",
-            "color matching game",
-            "toddler pattern game",
+            "habitat matching game",
+            "toddler counting game",
+            "pattern game for children",
             "offline educational game",
           ],
           audience: {
@@ -75,7 +80,7 @@ export default function IqGamePage() {
           inLanguage: "en",
         }}
       />
-      <ColorSortGame />
+      <NatureMatchExperience />
     </div>
   );
 }
