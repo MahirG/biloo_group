@@ -39,6 +39,13 @@ a {
   text-decoration: none;
 }
 
+button,
+summary,
+[role="button"],
+a {
+  -webkit-tap-highlight-color: rgba(30, 58, 138, 0.2);
+}
+
 ::selection {
   background: rgba(30, 58, 138, 0.2);
 }
@@ -78,6 +85,27 @@ a {
 }
 
 .focus-ring:focus-visible {
-  outline: 3px solid rgba(30, 58, 138, 0.35);
+  outline: 3px solid #fbbf24;
   outline-offset: 3px;
+}
+
+.app-action {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.app-action:disabled,
+.app-action[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .app-action {
+    transition: none !important;
+  }
 }
