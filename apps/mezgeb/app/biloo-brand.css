@@ -1,7 +1,7 @@
 /* Biloo Mezgeb identity layer. Loaded last to preserve application behavior while making Biloo the authoritative visual brand. */
 :root {
   --bg: #f1f5f9;
-  --surface: #ffffff;
+  --surface: #fff;
   --text: #0f172a;
   --muted: #64748b;
   --blue: #1e3a8a;
@@ -10,7 +10,6 @@
   --line: rgba(15, 23, 42, 0.1);
   --shadow: 0 30px 90px rgba(15, 23, 42, 0.1);
 }
-
 ::selection {
   background: rgba(30, 58, 138, 0.24);
   color: #0f172a;
