@@ -208,8 +208,31 @@ jobs:
         run: npx --prefix apps/mezgeb playwright install --with-deps chromium
 
       - name: Browser-test Biloo Mezgeb
+        id: mezgeb-e2e
         working-directory: apps/mezgeb
-        run: npm run test:e2e
+        shell: bash
+        run: |
+          set +e
+          npm run test:e2e > e2e.log 2>&1
+          code=$?
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Upload Biloo Mezgeb browser diagnostics
+        if: steps.mezgeb-e2e.outputs.exit_code != '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: biloo-mezgeb-browser-diagnostics
+          path: |
+            apps/mezgeb/e2e.log
+            apps/mezgeb/test-results
+            apps/mezgeb/playwright-report
+          if-no-files-found: ignore
+          retention-days: 3
+
+      - name: Enforce Biloo Mezgeb browser result
+        if: steps.mezgeb-e2e.outputs.exit_code != '0'
+        run: exit 1
 
       - name: Remove migration trigger
         run: rm -f .biloo-mezgeb-import-trigger
