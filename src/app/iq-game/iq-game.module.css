@@ -84,7 +84,12 @@
   }
 
   .gamePage > div > header > div:nth-child(2) p:first-child,
-  .gamePage [data-classic-game] > div > header > div:nth-child(2) p:first-child {
+  .gamePage
+    [data-classic-game]
+    > div
+    > header
+    > div:nth-child(2)
+    p:first-child {
     display: none;
   }
 
@@ -209,7 +214,12 @@
     display: none !important;
   }
 
-  .gamePage [data-classic-game] > div > main > section:first-child > div:last-child {
+  .gamePage
+    [data-classic-game]
+    > div
+    > main
+    > section:first-child
+    > div:last-child {
     min-width: 0 !important;
   }
 

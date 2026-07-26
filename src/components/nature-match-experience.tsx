@@ -23,13 +23,7 @@ import {
 } from "@/data/nature-adventures";
 
 type Screen =
-  | "home"
-  | "classic"
-  | "daily"
-  | "mini"
-  | "free-play"
-  | "garden"
-  | "gallery";
+  "home" | "classic" | "daily" | "mini" | "free-play" | "garden" | "gallery";
 
 type MiniMode = Exclude<NatureModeId, "classic" | "free-play">;
 
@@ -170,9 +164,7 @@ function SettingRow({
       </span>
       <div className="min-w-0 flex-1">
         <p className="font-black text-[#214d35]">{title}</p>
-        <p className="mt-1 text-sm leading-6 text-[#607762]">
-          {description}
-        </p>
+        <p className="mt-1 text-sm leading-6 text-[#607762]">{description}</p>
       </div>
       {children}
     </div>
@@ -253,9 +245,7 @@ function NatureBackdrop({
       {Array.from({ length: 10 }).map((_, index) => (
         <motion.span
           animate={
-            reducedMotion
-              ? undefined
-              : { y: [0, -8 - (index % 3) * 4, 0] }
+            reducedMotion ? undefined : { y: [0, -8 - (index % 3) * 4, 0] }
           }
           className="absolute bottom-0 text-5xl"
           key={index}
@@ -271,8 +261,7 @@ function NatureBackdrop({
 
 export function NatureMatchExperience() {
   const systemReducedMotion = useReducedMotion();
-  const [progress, setProgress] =
-    useState<ExpandedProgress>(defaultProgress);
+  const [progress, setProgress] = useState<ExpandedProgress>(defaultProgress);
   const [hydrated, setHydrated] = useState(false);
   const [classicCompleted, setClassicCompleted] = useState(0);
   const [classicDiscoveries, setClassicDiscoveries] = useState<string[]>([]);
@@ -315,8 +304,7 @@ export function NatureMatchExperience() {
     if (!entries.length) return "Still exploring";
     const [modeId] = entries.sort((a, b) => b[1] - a[1])[0];
     return (
-      natureModes.find((item) => item.id === modeId)?.name ??
-      "Nature puzzles"
+      natureModes.find((item) => item.id === modeId)?.name ?? "Nature puzzles"
     );
   }, [progress.modeWins]);
 
@@ -353,10 +341,7 @@ export function NatureMatchExperience() {
             natureDiscoveries
               .slice(
                 0,
-                Math.max(
-                  completedCount,
-                  classic.collectibles?.length ?? 0,
-                ),
+                Math.max(completedCount, classic.collectibles?.length ?? 0),
               )
               .map((item) => item.id),
           );
@@ -447,7 +432,10 @@ export function NatureMatchExperience() {
       });
     };
 
-    void context.resume().then(playPhrase).catch(() => undefined);
+    void context
+      .resume()
+      .then(playPhrase)
+      .catch(() => undefined);
     const interval = window.setInterval(
       playPhrase,
       progress.calmMode ? 9000 : 6500,
@@ -523,16 +511,11 @@ export function NatureMatchExperience() {
         completedStep === null
           ? current.dailyCompleted
           : unique([
-              ...(current.dailyDate === dateKey
-                ? current.dailyCompleted
-                : []),
+              ...(current.dailyDate === dateKey ? current.dailyCompleted : []),
               completedStep,
             ]),
       dailyDate: dateKey,
-      discoveries: unique([
-        ...current.discoveries,
-        result.discoveryId,
-      ]),
+      discoveries: unique([...current.discoveries, result.discoveryId]),
       garden: current.garden.includes(result.discoveryId)
         ? current.garden
         : [...current.garden, result.discoveryId],
@@ -577,9 +560,7 @@ export function NatureMatchExperience() {
     setInstallPrompt(null);
   }
 
-  function handleClassicAutoScroll(
-    event: ReactPointerEvent<HTMLDivElement>,
-  ) {
+  function handleClassicAutoScroll(event: ReactPointerEvent<HTMLDivElement>) {
     if (!event.buttons) return;
     if (event.clientY < 80) {
       window.scrollBy({ behavior: "auto", top: -14 });
@@ -609,10 +590,7 @@ export function NatureMatchExperience() {
 
   if (screen === "classic") {
     return (
-      <div
-        data-classic-game
-        onPointerMoveCapture={handleClassicAutoScroll}
-      >
+      <div data-classic-game onPointerMoveCapture={handleClassicAutoScroll}>
         <ColorSortGame />
         <button
           className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-[max(1rem,env(safe-area-inset-left))] z-[190] rounded-full border-2 border-white/70 bg-[#214d35] px-5 py-3 text-sm font-black text-white shadow-xl"
@@ -683,9 +661,7 @@ export function NatureMatchExperience() {
         </div>
         <motion.button
           animate={
-            reducedMotion
-              ? undefined
-              : { rotate: [0, -6, 6, 0], y: [0, -3, 0] }
+            reducedMotion ? undefined : { rotate: [0, -6, 6, 0], y: [0, -3, 0] }
           }
           aria-label="Happy nature companion"
           className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-white/65 bg-white/82 text-3xl shadow-lg"
@@ -714,8 +690,8 @@ export function NatureMatchExperience() {
               </h1>
               <p className="mt-5 max-w-2xl text-lg font-semibold leading-8 text-[#58705c]">
                 Sort, count, compare, remember, explore habitats, grow a
-                permanent garden, and create freely. There are no lives,
-                timers, streaks, or fail states.
+                permanent garden, and create freely. There are no lives, timers,
+                streaks, or fail states.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <button
@@ -1055,9 +1031,7 @@ export function NatureMatchExperience() {
           <section className="mt-4 rounded-[2rem] border border-white/65 bg-white/72 p-5 backdrop-blur sm:p-8">
             <div className="grid gap-6 md:grid-cols-[auto_1fr] md:items-center">
               <motion.div
-                animate={
-                  reducedMotion ? undefined : { scale: [1, 1.06, 1] }
-                }
+                animate={reducedMotion ? undefined : { scale: [1, 1.06, 1] }}
                 className="text-center text-9xl"
                 transition={{ duration: 3, repeat: Infinity }}
               >
@@ -1200,9 +1174,7 @@ export function NatureMatchExperience() {
             <motion.aside
               animate={{ x: 0 }}
               className={`relative h-full w-[min(88vw,24rem)] overflow-y-auto bg-[#f8f3df] p-5 shadow-2xl ${
-                progress.leftHanded
-                  ? "ml-auto border-l"
-                  : "mr-auto border-r"
+                progress.leftHanded ? "ml-auto border-l" : "mr-auto border-r"
               } border-white/40`}
               exit={{ x: progress.leftHanded ? "105%" : "-105%" }}
               initial={{ x: progress.leftHanded ? "105%" : "-105%" }}
@@ -1405,13 +1377,8 @@ export function NatureMatchExperience() {
                 ["Discoveries", allDiscoveries.length],
                 ["Play minutes", progress.totalPlayMinutes],
               ].map(([label, value]) => (
-                <div
-                  className="rounded-[1.3rem] bg-[#e9f1e1] p-4"
-                  key={label}
-                >
-                  <p className="text-sm font-black text-[#607762]">
-                    {label}
-                  </p>
+                <div className="rounded-[1.3rem] bg-[#e9f1e1] p-4" key={label}>
+                  <p className="text-sm font-black text-[#607762]">{label}</p>
                   <p className="mt-2 text-3xl font-black text-[#214d35]">
                     {value}
                   </p>

@@ -76,7 +76,12 @@ const iconNames: Record<string, string> = {
 };
 
 function speak(enabled: boolean, text: string) {
-  if (!enabled || typeof window === "undefined" || !("speechSynthesis" in window)) return;
+  if (
+    !enabled ||
+    typeof window === "undefined" ||
+    !("speechSynthesis" in window)
+  )
+    return;
   window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.rate = 0.88;
@@ -85,7 +90,8 @@ function speak(enabled: boolean, text: string) {
 }
 
 function haptic(pattern: number | number[]) {
-  if (typeof navigator !== "undefined" && "vibrate" in navigator) navigator.vibrate(pattern);
+  if (typeof navigator !== "undefined" && "vibrate" in navigator)
+    navigator.vibrate(pattern);
 }
 
 function seededShuffle<T>(items: readonly T[], seed: number) {
@@ -102,10 +108,16 @@ function seededShuffle<T>(items: readonly T[], seed: number) {
 function keepAnswer(options: string[], answer: string, supported: boolean) {
   if (!supported) return options;
   const shorter = options.slice(0, 2);
-  return shorter.includes(answer) ? shorter : [answer, shorter[0]].filter(Boolean);
+  return shorter.includes(answer)
+    ? shorter
+    : [answer, shorter[0]].filter(Boolean);
 }
 
-function buildPuzzle(mode: MiniMode, index: number, supported: boolean): Puzzle {
+function buildPuzzle(
+  mode: MiniMode,
+  index: number,
+  supported: boolean,
+): Puzzle {
   if (mode === "habitats") {
     const item = habitatQuestions[index % habitatQuestions.length];
     const labels = Array.from(item.options) as string[];
@@ -183,7 +195,9 @@ function buildPuzzle(mode: MiniMode, index: number, supported: boolean): Puzzle 
   }
 
   const item = countingQuestions[index % countingQuestions.length];
-  const options = [Math.max(1, item.count - 1), item.count, item.count + 1].map(String);
+  const options = [Math.max(1, item.count - 1), item.count, item.count + 1].map(
+    String,
+  );
   return {
     prompt: `How many ${iconNames[item.icon] ?? "nature friends"} can you count?`,
     subject: Array.from({ length: item.count }).fill(item.icon).join(" "),
@@ -196,7 +210,10 @@ function buildPuzzle(mode: MiniMode, index: number, supported: boolean): Puzzle 
 function Particles({ calm }: { calm: boolean }) {
   const icons = calm ? ["🍃", "✨"] : ["🍃", "🌸", "✨", "🦋", "🌼", "🍂"];
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div
+      className="pointer-events-none absolute inset-0 overflow-hidden"
+      aria-hidden="true"
+    >
       {Array.from({ length: calm ? 5 : 16 }).map((_, index) => (
         <motion.span
           animate={{
@@ -233,7 +250,9 @@ export function NatureMiniGame({
   const [questionIndex, setQuestionIndex] = useState(startIndex);
   const [wins, setWins] = useState(0);
   const [mistakes, setMistakes] = useState(0);
-  const [feedback, setFeedback] = useState<"idle" | "correct" | "gentle">("idle");
+  const [feedback, setFeedback] = useState<"idle" | "correct" | "gentle">(
+    "idle",
+  );
   const [message, setMessage] = useState("Take your time. There is no timer.");
   const [complete, setComplete] = useState(false);
   const [burst, setBurst] = useState(0);
@@ -280,10 +299,16 @@ export function NatureMiniGame({
     speak(voiceNames, `${puzzle.reason} ${iconNames[answer] ?? "Well done."}`);
 
     if (nextWins >= targetWins) {
-      window.setTimeout(() => {
-        setComplete(true);
-        speak(voiceNames, `${modeDetails.name} complete. ${discovery.name} joined your garden.`);
-      }, calmMode ? 1000 : 650);
+      window.setTimeout(
+        () => {
+          setComplete(true);
+          speak(
+            voiceNames,
+            `${modeDetails.name} complete. ${discovery.name} joined your garden.`,
+          );
+        },
+        calmMode ? 1000 : 650,
+      );
       return;
     }
 
@@ -300,9 +325,14 @@ export function NatureMiniGame({
   return (
     <section
       className="relative min-h-[100dvh] overflow-x-hidden px-3 pb-10 pt-[max(.75rem,env(safe-area-inset-top))] text-[#173f2a] sm:px-6"
-      style={{ background: `linear-gradient(180deg, ${world.sky}, #fff9e8 52%, ${world.ground})` }}
+      style={{
+        background: `linear-gradient(180deg, ${world.sky}, #fff9e8 52%, ${world.ground})`,
+      }}
     >
-      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-75" aria-hidden="true">
+      <div
+        className="pointer-events-none absolute inset-0 overflow-hidden opacity-75"
+        aria-hidden="true"
+      >
         {Array.from({ length: 9 }).map((_, index) => (
           <motion.span
             animate={
@@ -321,7 +351,9 @@ export function NatureMiniGame({
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-3xl">
-        <header className={`flex items-center justify-between gap-3 ${leftHanded ? "flex-row-reverse" : ""}`}>
+        <header
+          className={`flex items-center justify-between gap-3 ${leftHanded ? "flex-row-reverse" : ""}`}
+        >
           <button
             aria-label="Return to Nature Match world"
             className="grid h-12 w-12 place-items-center rounded-2xl border border-white/65 bg-white/85 text-xl shadow-sm backdrop-blur active:scale-95"
@@ -349,7 +381,10 @@ export function NatureMiniGame({
                     : { y: [0, -3, 0] }
             }
             className="grid h-12 w-12 place-items-center rounded-2xl border border-white/65 bg-white/82 text-3xl shadow-sm"
-            transition={{ duration: feedback === "idle" ? 2.7 : 0.65, repeat: feedback === "idle" ? Infinity : 0 }}
+            transition={{
+              duration: feedback === "idle" ? 2.7 : 0.65,
+              repeat: feedback === "idle" ? Infinity : 0,
+            }}
           >
             {world.companion}
           </motion.div>
@@ -358,34 +393,54 @@ export function NatureMiniGame({
         <div className="mt-4 flex items-center gap-3 rounded-full border border-white/65 bg-white/70 p-2 backdrop-blur">
           <div className="h-3 flex-1 overflow-hidden rounded-full bg-[#dce8cf]">
             <motion.div
-              animate={{ width: `${Math.min(100, (wins / targetWins) * 100)}%` }}
+              animate={{
+                width: `${Math.min(100, (wins / targetWins) * 100)}%`,
+              }}
               className="h-full rounded-full bg-gradient-to-r from-[#76a96b] to-[#f3c84b]"
               initial={false}
             />
           </div>
-          <span className="pr-2 text-sm font-black">{wins}/{targetWins}</span>
+          <span className="pr-2 text-sm font-black">
+            {wins}/{targetWins}
+          </span>
         </div>
 
         <motion.div
-          animate={feedback === "gentle" && !reduceMotion ? { x: [0, -5, 5, 0] } : undefined}
+          animate={
+            feedback === "gentle" && !reduceMotion
+              ? { x: [0, -5, 5, 0] }
+              : undefined
+          }
           className="relative mt-4 overflow-hidden rounded-[2rem] border border-white/70 bg-white/78 p-5 text-center shadow-[0_20px_55px_rgba(39,82,50,.18)] backdrop-blur sm:p-8"
         >
-          <AnimatePresence>{burst > 0 && feedback === "correct" ? <Particles calm={calmMode} key={burst} /> : null}</AnimatePresence>
-          <p className="text-sm font-black uppercase tracking-[0.13em] text-[#5d7b64]">Puzzle {questionIndex + 1}</p>
+          <AnimatePresence>
+            {burst > 0 && feedback === "correct" ? (
+              <Particles calm={calmMode} key={burst} />
+            ) : null}
+          </AnimatePresence>
+          <p className="text-sm font-black uppercase tracking-[0.13em] text-[#5d7b64]">
+            Puzzle {questionIndex + 1}
+          </p>
           <h2 className="mx-auto mt-3 max-w-xl text-2xl font-black tracking-[-0.035em] sm:text-3xl">
             {puzzle.prompt}
           </h2>
 
           {puzzle.sequence ? (
             <div className="mt-7 flex flex-wrap items-center justify-center gap-3 text-4xl sm:text-5xl">
-              {puzzle.sequence.map((icon, index) => <span key={`${icon}-${index}`}>{icon}</span>)}
-              <span className="grid h-14 w-14 place-items-center rounded-2xl border-2 border-dashed border-[#7fa57d] bg-[#eff5e7] text-2xl">?</span>
+              {puzzle.sequence.map((icon, index) => (
+                <span key={`${icon}-${index}`}>{icon}</span>
+              ))}
+              <span className="grid h-14 w-14 place-items-center rounded-2xl border-2 border-dashed border-[#7fa57d] bg-[#eff5e7] text-2xl">
+                ?
+              </span>
             </div>
           ) : null}
 
           {puzzle.subject ? (
             <motion.div
-              animate={reduceMotion || calmMode ? undefined : { scale: [1, 1.04, 1] }}
+              animate={
+                reduceMotion || calmMode ? undefined : { scale: [1, 1.04, 1] }
+              }
               className={`mx-auto mt-7 max-w-xl whitespace-pre-wrap text-6xl leading-tight ${puzzle.shadow ? "grayscale brightness-0 opacity-70" : ""}`}
               transition={{ duration: 2.4, repeat: Infinity }}
             >
@@ -393,7 +448,9 @@ export function NatureMiniGame({
             </motion.div>
           ) : null}
 
-          <div className={`mt-8 grid gap-3 ${options.length >= 4 ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-2 sm:grid-cols-3"}`}>
+          <div
+            className={`mt-8 grid gap-3 ${options.length >= 4 ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-2 sm:grid-cols-3"}`}
+          >
             {options.map((option) => {
               const originalIndex = puzzle.options.indexOf(option);
               const label = puzzle.labels?.[originalIndex];
@@ -405,8 +462,18 @@ export function NatureMiniGame({
                   type="button"
                   whileTap={reduceMotion ? undefined : { scale: 0.94 }}
                 >
-                  <span className={/^\d+$/.test(option) ? "text-4xl font-black" : "text-5xl"}>{option}</span>
-                  {label ? <span className="mt-2 block text-sm font-black capitalize">{label}</span> : null}
+                  <span
+                    className={
+                      /^\d+$/.test(option) ? "text-4xl font-black" : "text-5xl"
+                    }
+                  >
+                    {option}
+                  </span>
+                  {label ? (
+                    <span className="mt-2 block text-sm font-black capitalize">
+                      {label}
+                    </span>
+                  ) : null}
                 </motion.button>
               );
             })}
@@ -435,20 +502,39 @@ export function NatureMiniGame({
               initial={{ scale: 0.75, y: 45 }}
             >
               <motion.div
-                animate={reduceMotion || calmMode ? undefined : { rotate: [0, -8, 8, 0], scale: [1, 1.12, 1] }}
+                animate={
+                  reduceMotion || calmMode
+                    ? undefined
+                    : { rotate: [0, -8, 8, 0], scale: [1, 1.12, 1] }
+                }
                 className="text-7xl"
-                transition={{ duration: 1.2, repeat: Infinity, repeatDelay: 0.7 }}
+                transition={{
+                  duration: 1.2,
+                  repeat: Infinity,
+                  repeatDelay: 0.7,
+                }}
               >
                 {discovery.icon}
               </motion.div>
-              <p className="mt-4 text-3xl font-black tracking-[-0.04em]">{discovery.name}</p>
-              <p className="mt-2 font-bold leading-7 text-[#617663]">{discovery.fact}</p>
+              <p className="mt-4 text-3xl font-black tracking-[-0.04em]">
+                {discovery.name}
+              </p>
+              <p className="mt-2 font-bold leading-7 text-[#617663]">
+                {discovery.fact}
+              </p>
               <div className="mt-5 rounded-2xl bg-[#e7f1dc] p-4 text-sm font-black text-[#355c40]">
                 {wins} happy matches · {mistakes} gentle retries
               </div>
               <button
                 className="mt-6 w-full rounded-full bg-[#28796b] px-6 py-4 text-lg font-black text-white active:scale-95"
-                onClick={() => onComplete({ mode, wins, mistakes, discoveryId: discovery.id })}
+                onClick={() =>
+                  onComplete({
+                    mode,
+                    wins,
+                    mistakes,
+                    discoveryId: discovery.id,
+                  })
+                }
                 type="button"
               >
                 Add to my garden 🌿
