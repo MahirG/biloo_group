@@ -1,3 +1,4 @@
+// These launch routes intentionally preserve each product's live auth and data service.
 export type ProductAccessId = "mezgeb" | "hisabtech";
 
 export type ProductAccess = {
