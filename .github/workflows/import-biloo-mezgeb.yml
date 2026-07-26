@@ -1,13 +1,15 @@
 name: Import full Biloo Mezgeb application
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [agent/import-full-biloo-mezgeb]
 
 permissions:
   contents: write
 
 jobs:
   import-and-validate:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Biloo migration branch
@@ -58,7 +60,6 @@ jobs:
 
           standalone_mezgeb = re.compile(r'(?<![A-Za-z0-9_])Mezgeb(?![A-Za-z0-9_])')
           for path in files:
-              # Preserve technical identity contracts used by live auth and data.
               relative = path.relative_to(app).as_posix()
               if relative.startswith('lib/supabase/') or relative == 'lib/env.ts':
                   continue
@@ -193,9 +194,6 @@ jobs:
       - name: Browser-test Biloo Mezgeb
         working-directory: apps/mezgeb
         run: npm run test:e2e
-
-      - name: Remove migration trigger
-        run: rm -f .biloo-mezgeb-import-trigger
 
       - name: Commit complete Biloo Mezgeb application
         shell: bash
