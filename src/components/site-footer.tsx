@@ -2,9 +2,11 @@ import Link from "next/link";
 
 import { BrandMark } from "@/components/brand-mark";
 import { company } from "@/data/company";
+import { projects } from "@/data/projects";
 import { solutions } from "@/data/solutions";
 
 const companyLinks = [
+  { href: "/projects", label: "Projects" },
   { href: "/about", label: "About" },
   { href: "/insights", label: "Insights" },
   { href: "/contact", label: "Contact" },
@@ -13,7 +15,7 @@ const companyLinks = [
 export function SiteFooter() {
   return (
     <footer className="border-t border-graphite/10 bg-white">
-      <div className="container-shell grid gap-12 py-14 lg:grid-cols-[1.3fr_1fr_0.7fr]">
+      <div className="container-shell grid gap-12 py-14 lg:grid-cols-[1.2fr_0.8fr_1fr_0.7fr]">
         <div>
           <Link
             className="focus-ring inline-flex items-center gap-3 rounded-xl"
@@ -33,6 +35,24 @@ export function SiteFooter() {
             {company.email}
           </a>
         </div>
+
+        <nav aria-label="Projects navigation">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted">
+            Projects
+          </p>
+          <ul className="mt-5 grid gap-3 text-sm">
+            {projects.map((project) => (
+              <li key={project.slug}>
+                <Link
+                  className="transition hover:text-sapphire"
+                  href={`/projects/${project.slug}`}
+                >
+                  {project.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
         <nav aria-label="Solutions navigation">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted">
