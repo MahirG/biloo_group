@@ -1,101 +1,10 @@
-name: Materialize Biloo ERP deployment branch
+name: ERP deployment branch completed
 
 on:
-  pull_request:
-    branches: [main]
-    types: [opened, synchronize, reopened]
-
-permissions:
-  contents: write
+  workflow_dispatch:
 
 jobs:
-  materialize:
-    if: github.actor != 'github-actions[bot]' && github.head_ref == 'biloo-erp-production'
+  archived:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Biloo ERP deployment branch
-        uses: actions/checkout@v4
-        with:
-          ref: biloo-erp-production
-
-      - name: Checkout preserved Biloo ERP source
-        uses: actions/checkout@v4
-        with:
-          repository: MahirG/HisabERP
-          ref: archive/biloo-erp-copy
-          path: _erp_source
-
-      - name: Replace branch root with complete ERP application
-        shell: bash
-        run: |
-          find . -mindepth 1 -maxdepth 1 \
-            ! -name '.git' \
-            ! -name '_erp_source' \
-            -exec rm -rf {} +
-          rsync -a \
-            --exclude='.git' \
-            --exclude='.github' \
-            --exclude='.vercel' \
-            --exclude='.next' \
-            --exclude='node_modules' \
-            _erp_source/ ./
-          rm -rf _erp_source
-          cat > BILOO_DEPLOYMENT.md <<'EOF'
-          # Biloo ERP deployment branch
-
-          This branch contains the complete Biloo ERP application at repository root for an independent Vercel deployment from `MahirG/biloo_group`.
-
-          The original `MahirG/HisabERP` repository and `hisabtech.com` deployment remain separate.
-          EOF
-          cat > TEST_MIGRATION_STATUS.md <<'EOF'
-          # Test migration status
-
-          The inherited test suite remains in `tests/`. Legacy branding snapshots that explicitly assert HisabERP/HisabTech are retained as a migration audit and are not a deployment blocker until they are re-baselined for Biloo ERP.
-
-          Strict TypeScript and the complete production build remain blocking release gates.
-          EOF
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Typecheck
-        run: npm run typecheck
-
-      - name: Audit inherited tests
-        continue-on-error: true
-        run: npm test
-
-      - name: Build
-        id: erp-build
-        continue-on-error: true
-        shell: bash
-        run: |
-          set -o pipefail
-          npm run build 2>&1 | tee erp-build.log
-
-      - name: Upload Biloo ERP build diagnostics
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: biloo-erp-build-diagnostics
-          path: erp-build.log
-          if-no-files-found: error
-
-      - name: Enforce build result
-        if: steps.erp-build.outcome == 'failure'
-        run: exit 1
-
-      - name: Commit Biloo ERP deployment source
-        shell: bash
-        run: |
-          rm -f erp-build.log
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "Publish full Biloo ERP application"
-          git push origin HEAD:biloo-erp-production
+      - run: echo "The Biloo ERP production branch has already been materialized and validated."
