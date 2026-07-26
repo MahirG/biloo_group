@@ -151,10 +151,13 @@ jobs:
         with:
           node-version: 22
 
-      - name: Validate Biloo Group site
-        shell: bash
+      - name: Format Biloo Group site
         run: |
           npm install --no-audit --no-fund --silent
+          npm run format
+
+      - name: Validate Biloo Group site
+        run: |
           npm run lint
           npm run typecheck
           npm run build
@@ -194,6 +197,9 @@ jobs:
       - name: Browser-test Biloo Mezgeb
         working-directory: apps/mezgeb
         run: npm run test:e2e
+
+      - name: Remove migration trigger
+        run: rm -f .biloo-mezgeb-import-trigger
 
       - name: Commit complete Biloo Mezgeb application
         shell: bash
