@@ -16,8 +16,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const googleSiteVerification =
-  process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
+const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -72,10 +71,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      className={`${geistSans.variable} ${geistMono.variable}`}
-      lang="en"
-    >
+    <html className={`${geistSans.variable} ${geistMono.variable}`} lang="en">
       <body className="antialiased">
         <JsonLd
           data={[

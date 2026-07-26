@@ -182,7 +182,8 @@ export const insights: Insight[] = [
         ],
       },
       {
-        heading: "Treat accessibility, privacy, and security as service quality",
+        heading:
+          "Treat accessibility, privacy, and security as service quality",
         paragraphs: [
           "Accessibility enables people with disabilities and also improves use on small screens, older devices, and difficult environments. Privacy requires data minimization, clear purpose, retention rules, access controls, and a way to correct information. Security requires threat modeling, secure development, monitoring, incident response, and operational ownership.",
           "These are not compliance decorations. A service that excludes users, exposes information, or cannot recover from failure is not a successful digital service.",

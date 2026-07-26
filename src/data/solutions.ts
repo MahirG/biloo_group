@@ -165,12 +165,14 @@ export const solutions: Solution[] = [
     ],
     questions: [
       {
-        question: "Will Biloo Commerce be a marketplace or a software platform?",
+        question:
+          "Will Biloo Commerce be a marketplace or a software platform?",
         answer:
           "The direction could support either model, but Biloo will begin with a specific validated problem rather than launching a broad marketplace without evidence of demand and operational readiness.",
       },
       {
-        question: "Does Biloo Group have experience interests in dropshipping and marketplaces?",
+        question:
+          "Does Biloo Group have experience interests in dropshipping and marketplaces?",
         answer:
           "The founder has identified digital commerce, dropshipping operations, and marketplaces as areas of practical interest that can inform future product discovery.",
       },

@@ -175,7 +175,10 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
           </h2>
           <div className="mt-12 divide-y divide-graphite/10 border-y border-graphite/10">
             {solution.questions.map((item) => (
-              <article className="grid gap-4 py-8 md:grid-cols-[0.8fr_1.2fr]" key={item.question}>
+              <article
+                className="grid gap-4 py-8 md:grid-cols-[0.8fr_1.2fr]"
+                key={item.question}
+              >
                 <h3 className="text-xl font-semibold">{item.question}</h3>
                 <p className="leading-7 text-muted">{item.answer}</p>
               </article>

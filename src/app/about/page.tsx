@@ -82,9 +82,9 @@ export default function AboutPage() {
           <div className="space-y-6 text-lg leading-8 text-muted">
             <p>
               Biloo is inspired by Bilo, the great-grandfather of founder Mahir
-              Aman. Bilo is an Afaan Oromo-rooted family name. The adapted double
-              “oo” gives the company a distinctive modern identity while preserving
-              the personal and cultural connection.
+              Aman. Bilo is an Afaan Oromo-rooted family name. The adapted
+              double “oo” gives the company a distinctive modern identity while
+              preserving the personal and cultural connection.
             </p>
             <p>
               The paired circles in the Biloo identity represent continuity,
@@ -93,10 +93,11 @@ export default function AboutPage() {
               earns and the institution it leaves behind.
             </p>
             <p>
-              Biloo Group is therefore not designed as a collection of fashionable
-              technology labels. Each product direction must be supported by a
-              real problem, user evidence, responsible architecture, and an
-              operating model capable of maintaining the service over time.
+              Biloo Group is therefore not designed as a collection of
+              fashionable technology labels. Each product direction must be
+              supported by a real problem, user evidence, responsible
+              architecture, and an operating model capable of maintaining the
+              service over time.
             </p>
           </div>
         </div>
@@ -132,17 +133,17 @@ export default function AboutPage() {
           </div>
           <div className="space-y-6 text-lg leading-8 text-muted">
             <p>
-              Mahir Aman is building Biloo Group as a long-term technology company
-              rather than a personal portfolio. His stated areas of interest
-              include software products, artificial intelligence, cloud platforms,
-              digital commerce, marketplaces, financial technology, and
-              public-sector digital systems.
+              Mahir Aman is building Biloo Group as a long-term technology
+              company rather than a personal portfolio. His stated areas of
+              interest include software products, artificial intelligence, cloud
+              platforms, digital commerce, marketplaces, financial technology,
+              and public-sector digital systems.
             </p>
             <p>
               The founder profile on this website intentionally avoids invented
-              credentials, customers, funding, awards, or product traction. Biloo
-              Group intends to earn those facts through work and report them only
-              when they can be verified.
+              credentials, customers, funding, awards, or product traction.
+              Biloo Group intends to earn those facts through work and report
+              them only when they can be verified.
             </p>
           </div>
         </div>

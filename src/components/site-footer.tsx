@@ -59,7 +59,10 @@ export function SiteFooter() {
           <ul className="mt-5 grid gap-3 text-sm">
             {companyLinks.map((item) => (
               <li key={item.href}>
-                <Link className="transition hover:text-sapphire" href={item.href}>
+                <Link
+                  className="transition hover:text-sapphire"
+                  href={item.href}
+                >
                   {item.label}
                 </Link>
               </li>

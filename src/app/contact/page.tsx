@@ -105,8 +105,8 @@ export default function ContactPage() {
           <div>
             <p className="eyebrow text-sapphire">Before contacting</p>
             <h2 className="mt-6 max-w-3xl text-3xl font-semibold tracking-[-0.03em]">
-              A useful message explains the problem, the people affected, and the
-              outcome you want to improve.
+              A useful message explains the problem, the people affected, and
+              the outcome you want to improve.
             </h2>
           </div>
           <Link

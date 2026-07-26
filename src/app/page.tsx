@@ -42,7 +42,9 @@ export default function Home() {
       <section className="py-24 sm:py-32" id="vision">
         <div className="container-shell grid gap-16 lg:grid-cols-[0.85fr_1.15fr]">
           <Reveal>
-            <p className="eyebrow text-sapphire">Technology company in Ethiopia</p>
+            <p className="eyebrow text-sapphire">
+              Technology company in Ethiopia
+            </p>
             <h2 className="mt-6 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
               African context. Global engineering standards.
             </h2>
@@ -53,16 +55,16 @@ export default function Home() {
           >
             <p>
               Biloo Group is an Ethiopia-rooted technology company founded by
-              Mahir Aman. The company is being built to create dependable digital
-              products for businesses, technology teams, and institutions across
-              African markets.
+              Mahir Aman. The company is being built to create dependable
+              digital products for businesses, technology teams, and
+              institutions across African markets.
             </p>
             <p>
               Our long-term fields include artificial intelligence, cloud
               platforms, digital payments, marketplaces and digital commerce,
-              software product innovation, and public-sector technology. We begin
-              with real problems and expand only when evidence, capability, and
-              responsible operations support the next step.
+              software product innovation, and public-sector technology. We
+              begin with real problems and expand only when evidence,
+              capability, and responsible operations support the next step.
             </p>
           </Reveal>
         </div>
@@ -76,9 +78,9 @@ export default function Home() {
               Technology connected to operational reality.
             </h2>
             <p className="mt-6 text-lg leading-8 text-muted">
-              Biloo focuses on organizations that need more than a visual redesign:
-              they need systems that are secure, maintainable, understandable, and
-              capable of improving measurable work.
+              Biloo focuses on organizations that need more than a visual
+              redesign: they need systems that are secure, maintainable,
+              understandable, and capable of improving measurable work.
             </p>
           </Reveal>
           <div className="mt-14 grid gap-6 md:grid-cols-3">
@@ -157,9 +159,10 @@ export default function Home() {
               Ambition with discipline.
             </h2>
             <p className="mt-6 max-w-xl text-lg leading-8 text-muted">
-              Biloo Group is designed for a long horizon. The standard is not how
-              quickly a product name can be announced, but whether the company can
-              build, operate, secure, and improve something people can trust.
+              Biloo Group is designed for a long horizon. The standard is not
+              how quickly a product name can be announced, but whether the
+              company can build, operate, secure, and improve something people
+              can trust.
             </p>
           </Reveal>
           <div className="divide-y divide-graphite/10 border-y border-graphite/10">
