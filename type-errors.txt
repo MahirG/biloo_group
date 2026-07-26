@@ -1,0 +1,13 @@
+
+> biloo-group@0.1.0 typecheck
+> tsc --noEmit
+
+src/components/nature-match-experience.tsx(408,21): error TS2322: Type 'number' is not assignable to type 'string'.
+src/components/nature-match-experience.tsx(408,87): error TS2322: Type 'string | number' is not assignable to type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/components/nature-mini-game.tsx(117,46): error TS2345: Argument of type '"savannah" | "flower meadow" | "quiet pond" | "bamboo forest" | "pond" | "woodland"' is not assignable to parameter of type 'never'.
+  Type '"savannah"' is not assignable to type 'never'.
+src/components/nature-mini-game.tsx(119,45): error TS2345: Argument of type '"🌳" | "🎋" | "🪨" | "🌾" | "💧" | "🌵" | "🌲" | "🌙" | "🌸" | "🪷" | "🪹" | "🌊" | "🪴" | "❄️" | "🏜️"' is not assignable to parameter of type 'never'.
+  Type '"🌳"' is not assignable to type 'never'.
+src/components/nature-mini-game.tsx(123,49): error TS2345: Argument of type '"🌳" | "🎋" | "🪨" | "🌾" | "💧" | "🌵" | "🌲" | "🌙" | "🌸" | "🪷" | "🪹" | "🌊" | "🪴" | "❄️" | "🏜️"' is not assignable to parameter of type 'never'.
+  Type '"🌳"' is not assignable to type 'never'.
