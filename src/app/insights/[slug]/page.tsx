@@ -175,7 +175,7 @@ export default async function InsightPage({ params }: InsightPageProps) {
           <div>
             <p className="eyebrow text-sapphire">Continue exploring</p>
             <h2 className="mt-5 text-3xl font-semibold tracking-[-0.03em]">
-              See Biloo Group's technology directions.
+              See Biloo Group&apos;s technology directions.
             </h2>
           </div>
           <Link
