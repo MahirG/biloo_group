@@ -17,8 +17,10 @@ import {
   type NatureWorld,
 } from "@/data/nature-adventures";
 
+type MiniMode = Exclude<NatureModeId, "classic" | "free-play">;
+
 type MiniGameProps = {
-  mode: Exclude<NatureModeId, "classic" | "free-play">;
+  mode: MiniMode;
   world: NatureWorld;
   calmMode: boolean;
   voiceNames: boolean;
@@ -39,11 +41,11 @@ type MiniGameProps = {
 type Puzzle = {
   prompt: string;
   subject?: string;
-  sequence?: readonly string[];
-  options: readonly string[];
+  sequence?: string[];
+  options: string[];
   answer: string;
-  optionLabels?: readonly string[];
-  reason?: string;
+  labels?: string[];
+  reason: string;
   shadow?: boolean;
 };
 
@@ -71,73 +73,63 @@ const iconNames: Record<string, string> = {
   "🪷": "coral pink lotus",
   "🐝": "sunny yellow bee",
   "🐘": "lavender mist elephant",
-  "🐔": "grown-up chicken",
-  "🐣": "little chick",
-  "🦢": "grown-up water bird",
 };
 
 function speak(enabled: boolean, text: string) {
-  if (!enabled || typeof window === "undefined" || !("speechSynthesis" in window)) {
-    return;
-  }
+  if (!enabled || typeof window === "undefined" || !("speechSynthesis" in window)) return;
   window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.rate = 0.88;
-  utterance.pitch = 1.12;
+  utterance.pitch = 1.1;
   window.speechSynthesis.speak(utterance);
 }
 
 function haptic(pattern: number | number[]) {
-  if (typeof navigator !== "undefined" && "vibrate" in navigator) {
-    navigator.vibrate(pattern);
-  }
+  if (typeof navigator !== "undefined" && "vibrate" in navigator) navigator.vibrate(pattern);
 }
 
-function shuffled<T>(items: readonly T[], seed: number) {
+function seededShuffle<T>(items: readonly T[], seed: number) {
   const result = [...items];
-  let value = seed * 1103515245 + 12345;
+  let value = seed * 7919 + 17;
   for (let index = result.length - 1; index > 0; index -= 1) {
-    value = (value * 1664525 + 1013904223) >>> 0;
-    const swap = value % (index + 1);
+    value = (value * 9301 + 49297) % 233280;
+    const swap = Math.floor((value / 233280) * (index + 1));
     [result[index], result[swap]] = [result[swap], result[index]];
   }
   return result;
 }
 
-function makePuzzle(
-  mode: MiniGameProps["mode"],
-  index: number,
-  supportLevel: number,
-): Puzzle {
+function keepAnswer(options: string[], answer: string, supported: boolean) {
+  if (!supported) return options;
+  const shorter = options.slice(0, 2);
+  return shorter.includes(answer) ? shorter : [answer, shorter[0]].filter(Boolean);
+}
+
+function buildPuzzle(mode: MiniMode, index: number, supported: boolean): Puzzle {
   if (mode === "habitats") {
     const item = habitatQuestions[index % habitatQuestions.length];
-    const labels = item.options;
-    const options = supportLevel > 0 ? item.icons.slice(0, 2) : item.icons;
-    const optionLabels = supportLevel > 0 ? labels.slice(0, 2) : labels;
-    const answerIndex = item.options.indexOf(item.answer);
-    const answer = item.icons[answerIndex];
-    const ensuredOptions = options.includes(answer)
-      ? options
-      : [answer, ...options.slice(0, 1)];
-    const ensuredLabels = ensuredOptions.map(
-      (icon) => item.options[item.icons.indexOf(icon)] ?? item.answer,
-    );
+    const labels = Array.from(item.options) as string[];
+    const icons = Array.from(item.icons) as string[];
+    const answerIndex = labels.indexOf(item.answer);
+    const answer = icons[answerIndex] ?? icons[0] ?? "";
+    const options = keepAnswer(icons, answer, supported);
     return {
       prompt: `Where does the ${item.name} live?`,
       subject: item.subject,
-      options: ensuredOptions,
-      optionLabels: ensuredLabels,
+      options,
       answer,
+      labels: options.map((icon) => labels[icons.indexOf(icon)] ?? item.answer),
       reason: `The ${item.name} belongs in the ${item.answer}.`,
     };
   }
 
   if (mode === "families") {
     const item = familyQuestions[index % familyQuestions.length];
+    const options = Array.from(item.options) as string[];
     return {
       prompt: `Find the grown-up family for the ${item.babyName}.`,
       subject: item.baby,
-      options: supportLevel > 0 ? item.options.slice(0, 2) : item.options,
+      options: keepAnswer(options, item.parent, supported),
       answer: item.parent,
       reason: `This is the matching grown-up family for the ${item.babyName}.`,
     };
@@ -145,10 +137,11 @@ function makePuzzle(
 
   if (mode === "patterns") {
     const item = patternQuestions[index % patternQuestions.length];
+    const options = Array.from(item.options) as string[];
     return {
       prompt: "Which nature friend comes next?",
-      sequence: item.sequence,
-      options: supportLevel > 0 ? item.options.slice(0, 2) : item.options,
+      sequence: Array.from(item.sequence),
+      options: keepAnswer(options, item.answer, supported),
       answer: item.answer,
       reason: "The repeating nature pattern continues with this friend.",
     };
@@ -156,9 +149,10 @@ function makePuzzle(
 
   if (mode === "sizes") {
     const item = sizeQuestions[index % sizeQuestions.length];
+    const options = Array.from(item.options) as string[];
     return {
       prompt: item.prompt,
-      options: supportLevel > 0 ? item.options.slice(1) : item.options,
+      options: keepAnswer(options, item.answer, supported),
       answer: item.answer,
       reason: "Great comparing! You found the right size.",
     };
@@ -166,40 +160,40 @@ function makePuzzle(
 
   if (mode === "shadows") {
     const item = shadowQuestions[index % shadowQuestions.length];
+    const options = Array.from(item.options) as string[];
     return {
       prompt: "Which nature friend matches this shadow?",
       subject: item.answer,
-      options: supportLevel > 0 ? item.options.slice(0, 2) : item.options,
+      options: keepAnswer(options, item.answer, supported),
       answer: item.answer,
-      shadow: true,
       reason: "The outline and shape match perfectly.",
+      shadow: true,
     };
   }
 
   if (mode === "different") {
     const item = differentQuestions[index % differentQuestions.length];
+    const options = Array.from(item.items) as string[];
     return {
       prompt: "Who is different from the others?",
-      options: supportLevel > 0
-        ? [item.answer, item.items.find((icon) => icon !== item.answer) ?? item.items[0]]
-        : item.items,
+      options: keepAnswer(options, item.answer, supported),
       answer: item.answer,
       reason: item.reason,
     };
   }
 
   const item = countingQuestions[index % countingQuestions.length];
-  const nearby = [Math.max(1, item.count - 1), item.count, item.count + 1];
+  const options = [Math.max(1, item.count - 1), item.count, item.count + 1].map(String);
   return {
     prompt: `How many ${iconNames[item.icon] ?? "nature friends"} can you count?`,
     subject: Array.from({ length: item.count }).fill(item.icon).join(" "),
-    options: (supportLevel > 0 ? nearby.slice(0, 2) : nearby).map(String),
+    options: keepAnswer(options, String(item.count), supported),
     answer: String(item.count),
     reason: `There are ${item.count}. Beautiful counting!`,
   };
 }
 
-function MiniParticles({ calm }: { calm: boolean }) {
+function Particles({ calm }: { calm: boolean }) {
   const icons = calm ? ["🍃", "✨"] : ["🍃", "🌸", "✨", "🦋", "🌼", "🍂"];
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
@@ -244,18 +238,15 @@ export function NatureMiniGame({
   const [complete, setComplete] = useState(false);
   const [burst, setBurst] = useState(0);
 
-  const supportLevel = mistakes > wins + 1 ? 1 : 0;
+  const supported = mistakes > wins + 1;
   const puzzle = useMemo(
-    () => makePuzzle(mode, questionIndex, supportLevel),
-    [mode, questionIndex, supportLevel],
+    () => buildPuzzle(mode, questionIndex, supported),
+    [mode, questionIndex, supported],
   );
-  const options = useMemo(
-    () =>
-      leftHanded
-        ? shuffled(puzzle.options, questionIndex + 31).reverse()
-        : shuffled(puzzle.options, questionIndex + 31),
-    [leftHanded, puzzle.options, questionIndex],
-  );
+  const options = useMemo(() => {
+    const shuffled = seededShuffle(puzzle.options, questionIndex + 31);
+    return leftHanded ? shuffled.reverse() : shuffled;
+  }, [leftHanded, puzzle.options, questionIndex]);
   const discovery =
     natureDiscoveries[
       (natureModes.findIndex((item) => item.id === mode) * 3 + questionIndex) %
@@ -271,7 +262,7 @@ export function NatureMiniGame({
       setMistakes((current) => current + 1);
       setFeedback("gentle");
       setMessage(
-        supportLevel > 0
+        supported
           ? "Look again—the happy companion is thinking with you."
           : "That friend can try another place. Nothing is lost.",
       );
@@ -283,13 +274,10 @@ export function NatureMiniGame({
     const nextWins = wins + 1;
     setWins(nextWins);
     setFeedback("correct");
-    setMessage(puzzle.reason ?? "Beautiful match!");
+    setMessage(puzzle.reason);
     setBurst((current) => current + 1);
     haptic(calmMode ? 12 : [18, 35, 20]);
-    speak(
-      voiceNames,
-      `${puzzle.reason ?? "Beautiful match."} ${iconNames[answer] ?? "Well done."}`,
-    );
+    speak(voiceNames, `${puzzle.reason} ${iconNames[answer] ?? "Well done."}`);
 
     if (nextWins >= targetWins) {
       window.setTimeout(() => {
@@ -312,9 +300,7 @@ export function NatureMiniGame({
   return (
     <section
       className="relative min-h-[100dvh] overflow-x-hidden px-3 pb-10 pt-[max(.75rem,env(safe-area-inset-top))] text-[#173f2a] sm:px-6"
-      style={{
-        background: `linear-gradient(180deg, ${world.sky}, #fff9e8 52%, ${world.ground})`,
-      }}
+      style={{ background: `linear-gradient(180deg, ${world.sky}, #fff9e8 52%, ${world.ground})` }}
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-75" aria-hidden="true">
         {Array.from({ length: 9 }).map((_, index) => (
@@ -337,10 +323,10 @@ export function NatureMiniGame({
       <div className="relative z-10 mx-auto w-full max-w-3xl">
         <header className={`flex items-center justify-between gap-3 ${leftHanded ? "flex-row-reverse" : ""}`}>
           <button
+            aria-label="Return to Nature Match world"
             className="grid h-12 w-12 place-items-center rounded-2xl border border-white/65 bg-white/85 text-xl shadow-sm backdrop-blur active:scale-95"
             onClick={onExit}
             type="button"
-            aria-label="Return to Nature Match world"
           >
             ←
           </button>
@@ -348,7 +334,9 @@ export function NatureMiniGame({
             <p className="truncate text-xs font-black uppercase tracking-[0.14em] text-[#5b775f]">
               {modeDetails.skill}
             </p>
-            <h1 className="truncate text-xl font-black sm:text-2xl">{modeDetails.icon} {modeDetails.name}</h1>
+            <h1 className="truncate text-xl font-black sm:text-2xl">
+              {modeDetails.icon} {modeDetails.name}
+            </h1>
           </div>
           <motion.div
             animate={
@@ -382,7 +370,7 @@ export function NatureMiniGame({
           animate={feedback === "gentle" && !reduceMotion ? { x: [0, -5, 5, 0] } : undefined}
           className="relative mt-4 overflow-hidden rounded-[2rem] border border-white/70 bg-white/78 p-5 text-center shadow-[0_20px_55px_rgba(39,82,50,.18)] backdrop-blur sm:p-8"
         >
-          <AnimatePresence>{burst > 0 && feedback === "correct" ? <MiniParticles calm={calmMode} key={burst} /> : null}</AnimatePresence>
+          <AnimatePresence>{burst > 0 && feedback === "correct" ? <Particles calm={calmMode} key={burst} /> : null}</AnimatePresence>
           <p className="text-sm font-black uppercase tracking-[0.13em] text-[#5d7b64]">Puzzle {questionIndex + 1}</p>
           <h2 className="mx-auto mt-3 max-w-xl text-2xl font-black tracking-[-0.035em] sm:text-3xl">
             {puzzle.prompt}
@@ -408,7 +396,7 @@ export function NatureMiniGame({
           <div className={`mt-8 grid gap-3 ${options.length >= 4 ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-2 sm:grid-cols-3"}`}>
             {options.map((option) => {
               const originalIndex = puzzle.options.indexOf(option);
-              const label = puzzle.optionLabels?.[originalIndex];
+              const label = puzzle.labels?.[originalIndex];
               return (
                 <motion.button
                   className="min-h-24 rounded-[1.5rem] border-2 border-[#c7d9bc] bg-[#f6faef] p-3 text-[#214d35] shadow-sm outline-none transition hover:border-[#76a96b] focus-visible:ring-4 focus-visible:ring-[#76a96b]/45 active:scale-95"
@@ -424,7 +412,10 @@ export function NatureMiniGame({
             })}
           </div>
 
-          <p className={`mt-6 min-h-12 rounded-2xl px-4 py-3 font-bold ${feedback === "correct" ? "bg-[#e4f2da] text-[#2f6b3c]" : feedback === "gentle" ? "bg-[#fff0d7] text-[#7b5a2a]" : "bg-[#eef4e9] text-[#55705d]"}`} aria-live="polite">
+          <p
+            aria-live="polite"
+            className={`mt-6 min-h-12 rounded-2xl px-4 py-3 font-bold ${feedback === "correct" ? "bg-[#e4f2da] text-[#2f6b3c]" : feedback === "gentle" ? "bg-[#fff0d7] text-[#7b5a2a]" : "bg-[#eef4e9] text-[#55705d]"}`}
+          >
             {message}
           </p>
         </motion.div>
@@ -437,7 +428,7 @@ export function NatureMiniGame({
             className="fixed inset-0 z-50 grid place-items-center bg-[#173d2b]/65 p-4 backdrop-blur-md"
             initial={{ opacity: 0 }}
           >
-            <MiniParticles calm={calmMode} />
+            <Particles calm={calmMode} />
             <motion.div
               animate={{ scale: 1, y: 0 }}
               className="relative w-full max-w-md rounded-[2.5rem] border-8 border-[#f3d98a] bg-[#fffdf4] p-7 text-center shadow-2xl"
