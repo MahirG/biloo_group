@@ -32,6 +32,20 @@ Biloo Group will not begin by pretending to operate many mature companies. It wi
 
 The group structure is a long-term architecture, not a reason to fragment attention today.
 
+## Active project portfolio
+
+### Qabeza ERP
+
+Qabeza ERP is Biloo Group's enterprise resource planning project for organizations that need a unified view of finance, procurement, inventory, payroll, operations, and governance. Its intended scope includes multi-branch operations, roles and approvals, audit logs, procurement and payroll workflows, and configurable integrations.
+
+**Status:** Product project under validation and development. Public material must not imply production readiness, customers, or integrations until verified.
+
+### Mezgeb
+
+Mezgeb is an Ethiopian business-ledger project for small businesses. Its product direction covers sales, expenses, VAT-ready receipts, customer credit or Dube, payment tracking, inventory, suppliers, reports, and daily business control.
+
+**Status:** Interactive prototype and early product development. It must not be described as suitable for real financial records until security, data protection, reliability, and operational readiness are verified. The planned project domain is `mezgeb.com.et`.
+
 ## Strategic fields
 
 Biloo may explore the following fields over time:
@@ -67,7 +81,7 @@ Biloo will aim to be:
 
 The company may publicly state **Ethiopia** as its origin. A street address and telephone number must not be published until the founder provides verified business contact details.
 
-The provisional founder email is `mahir@biloogroups.com`. It should be replaced or confirmed after domain ownership and email delivery are verified.
+The founder email is `mahir@biloogroup.com`. It should be published only after domain ownership and email delivery are verified.
 
 ## Governance principles
 
