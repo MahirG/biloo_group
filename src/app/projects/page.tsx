@@ -41,9 +41,9 @@ export default function ProjectsPage() {
             Products shaped by real operating problems.
           </h1>
           <p className="mt-8 max-w-3xl text-lg leading-8 text-white/65 sm:text-xl">
-            Biloo Group develops focused projects before expanding them into mature
-            product lines. Each project below is presented with a clear status so
-            ambition is never confused with verified availability.
+            Biloo Group develops focused projects before expanding them into
+            mature product lines. Each project below is presented with a clear
+            status so ambition is never confused with verified availability.
           </p>
         </div>
       </section>
@@ -92,9 +92,9 @@ export default function ProjectsPage() {
             </h2>
           </div>
           <p className="max-w-3xl text-lg leading-8 text-muted">
-            A prototype, a validation-stage product, and a production service are
-            different commitments. Biloo Group will update these pages as evidence,
-            security, reliability, and operating capability mature.
+            A prototype, a validation-stage product, and a production service
+            are different commitments. Biloo Group will update these pages as
+            evidence, security, reliability, and operating capability mature.
           </p>
         </div>
       </section>

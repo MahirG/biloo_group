@@ -139,8 +139,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
             {project.plannedDomain ? (
               <p className="text-sm">
-                Planned project domain: <strong>{project.plannedDomain}</strong>.
-                Public availability must be confirmed separately.
+                Planned project domain: <strong>{project.plannedDomain}</strong>
+                . Public availability must be confirmed separately.
               </p>
             ) : null}
           </div>

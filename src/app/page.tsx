@@ -115,9 +115,10 @@ export default function Home() {
                 Focused products before a broad ecosystem.
               </h2>
               <p className="mt-6 text-lg leading-8 text-muted">
-                Qabeza ERP and Mezgeb represent current Biloo product work. Their
-                pages explain the intended users, capabilities, and readiness
-                limits without presenting unfinished work as launched services.
+                Qabeza ERP and Mezgeb represent current Biloo product work.
+                Their pages explain the intended users, capabilities, and
+                readiness limits without presenting unfinished work as launched
+                services.
               </p>
             </div>
             <Link
