@@ -22,10 +22,10 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
     shortcuts: [
       {
-        name: "Play Nature Match",
+        name: "Play Nature Match World",
         short_name: "Nature Match",
         description:
-          "Open Biloo's animal, plant, color, pattern, and memory puzzle game.",
+          "Open Biloo's calm animal, plant, habitat, sorting, pattern, counting, memory, and free-play world.",
         url: "/iq-game",
       },
     ],
