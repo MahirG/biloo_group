@@ -40,7 +40,11 @@
   border-width: 2px !important;
 }
 
-.gamePage [data-tree-index] > div:first-child span:has(> [role="img"]) > [role="img"] {
+.gamePage
+  [data-tree-index]
+  > div:first-child
+  span:has(> [role="img"])
+  > [role="img"] {
   font-size: clamp(0.75rem, 3.8vw, 1.125rem) !important;
 }
 
