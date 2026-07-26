@@ -7,6 +7,7 @@ import { solutions } from "@/data/solutions";
 
 const companyLinks = [
   { href: "/erp", label: "Biloo ERP" },
+  { href: "/mezgeb", label: "Biloo Mezgeb" },
   { href: "/projects", label: "Projects" },
   { href: "/iq-game", label: "Nature Match" },
   { href: "/about", label: "About" },
@@ -49,6 +50,14 @@ export function SiteFooter() {
                 href="/erp"
               >
                 Biloo ERP
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="font-semibold text-sapphire transition hover:text-graphite"
+                href="/mezgeb"
+              >
+                Biloo Mezgeb
               </Link>
             </li>
             {projects.map((project) => (
