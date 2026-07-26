@@ -72,15 +72,32 @@ jobs:
         run: npm run typecheck
 
       - name: Test Biloo ERP
+        id: erp-tests
+        continue-on-error: true
         working-directory: apps/erp
-        run: npm test
+        shell: bash
+        run: |
+          set -o pipefail
+          npm test 2>&1 | tee ../../erp-test.log
+
+      - name: Upload ERP test diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: erp-test-diagnostics
+          path: erp-test.log
+          if-no-files-found: error
+
+      - name: Enforce ERP test result
+        if: steps.erp-tests.outcome == 'failure'
+        run: exit 1
 
       - name: Build Biloo ERP
         working-directory: apps/erp
         run: npm run build
 
       - name: Remove workflow trigger
-        run: rm -f .import-biloo-erp-trigger
+        run: rm -f .import-biloo-erp-trigger erp-test.log
 
       - name: Commit imported ERP application
         shell: bash
