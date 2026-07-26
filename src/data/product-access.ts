@@ -25,7 +25,7 @@ export const productAccess: readonly ProductAccess[] = [
     appHref: "https://www.gulit.shop/app",
     dashboardHref: "https://www.gulit.shop/dashboard",
     appLabel: "Open Mezgeb app",
-    dashboardLabel: "Mezgeb dashboard",
+    dashboardLabel: "Open Mezgeb dashboard",
     platforms: ["Mobile web app", "Windows browser"],
   },
   {
@@ -38,7 +38,7 @@ export const productAccess: readonly ProductAccess[] = [
     appHref: "https://www.hisabtech.com",
     dashboardHref: "https://www.hisabtech.com/auth/login",
     appLabel: "Open HisabTech app",
-    dashboardLabel: "HisabTech dashboard",
+    dashboardLabel: "Open HisabTech dashboard",
     platforms: ["Responsive web app", "Windows browser"],
   },
 ] as const;
