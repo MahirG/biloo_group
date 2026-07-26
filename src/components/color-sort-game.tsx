@@ -68,49 +68,57 @@ const colorDetails: Record<
   red: {
     solid: "#ef4444",
     pastel: "#fb7185",
-    pattern: "radial-gradient(circle, rgba(255,255,255,.9) 0 12%, transparent 13%)",
+    pattern:
+      "radial-gradient(circle, rgba(255,255,255,.9) 0 12%, transparent 13%)",
     animal: "🐞",
   },
   blue: {
     solid: "#2563eb",
     pastel: "#60a5fa",
-    pattern: "repeating-linear-gradient(45deg, rgba(255,255,255,.85) 0 4px, transparent 4px 11px)",
+    pattern:
+      "repeating-linear-gradient(45deg, rgba(255,255,255,.85) 0 4px, transparent 4px 11px)",
     animal: "🐳",
   },
   yellow: {
     solid: "#facc15",
     pastel: "#fde047",
-    pattern: "radial-gradient(circle, rgba(15,23,42,.45) 0 10%, transparent 11%)",
+    pattern:
+      "radial-gradient(circle, rgba(15,23,42,.45) 0 10%, transparent 11%)",
     animal: "🐥",
   },
   green: {
     solid: "#22c55e",
     pastel: "#4ade80",
-    pattern: "repeating-linear-gradient(90deg, rgba(255,255,255,.75) 0 3px, transparent 3px 10px)",
+    pattern:
+      "repeating-linear-gradient(90deg, rgba(255,255,255,.75) 0 3px, transparent 3px 10px)",
     animal: "🐸",
   },
   purple: {
     solid: "#9333ea",
     pastel: "#c084fc",
-    pattern: "radial-gradient(circle at 25% 25%, rgba(255,255,255,.85) 0 8%, transparent 9%)",
+    pattern:
+      "radial-gradient(circle at 25% 25%, rgba(255,255,255,.85) 0 8%, transparent 9%)",
     animal: "🦄",
   },
   orange: {
     solid: "#f97316",
     pastel: "#fb923c",
-    pattern: "repeating-linear-gradient(-45deg, rgba(255,255,255,.8) 0 3px, transparent 3px 9px)",
+    pattern:
+      "repeating-linear-gradient(-45deg, rgba(255,255,255,.8) 0 3px, transparent 3px 9px)",
     animal: "🦊",
   },
   pink: {
     solid: "#ec4899",
     pastel: "#f9a8d4",
-    pattern: "radial-gradient(circle, rgba(255,255,255,.9) 0 7%, transparent 8%)",
+    pattern:
+      "radial-gradient(circle, rgba(255,255,255,.9) 0 7%, transparent 8%)",
     animal: "🐷",
   },
   teal: {
     solid: "#14b8a6",
     pastel: "#5eead4",
-    pattern: "repeating-linear-gradient(0deg, rgba(255,255,255,.8) 0 3px, transparent 3px 10px)",
+    pattern:
+      "repeating-linear-gradient(0deg, rgba(255,255,255,.8) 0 3px, transparent 3px 10px)",
     animal: "🐢",
   },
 };
@@ -217,11 +225,7 @@ function playSound(enabled: boolean, kind: "pop" | "slide" | "win") {
   const context = new AudioContextConstructor();
   const now = context.currentTime;
   const notes =
-    kind === "win"
-      ? [523.25, 659.25, 783.99]
-      : kind === "pop"
-        ? [520]
-        : [260];
+    kind === "win" ? [523.25, 659.25, 783.99] : kind === "pop" ? [520] : [260];
 
   notes.forEach((frequency, index) => {
     const oscillator = context.createOscillator();
@@ -230,7 +234,10 @@ function playSound(enabled: boolean, kind: "pop" | "slide" | "win") {
     oscillator.type = kind === "slide" ? "sine" : "triangle";
     oscillator.frequency.setValueAtTime(frequency, start);
     gain.gain.setValueAtTime(0.0001, start);
-    gain.gain.exponentialRampToValueAtTime(kind === "win" ? 0.1 : 0.07, start + 0.02);
+    gain.gain.exponentialRampToValueAtTime(
+      kind === "win" ? 0.1 : 0.07,
+      start + 0.02,
+    );
     gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.16);
     oscillator.connect(gain);
     gain.connect(context.destination);
@@ -253,12 +260,9 @@ function BeadVisual({
   compact?: boolean;
 }) {
   const details = colorDetails[bead.color];
-  const diameter = compact
-    ? 34
-    : progress.beadSize === "extra"
-      ? 78
-      : 64;
-  const baseColor = progress.theme === "pastel" ? details.pastel : details.solid;
+  const diameter = compact ? 34 : progress.beadSize === "extra" ? 78 : 64;
+  const baseColor =
+    progress.theme === "pastel" ? details.pastel : details.solid;
   const glow = progress.theme === "glow";
 
   return (
@@ -418,7 +422,8 @@ export function ColorSortGame() {
   useEffect(() => {
     const onVisibilityChange = () => setPaused(document.hidden);
     document.addEventListener("visibilitychange", onVisibilityChange);
-    return () => document.removeEventListener("visibilitychange", onVisibilityChange);
+    return () =>
+      document.removeEventListener("visibilitychange", onVisibilityChange);
   }, []);
 
   function completeLevel(nextRods: Bead[][]) {
@@ -540,7 +545,9 @@ export function ColorSortGame() {
         index === rodIndex ? rod.slice(0, -1) : rod,
       ),
     );
-    setPool((currentPool) => seededShuffle([...currentPool, top], level.id + current.length));
+    setPool((currentPool) =>
+      seededShuffle([...currentPool, top], level.id + current.length),
+    );
     setSelectedBeadId(null);
     playSound(progress.sound, "slide");
   }
@@ -682,10 +689,16 @@ export function ColorSortGame() {
         </div>
 
         <div className="flex items-center gap-2">
-          <IconButton label="Choose level" onClick={() => setLevelPickerOpen(true)}>
+          <IconButton
+            label="Choose level"
+            onClick={() => setLevelPickerOpen(true)}
+          >
             🧩
           </IconButton>
-          <IconButton label="Open sticker book" onClick={() => setStickersOpen(true)}>
+          <IconButton
+            label="Open sticker book"
+            onClick={() => setStickersOpen(true)}
+          >
             ⭐
           </IconButton>
           <IconButton
@@ -713,14 +726,20 @@ export function ColorSortGame() {
               {level.tier === "easy" ? "Learn to Sort" : brainTier(progress)}
             </span>
           </div>
-          <div aria-label={`${progress.stickers.length} stickers collected`} className="flex gap-1">
-            {Array.from({ length: Math.min(5, Math.max(1, Math.ceil(progress.stickers.length / 3))) }).map(
-              (_, index) => (
-                <span className="text-xl" key={index}>
-                  ⭐
-                </span>
+          <div
+            aria-label={`${progress.stickers.length} stickers collected`}
+            className="flex gap-1"
+          >
+            {Array.from({
+              length: Math.min(
+                5,
+                Math.max(1, Math.ceil(progress.stickers.length / 3)),
               ),
-            )}
+            }).map((_, index) => (
+              <span className="text-xl" key={index}>
+                ⭐
+              </span>
+            ))}
           </div>
         </div>
 
@@ -740,7 +759,14 @@ export function ColorSortGame() {
                 <motion.button
                   animate={
                     hintRod === rodIndex
-                      ? { scale: [1, 1.08, 1], filter: ["brightness(1)", "brightness(1.18)", "brightness(1)"] }
+                      ? {
+                          scale: [1, 1.08, 1],
+                          filter: [
+                            "brightness(1)",
+                            "brightness(1.18)",
+                            "brightness(1)",
+                          ],
+                        }
                       : undefined
                   }
                   aria-label={`Rod ${rodIndex + 1}`}
@@ -763,7 +789,9 @@ export function ColorSortGame() {
                         />
                       ))
                     ) : (
-                      <span className="text-3xl font-black text-amber-900/40">?</span>
+                      <span className="text-3xl font-black text-amber-900/40">
+                        ?
+                      </span>
                     )}
                   </div>
 
@@ -835,7 +863,12 @@ export function ColorSortGame() {
           style={{ left: drag.x, top: drag.y }}
         >
           <BeadVisual
-            bead={pool.find((bead) => bead.id === drag.beadId) ?? { id: "drag", color: "blue" }}
+            bead={
+              pool.find((bead) => bead.id === drag.beadId) ?? {
+                id: "drag",
+                color: "blue",
+              }
+            }
             progress={progress}
             selected
           />
@@ -852,7 +885,11 @@ export function ColorSortGame() {
             transition={{ duration: 4 }}
           >
             <motion.div
-              animate={{ x: ["18vw", "50vw"], y: ["76vh", "38vh"], scale: [1, 1.2, 1] }}
+              animate={{
+                x: ["18vw", "50vw"],
+                y: ["76vh", "38vh"],
+                scale: [1, 1.2, 1],
+              }}
               className="absolute left-0 top-0 text-6xl drop-shadow-xl"
               transition={{ duration: 2.8, ease: "easeInOut", repeat: 1 }}
             >
@@ -880,9 +917,19 @@ export function ColorSortGame() {
                 className="absolute left-1/2 top-[14%] h-4 w-4 rounded-sm"
                 key={index}
                 style={{
-                  backgroundColor: ["#ef4444", "#2563eb", "#facc15", "#22c55e", "#9333ea"][index % 5],
+                  backgroundColor: [
+                    "#ef4444",
+                    "#2563eb",
+                    "#facc15",
+                    "#22c55e",
+                    "#9333ea",
+                  ][index % 5],
                 }}
-                transition={{ duration: 2.2, delay: index * 0.025, ease: "easeOut" }}
+                transition={{
+                  duration: 2.2,
+                  delay: index * 0.025,
+                  ease: "easeOut",
+                }}
               />
             ))}
             <motion.div
@@ -901,14 +948,19 @@ export function ColorSortGame() {
               <div className="mt-4 flex justify-center gap-2 text-5xl">
                 {Array.from({ length: 3 }).map((_, index) => (
                   <motion.span
-                    animate={{ scale: index < completeStars ? 1 : 0.55, opacity: index < completeStars ? 1 : 0.2 }}
+                    animate={{
+                      scale: index < completeStars ? 1 : 0.55,
+                      opacity: index < completeStars ? 1 : 0.2,
+                    }}
                     key={index}
                   >
                     ⭐
                   </motion.span>
                 ))}
               </div>
-              <p className="mt-5 text-3xl font-black">{stickerNames[level.id - 1]}</p>
+              <p className="mt-5 text-3xl font-black">
+                {stickerNames[level.id - 1]}
+              </p>
               <p className="mt-2 font-bold text-muted">
                 Sticker added to your book!
               </p>
@@ -931,7 +983,10 @@ export function ColorSortGame() {
 
       <AnimatePresence>
         {levelPickerOpen ? (
-          <Modal title="Choose a puzzle" onClose={() => setLevelPickerOpen(false)}>
+          <Modal
+            title="Choose a puzzle"
+            onClose={() => setLevelPickerOpen(false)}
+          >
             <div className="grid grid-cols-4 gap-3 sm:grid-cols-5">
               {colorSortLevels.map((item) => {
                 const unlocked = item.id <= progress.highestUnlocked;
@@ -976,8 +1031,14 @@ export function ColorSortGame() {
                     }`}
                     key={sticker}
                   >
-                    <div className="text-4xl">{unlocked ? ["🚀", "🐳", "☀️", "🌱", "🪐", "🦊"][index % 6] : "❔"}</div>
-                    <p className="mt-2 text-sm font-black">{unlocked ? sticker : `Level ${index + 1}`}</p>
+                    <div className="text-4xl">
+                      {unlocked
+                        ? ["🚀", "🐳", "☀️", "🌱", "🪐", "🦊"][index % 6]
+                        : "❔"}
+                    </div>
+                    <p className="mt-2 text-sm font-black">
+                      {unlocked ? sticker : `Level ${index + 1}`}
+                    </p>
                   </div>
                 );
               })}
@@ -988,13 +1049,18 @@ export function ColorSortGame() {
 
       <AnimatePresence>
         {parentGateOpen ? (
-          <Modal title="Grown-ups only" onClose={() => setParentGateOpen(false)}>
+          <Modal
+            title="Grown-ups only"
+            onClose={() => setParentGateOpen(false)}
+          >
             <p className="text-center text-lg text-muted">
               Press and hold the button to open parent settings.
             </p>
             <button
               className={`mt-6 w-full overflow-hidden rounded-full border-4 border-sapphire px-6 py-5 text-lg font-black transition ${
-                holdingGate ? "bg-sapphire text-white" : "bg-white text-sapphire"
+                holdingGate
+                  ? "bg-sapphire text-white"
+                  : "bg-white text-sapphire"
               }`}
               onPointerCancel={stopParentHold}
               onPointerDown={startParentHold}
@@ -1029,7 +1095,8 @@ export function ColorSortGame() {
                   onToggle={() =>
                     setProgress((current) => ({
                       ...current,
-                      beadSize: current.beadSize === "extra" ? "large" : "extra",
+                      beadSize:
+                        current.beadSize === "extra" ? "large" : "extra",
                     }))
                   }
                 />
@@ -1141,7 +1208,13 @@ function SettingRow({
   );
 }
 
-function Toggle({ enabled, onToggle }: { enabled: boolean; onToggle: () => void }) {
+function Toggle({
+  enabled,
+  onToggle,
+}: {
+  enabled: boolean;
+  onToggle: () => void;
+}) {
   return (
     <button
       aria-pressed={enabled}

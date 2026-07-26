@@ -78,7 +78,9 @@ export function SiteHeader() {
         <button
           aria-controls="mobile-navigation"
           aria-expanded={menuOpen}
-          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-label={
+            menuOpen ? "Close navigation menu" : "Open navigation menu"
+          }
           className="focus-ring relative z-[60] grid h-12 w-12 place-items-center rounded-full border border-white/25 bg-white/10 backdrop-blur-md lg:hidden"
           onClick={() => setMenuOpen((current) => !current)}
           type="button"
@@ -107,7 +109,9 @@ export function SiteHeader() {
       <div
         aria-hidden={!menuOpen}
         className={`fixed inset-0 z-40 bg-graphite/60 backdrop-blur-sm transition lg:hidden ${
-          menuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+          menuOpen
+            ? "pointer-events-auto opacity-100"
+            : "pointer-events-none opacity-0"
         }`}
         onClick={() => setMenuOpen(false)}
       />

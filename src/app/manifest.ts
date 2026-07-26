@@ -13,7 +13,13 @@ export default function manifest(): MetadataRoute.Manifest {
     orientation: "any",
     background_color: "#f8fafc",
     theme_color: "#0f172a",
-    categories: ["business", "education", "games", "technology", "productivity"],
+    categories: [
+      "business",
+      "education",
+      "games",
+      "technology",
+      "productivity",
+    ],
     shortcuts: [
       {
         name: "Play Color Sort",

@@ -1,12 +1,5 @@
 export type BeadColor =
-  | "red"
-  | "blue"
-  | "yellow"
-  | "green"
-  | "purple"
-  | "orange"
-  | "pink"
-  | "teal";
+  "red" | "blue" | "yellow" | "green" | "purple" | "orange" | "pink" | "teal";
 
 export type ColorSortLevel = {
   id: number;
@@ -213,5 +206,8 @@ export const colorSortLevels: readonly ColorSortLevel[] = [
 ];
 
 export function getColorSortLevel(levelNumber: number) {
-  return colorSortLevels.find((level) => level.id === levelNumber) ?? colorSortLevels[0];
+  return (
+    colorSortLevels.find((level) => level.id === levelNumber) ??
+    colorSortLevels[0]
+  );
 }
