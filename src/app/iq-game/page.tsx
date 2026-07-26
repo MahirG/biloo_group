@@ -5,28 +5,28 @@ import { JsonLd } from "@/components/json-ld";
 import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Color Sort — Toddler IQ Game",
+  title: "Nature Match — Animal and Plant Puzzle Game",
   description:
-    "Play Color Sort, a calm Montessori-inspired bead-sorting game for toddlers that develops color recognition, pattern matching, memory, and hand-eye coordination.",
+    "Play Nature Match, a calm, colorful animal-and-plant sorting game for young children with seasonal forests, named nature colors, pattern memory, tree growth, and positive-only rewards.",
   alternates: { canonical: "/iq-game" },
-  applicationName: "Color Sort by Biloo Group",
+  applicationName: "Nature Match by Biloo Group",
   openGraph: {
-    title: "Color Sort — Toddler Bead-Sorting Game",
+    title: "Nature Match — Biloo's Nature Puzzle Game",
     description:
-      "A positive, ad-free color and pattern game for young children, built by Biloo Group.",
+      "A polished, ad-free matching game with cute animals, leaves, flowers, seasonal worlds, and a growing nature gallery.",
     url: "/iq-game",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Color Sort — Toddler IQ Game",
+    title: "Nature Match — Animal and Plant Puzzle Game",
     description:
-      "A calm Montessori-inspired bead-sorting game with positive rewards and no fail states.",
+      "A calm nature-themed sorting and pattern game with positive rewards and no fail states.",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f3d59a",
+  themeColor: "#76a96b",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -40,8 +40,8 @@ export default function IqGamePage() {
         data={{
           "@context": "https://schema.org",
           "@type": "VideoGame",
-          name: "Color Sort",
-          alternateName: ["Little Sorter", "Biloo IQ Game"],
+          name: "Nature Match",
+          alternateName: ["Biloo Nature Game", "Biloo IQ Game"],
           description: metadata.description,
           url: absoluteUrl("/iq-game"),
           applicationCategory: "EducationalGame",
@@ -52,11 +52,19 @@ export default function IqGamePage() {
             "Pattern matching",
             "Memory",
             "Hand-eye coordination",
+            "Nature vocabulary",
+          ],
+          keywords: [
+            "animal matching game",
+            "nature sorting game",
+            "color matching game",
+            "toddler pattern game",
+            "offline educational game",
           ],
           audience: {
             "@type": "PeopleAudience",
             suggestedMinAge: 2,
-            suggestedMaxAge: 4,
+            suggestedMaxAge: 5,
           },
           author: { "@id": `${absoluteUrl()}#organization` },
           isAccessibleForFree: true,
