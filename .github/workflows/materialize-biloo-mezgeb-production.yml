@@ -1,0 +1,62 @@
+name: Materialize Biloo Mezgeb production branch
+
+on:
+  push:
+    branches: [biloo-mezgeb-production]
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout deployment branch
+        uses: actions/checkout@v4
+        with:
+          ref: biloo-mezgeb-production
+          fetch-depth: 0
+
+      - name: Materialize Biloo Mezgeb at repository root
+        shell: bash
+        run: |
+          rm -rf /tmp/biloo-mezgeb-app
+          mkdir -p /tmp/biloo-mezgeb-app
+          rsync -a apps/mezgeb/ /tmp/biloo-mezgeb-app/
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          rsync -a /tmp/biloo-mezgeb-app/ ./
+          cat > DEPLOYMENT_SOURCE.md <<'EOF'
+          # Biloo Mezgeb production source
+
+          This branch contains the complete Biloo Mezgeb application at repository root for the existing `mezgeb-official` Vercel project.
+
+          - Canonical source: `MahirG/biloo_group/apps/mezgeb`
+          - Production branch: `biloo-mezgeb-production`
+          - Existing Supabase authentication, environment contracts, and `mezgeb_*` tables remain unchanged.
+          - Existing production domains remain `gulit.shop` and `www.gulit.shop`.
+          EOF
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate root application
+        run: |
+          npm install --no-audit --no-fund --silent
+          npm run format:check
+          npm run lint
+          npm run typecheck
+          npm test
+          npm run email:validate
+          npm run build
+
+      - name: Commit production branch
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Materialize Biloo Mezgeb production source"
+          git push origin HEAD:biloo-mezgeb-production
