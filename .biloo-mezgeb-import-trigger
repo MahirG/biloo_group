@@ -1,1 +1,1 @@
-Capture the formatted Mezgeb lint target files and rerun the validated Biloo import pipeline.
+Import the validated Mezgeb source, apply Biloo branding, run all application and browser tests, and commit the complete product.
