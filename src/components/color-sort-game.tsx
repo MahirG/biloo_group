@@ -345,30 +345,34 @@ export function ColorSortGame() {
   const selectedBead = pool.find((bead) => bead.id === selectedBeadId);
 
   useEffect(() => {
-    try {
-      const saved = window.localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved) as Partial<GameProgress>;
-        const merged: GameProgress = {
-          ...defaultProgress,
-          ...parsed,
-          completed: parsed.completed ?? {},
-          stickers: parsed.stickers ?? [],
-        };
-        const allowed = availableThemes(merged);
-        if (!allowed.includes(merged.theme)) merged.theme = "classic";
-        setProgress(merged);
-        setLevelNumber(Math.min(16, Math.max(1, merged.highestUnlocked)));
-        setShowDemo(!merged.demoSeen);
-      } else {
+    const timer = window.setTimeout(() => {
+      try {
+        const saved = window.localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved) as Partial<GameProgress>;
+          const merged: GameProgress = {
+            ...defaultProgress,
+            ...parsed,
+            completed: parsed.completed ?? {},
+            stickers: parsed.stickers ?? [],
+          };
+          const allowed = availableThemes(merged);
+          if (!allowed.includes(merged.theme)) merged.theme = "classic";
+          setProgress(merged);
+          setLevelNumber(Math.min(16, Math.max(1, merged.highestUnlocked)));
+          setShowDemo(!merged.demoSeen);
+        } else {
+          setShowDemo(true);
+        }
+      } catch {
+        setProgress(defaultProgress);
         setShowDemo(true);
+      } finally {
+        setHydrated(true);
       }
-    } catch {
-      setProgress(defaultProgress);
-      setShowDemo(true);
-    } finally {
-      setHydrated(true);
-    }
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -378,25 +382,28 @@ export function ColorSortGame() {
 
   useEffect(() => {
     const state = createLevelState(level);
-    setPool(state.pool);
-    setRods(state.rods);
-    setSelectedBeadId(null);
-    setDrag(null);
-    dragRef.current = null;
-    setMistakes(0);
-    setWrongKey("");
-    setWrongRepeats(0);
-    setWrongBeadId(null);
-    setHintRod(null);
-    setCompleteStars(null);
-    setMemoryVisible(true);
+    const resetTimer = window.setTimeout(() => {
+      setPool(state.pool);
+      setRods(state.rods);
+      setSelectedBeadId(null);
+      setDrag(null);
+      dragRef.current = null;
+      setMistakes(0);
+      setWrongKey("");
+      setWrongRepeats(0);
+      setWrongBeadId(null);
+      setHintRod(null);
+      setCompleteStars(null);
+      setMemoryVisible(true);
+    }, 0);
+    const memoryTimer = level.memory
+      ? window.setTimeout(() => setMemoryVisible(false), 4200)
+      : null;
 
-    if (level.memory) {
-      const timer = window.setTimeout(() => setMemoryVisible(false), 4200);
-      return () => window.clearTimeout(timer);
-    }
-
-    return undefined;
+    return () => {
+      window.clearTimeout(resetTimer);
+      if (memoryTimer !== null) window.clearTimeout(memoryTimer);
+    };
   }, [level]);
 
   useEffect(() => {
