@@ -40,44 +40,154 @@ type Props = {
 
 const questions: Record<MiniMode, readonly Question[]> = {
   habitats: [
-    { prompt: "Where does the frog feel at home?", options: ["🌊 Pond", "🏜️ Desert", "🌲 Pine tree"], answer: "🌊 Pond", explanation: "Frogs need damp places and water." },
-    { prompt: "Where does the panda find its food?", options: ["🎋 Bamboo forest", "🌾 Savannah", "🌵 Desert"], answer: "🎋 Bamboo forest", explanation: "Pandas eat lots of bamboo." },
-    { prompt: "Where does the giraffe reach high leaves?", options: ["🌾 Savannah", "❄️ Snow field", "🌊 Ocean"], answer: "🌾 Savannah", explanation: "Giraffes live in open savannah and woodland." },
+    {
+      prompt: "Where does the frog feel at home?",
+      options: ["🌊 Pond", "🏜️ Desert", "🌲 Pine tree"],
+      answer: "🌊 Pond",
+      explanation: "Frogs need damp places and water.",
+    },
+    {
+      prompt: "Where does the panda find its food?",
+      options: ["🎋 Bamboo forest", "🌾 Savannah", "🌵 Desert"],
+      answer: "🎋 Bamboo forest",
+      explanation: "Pandas eat lots of bamboo.",
+    },
+    {
+      prompt: "Where does the giraffe reach high leaves?",
+      options: ["🌾 Savannah", "❄️ Snow field", "🌊 Ocean"],
+      answer: "🌾 Savannah",
+      explanation: "Giraffes live in open savannah and woodland.",
+    },
   ],
   families: [
-    { prompt: "Which grown-up belongs with the chick? 🐣", options: ["🐔 Chicken", "🦊 Fox", "🐢 Turtle"], answer: "🐔 Chicken", explanation: "A chick grows into a chicken." },
-    { prompt: "Which grown-up belongs with the duckling? 🐥", options: ["🦆 Duck", "🦉 Owl", "🐝 Bee"], answer: "🦆 Duck", explanation: "A duckling grows into a duck." },
-    { prompt: "Which grown-up belongs with the caterpillar? 🐛", options: ["🦋 Butterfly", "🐸 Frog", "🐇 Rabbit"], answer: "🦋 Butterfly", explanation: "A caterpillar changes into a butterfly." },
+    {
+      prompt: "Which grown-up belongs with the chick? 🐣",
+      options: ["🐔 Chicken", "🦊 Fox", "🐢 Turtle"],
+      answer: "🐔 Chicken",
+      explanation: "A chick grows into a chicken.",
+    },
+    {
+      prompt: "Which grown-up belongs with the duckling? 🐥",
+      options: ["🦆 Duck", "🦉 Owl", "🐝 Bee"],
+      answer: "🦆 Duck",
+      explanation: "A duckling grows into a duck.",
+    },
+    {
+      prompt: "Which grown-up belongs with the caterpillar? 🐛",
+      options: ["🦋 Butterfly", "🐸 Frog", "🐇 Rabbit"],
+      answer: "🦋 Butterfly",
+      explanation: "A caterpillar changes into a butterfly.",
+    },
   ],
   patterns: [
-    { prompt: "Complete the pattern: 🍃 🌸 🍃 🌸 …", options: ["🍃", "🍄", "🐞"], answer: "🍃", explanation: "The leaf and blossom alternate." },
-    { prompt: "Complete the pattern: 🐞 🐞 🌼 🐞 🐞 …", options: ["🌼", "🐢", "🌳"], answer: "🌼", explanation: "Two ladybirds are followed by one flower." },
-    { prompt: "Complete the pattern: 🌱 🌿 🌳 🌱 🌿 …", options: ["🌳", "🌸", "🦋"], answer: "🌳", explanation: "The plant grows from sprout to leaf to tree." },
+    {
+      prompt: "Complete the pattern: 🍃 🌸 🍃 🌸 …",
+      options: ["🍃", "🍄", "🐞"],
+      answer: "🍃",
+      explanation: "The leaf and blossom alternate.",
+    },
+    {
+      prompt: "Complete the pattern: 🐞 🐞 🌼 🐞 🐞 …",
+      options: ["🌼", "🐢", "🌳"],
+      answer: "🌼",
+      explanation: "Two ladybirds are followed by one flower.",
+    },
+    {
+      prompt: "Complete the pattern: 🌱 🌿 🌳 🌱 🌿 …",
+      options: ["🌳", "🌸", "🦋"],
+      answer: "🌳",
+      explanation: "The plant grows from sprout to leaf to tree.",
+    },
   ],
   sizes: [
-    { prompt: "Which animal is biggest?", options: ["🐘 Elephant", "🐇 Rabbit", "🐝 Bee"], answer: "🐘 Elephant", explanation: "The elephant is the biggest animal here." },
-    { prompt: "Which nature friend is smallest?", options: ["🐞 Ladybird", "🦒 Giraffe", "🐢 Turtle"], answer: "🐞 Ladybird", explanation: "The ladybird is the smallest." },
-    { prompt: "Which plant is tallest?", options: ["🌳 Tree", "🌱 Sprout", "🌼 Daisy"], answer: "🌳 Tree", explanation: "A mature tree grows taller than a sprout or daisy." },
+    {
+      prompt: "Which animal is biggest?",
+      options: ["🐘 Elephant", "🐇 Rabbit", "🐝 Bee"],
+      answer: "🐘 Elephant",
+      explanation: "The elephant is the biggest animal here.",
+    },
+    {
+      prompt: "Which nature friend is smallest?",
+      options: ["🐞 Ladybird", "🦒 Giraffe", "🐢 Turtle"],
+      answer: "🐞 Ladybird",
+      explanation: "The ladybird is the smallest.",
+    },
+    {
+      prompt: "Which plant is tallest?",
+      options: ["🌳 Tree", "🌱 Sprout", "🌼 Daisy"],
+      answer: "🌳 Tree",
+      explanation: "A mature tree grows taller than a sprout or daisy.",
+    },
   ],
   shadows: [
-    { prompt: "Which friend matches this shadow? ◼️🦋", options: ["🦋 Butterfly", "🐢 Turtle", "🌻 Sunflower"], answer: "🦋 Butterfly", explanation: "The wide wings belong to the butterfly." },
-    { prompt: "Which friend matches this shadow? ◼️🐇", options: ["🐇 Rabbit", "🐸 Frog", "🍄 Mushroom"], answer: "🐇 Rabbit", explanation: "The long ears belong to the rabbit." },
-    { prompt: "Which friend matches this shadow? ◼️🌳", options: ["🌳 Tree", "🌸 Blossom", "🐝 Bee"], answer: "🌳 Tree", explanation: "The trunk and broad crown belong to the tree." },
+    {
+      prompt: "Which friend matches this shadow? ◼️🦋",
+      options: ["🦋 Butterfly", "🐢 Turtle", "🌻 Sunflower"],
+      answer: "🦋 Butterfly",
+      explanation: "The wide wings belong to the butterfly.",
+    },
+    {
+      prompt: "Which friend matches this shadow? ◼️🐇",
+      options: ["🐇 Rabbit", "🐸 Frog", "🍄 Mushroom"],
+      answer: "🐇 Rabbit",
+      explanation: "The long ears belong to the rabbit.",
+    },
+    {
+      prompt: "Which friend matches this shadow? ◼️🌳",
+      options: ["🌳 Tree", "🌸 Blossom", "🐝 Bee"],
+      answer: "🌳 Tree",
+      explanation: "The trunk and broad crown belong to the tree.",
+    },
   ],
   different: [
-    { prompt: "Who is different?", options: ["🌸 Blossom", "🌼 Daisy", "🦊 Fox"], answer: "🦊 Fox", explanation: "The fox is an animal; the others are flowers." },
-    { prompt: "Who is different?", options: ["🐇 Rabbit", "🐢 Turtle", "🍃 Leaf"], answer: "🍃 Leaf", explanation: "The leaf is a plant part; the others are animals." },
-    { prompt: "Who is different?", options: ["🍄 Mushroom", "🌳 Tree", "🌱 Sprout"], answer: "🍄 Mushroom", explanation: "A mushroom is a fungus; the others are plants." },
+    {
+      prompt: "Who is different?",
+      options: ["🌸 Blossom", "🌼 Daisy", "🦊 Fox"],
+      answer: "🦊 Fox",
+      explanation: "The fox is an animal; the others are flowers.",
+    },
+    {
+      prompt: "Who is different?",
+      options: ["🐇 Rabbit", "🐢 Turtle", "🍃 Leaf"],
+      answer: "🍃 Leaf",
+      explanation: "The leaf is a plant part; the others are animals.",
+    },
+    {
+      prompt: "Who is different?",
+      options: ["🍄 Mushroom", "🌳 Tree", "🌱 Sprout"],
+      answer: "🍄 Mushroom",
+      explanation: "A mushroom is a fungus; the others are plants.",
+    },
   ],
   counting: [
-    { prompt: "How many flowers? 🌸 🌸 🌸", options: ["2", "3", "4"], answer: "3", explanation: "There are three coral pink blossoms." },
-    { prompt: "How many turtles? 🐢 🐢", options: ["1", "2", "3"], answer: "2", explanation: "There are two deep forest green turtles." },
-    { prompt: "How many leaves? 🍃 🍃 🍃 🍃", options: ["3", "4", "5"], answer: "4", explanation: "There are four soft sage green leaves." },
+    {
+      prompt: "How many flowers? 🌸 🌸 🌸",
+      options: ["2", "3", "4"],
+      answer: "3",
+      explanation: "There are three coral pink blossoms.",
+    },
+    {
+      prompt: "How many turtles? 🐢 🐢",
+      options: ["1", "2", "3"],
+      answer: "2",
+      explanation: "There are two deep forest green turtles.",
+    },
+    {
+      prompt: "How many leaves? 🍃 🍃 🍃 🍃",
+      options: ["3", "4", "5"],
+      answer: "4",
+      explanation: "There are four soft sage green leaves.",
+    },
   ],
 };
 
 function speak(enabled: boolean, text: string) {
-  if (!enabled || typeof window === "undefined" || !("speechSynthesis" in window)) return;
+  if (
+    !enabled ||
+    typeof window === "undefined" ||
+    !("speechSynthesis" in window)
+  )
+    return;
   window.speechSynthesis.cancel();
   const message = new SpeechSynthesisUtterance(text);
   message.rate = 0.88;
@@ -107,7 +217,12 @@ export function NatureMiniGame({
   const [support, setSupport] = useState(0);
   const question = bank[index];
   const options = useMemo(
-    () => (support > 1 ? question.options.slice(0, 2).includes(question.answer) ? question.options.slice(0, 2) : [question.answer, question.options[0]] : question.options),
+    () =>
+      support > 1
+        ? question.options.slice(0, 2).includes(question.answer)
+          ? question.options.slice(0, 2)
+          : [question.answer, question.options[0]]
+        : question.options,
     [question, support],
   );
 
@@ -118,7 +233,8 @@ export function NatureMiniGame({
       setMistakes((value) => value + 1);
       setSupport((value) => value + 1);
       setFeedback("Nice try — your animal friend will help you look again.");
-      if (typeof navigator !== "undefined" && "vibrate" in navigator) navigator.vibrate(10);
+      if (typeof navigator !== "undefined" && "vibrate" in navigator)
+        navigator.vibrate(10);
       return;
     }
 
@@ -127,29 +243,58 @@ export function NatureMiniGame({
     setSupport(0);
     setFeedback(question.explanation);
     speak(voiceNames, `${question.answer}. ${question.explanation}`);
-    if (typeof navigator !== "undefined" && "vibrate" in navigator) navigator.vibrate(18);
+    if (typeof navigator !== "undefined" && "vibrate" in navigator)
+      navigator.vibrate(18);
 
-    window.setTimeout(() => {
-      if (nextWins >= targetWins) {
-        const discovery = natureDiscoveries[(index + mode.length) % natureDiscoveries.length];
-        onComplete({ mode, wins: nextWins, mistakes, discoveryId: discovery.id });
-        return;
-      }
-      setIndex((value) => (value + 1) % bank.length);
-      setFeedback(null);
-    }, calmMode ? 1250 : 850);
+    window.setTimeout(
+      () => {
+        if (nextWins >= targetWins) {
+          const discovery =
+            natureDiscoveries[(index + mode.length) % natureDiscoveries.length];
+          onComplete({
+            mode,
+            wins: nextWins,
+            mistakes,
+            discoveryId: discovery.id,
+          });
+          return;
+        }
+        setIndex((value) => (value + 1) % bank.length);
+        setFeedback(null);
+      },
+      calmMode ? 1250 : 850,
+    );
   }
 
   return (
-    <div className="min-h-[100dvh] px-3 py-4 sm:px-6" style={{ background: `linear-gradient(180deg, ${world.sky}, #fff9e8 50%, ${world.ground})` }}>
+    <div
+      className="min-h-[100dvh] px-3 py-4 sm:px-6"
+      style={{
+        background: `linear-gradient(180deg, ${world.sky}, #fff9e8 50%, ${world.ground})`,
+      }}
+    >
       <div className="mx-auto max-w-3xl">
-        <header className={`flex items-center justify-between gap-3 ${leftHanded ? "flex-row-reverse" : ""}`}>
-          <button className="rounded-full bg-white/85 px-5 py-3 font-black text-[#214d35] shadow" onClick={onExit} type="button">← World</button>
+        <header
+          className={`flex items-center justify-between gap-3 ${leftHanded ? "flex-row-reverse" : ""}`}
+        >
+          <button
+            className="rounded-full bg-white/85 px-5 py-3 font-black text-[#214d35] shadow"
+            onClick={onExit}
+            type="button"
+          >
+            ← World
+          </button>
           <div className="text-center">
-            <p className="text-sm font-black uppercase tracking-[0.15em] text-[#42644c]">{modeInfo?.skill}</p>
-            <h1 className="text-2xl font-black text-[#214d35]">{modeInfo?.icon} {modeInfo?.name}</h1>
+            <p className="text-sm font-black uppercase tracking-[0.15em] text-[#42644c]">
+              {modeInfo?.skill}
+            </p>
+            <h1 className="text-2xl font-black text-[#214d35]">
+              {modeInfo?.icon} {modeInfo?.name}
+            </h1>
           </div>
-          <span className="rounded-full bg-white/75 px-4 py-2 font-black text-[#355c40]">{wins}/{targetWins}</span>
+          <span className="rounded-full bg-white/75 px-4 py-2 font-black text-[#355c40]">
+            {wins}/{targetWins}
+          </span>
         </header>
 
         <motion.section
@@ -157,8 +302,12 @@ export function NatureMiniGame({
           className="mt-8 rounded-[2rem] border border-white/70 bg-white/78 p-5 text-center shadow-xl backdrop-blur sm:p-8"
           transition={{ duration: 3, repeat: Infinity }}
         >
-          <div className="text-6xl" aria-hidden="true">{world.companion}</div>
-          <h2 className="mt-5 text-3xl font-black tracking-[-0.04em] text-[#214d35]">{question.prompt}</h2>
+          <div className="text-6xl" aria-hidden="true">
+            {world.companion}
+          </div>
+          <h2 className="mt-5 text-3xl font-black tracking-[-0.04em] text-[#214d35]">
+            {question.prompt}
+          </h2>
           <div className="mt-8 grid gap-3 sm:grid-cols-3">
             {options.map((option) => (
               <button
@@ -171,7 +320,10 @@ export function NatureMiniGame({
               </button>
             ))}
           </div>
-          <p className="mt-6 min-h-12 font-bold leading-6 text-[#58705d]" aria-live="polite">
+          <p
+            className="mt-6 min-h-12 font-bold leading-6 text-[#58705d]"
+            aria-live="polite"
+          >
             {feedback ?? "Choose the nature friend that fits best."}
           </p>
         </motion.section>

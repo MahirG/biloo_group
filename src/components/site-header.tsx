@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { BrandMark } from "@/components/brand-mark";
 
 const navItems = [
+  { href: "/erp", label: "ERP" },
   { href: "/projects", label: "Projects" },
   { href: "/solutions", label: "Solutions" },
   { href: "/iq-game", label: "IQ Game" },
@@ -52,20 +53,33 @@ export function SiteHeader() {
 
         <nav
           aria-label="Primary navigation"
-          className="hidden items-center gap-6 lg:flex"
+          className="hidden items-center gap-5 lg:flex"
         >
-          {navItems.map((item) => (
-            <Link
-              aria-current={pathname === item.href ? "page" : undefined}
-              className={`focus-ring rounded-md text-sm transition hover:text-white ${
-                pathname === item.href ? "text-white" : "text-white/70"
-              }`}
-              href={item.href}
-              key={item.href}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const active =
+              pathname === item.href ||
+              (item.href !== "/" && pathname.startsWith(`${item.href}/`));
+            const isErp = item.href === "/erp";
+
+            return (
+              <Link
+                aria-current={active ? "page" : undefined}
+                className={`focus-ring rounded-full px-3 py-2 text-sm transition ${
+                  isErp
+                    ? active
+                      ? "bg-white text-graphite"
+                      : "bg-sapphire text-white hover:bg-white hover:text-graphite"
+                    : active
+                      ? "text-white"
+                      : "text-white/70 hover:text-white"
+                }`}
+                href={item.href}
+                key={item.href}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <Link
@@ -126,29 +140,41 @@ export function SiteHeader() {
         id="mobile-navigation"
       >
         <div className="grid gap-2">
-          {navItems.map((item, index) => (
-            <Link
-              aria-current={pathname === item.href ? "page" : undefined}
-              className={`flex items-center justify-between rounded-2xl px-5 py-4 text-lg font-semibold transition ${
-                item.href === "/iq-game"
-                  ? "bg-amber-300 text-amber-950"
-                  : pathname === item.href
-                    ? "bg-white text-graphite"
-                    : "bg-white/5 text-white hover:bg-white/10"
-              }`}
-              href={item.href}
-              key={item.href}
-            >
-              <span>{item.label}</span>
-              <span aria-hidden="true" className="text-sm opacity-60">
-                {item.href === "/iq-game" ? "Play ✨" : `0${index + 1}`}
-              </span>
-            </Link>
-          ))}
+          {navItems.map((item, index) => {
+            const active =
+              pathname === item.href ||
+              (item.href !== "/" && pathname.startsWith(`${item.href}/`));
+            const isErp = item.href === "/erp";
+            const isGame = item.href === "/iq-game";
+
+            return (
+              <Link
+                aria-current={active ? "page" : undefined}
+                className={`flex items-center justify-between rounded-2xl px-5 py-4 text-lg font-semibold transition ${
+                  isErp
+                    ? "bg-sapphire text-white"
+                    : isGame
+                      ? "bg-amber-300 text-amber-950"
+                      : active
+                        ? "bg-white text-graphite"
+                        : "bg-white/5 text-white hover:bg-white/10"
+                }`}
+                href={item.href}
+                key={item.href}
+                onClick={() => setMenuOpen(false)}
+              >
+                <span>{item.label}</span>
+                <span aria-hidden="true" className="text-sm opacity-70">
+                  {isErp ? "Business OS" : isGame ? "Play ✨" : `0${index + 1}`}
+                </span>
+              </Link>
+            );
+          })}
         </div>
         <Link
-          className="mt-4 flex w-full items-center justify-center rounded-full bg-sapphire px-6 py-4 font-semibold text-white"
+          className="mt-4 flex w-full items-center justify-center rounded-full bg-white px-6 py-4 font-semibold text-graphite"
           href="/contact"
+          onClick={() => setMenuOpen(false)}
         >
           Start a conversation
         </Link>

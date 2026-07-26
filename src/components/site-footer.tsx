@@ -6,8 +6,9 @@ import { projects } from "@/data/projects";
 import { solutions } from "@/data/solutions";
 
 const companyLinks = [
+  { href: "/erp", label: "Biloo ERP" },
   { href: "/projects", label: "Projects" },
-  { href: "/iq-game", label: "IQ Game" },
+  { href: "/iq-game", label: "Nature Match" },
   { href: "/about", label: "About" },
   { href: "/insights", label: "Insights" },
   { href: "/contact", label: "Contact" },
@@ -37,11 +38,19 @@ export function SiteFooter() {
           </a>
         </div>
 
-        <nav aria-label="Projects navigation">
+        <nav aria-label="Products navigation">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted">
-            Projects
+            Products
           </p>
           <ul className="mt-5 grid gap-3 text-sm">
+            <li>
+              <Link
+                className="font-semibold text-sapphire transition hover:text-graphite"
+                href="/erp"
+              >
+                Biloo ERP
+              </Link>
+            </li>
             {projects.map((project) => (
               <li key={project.slug}>
                 <Link
@@ -53,11 +62,8 @@ export function SiteFooter() {
               </li>
             ))}
             <li>
-              <Link
-                className="font-semibold text-sapphire transition hover:text-graphite"
-                href="/iq-game"
-              >
-                Color Sort IQ Game
+              <Link className="transition hover:text-sapphire" href="/iq-game">
+                Nature Match
               </Link>
             </li>
           </ul>

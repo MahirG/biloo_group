@@ -34,7 +34,8 @@ export const natureWorlds: readonly NatureWorld[] = [
   {
     id: "highland",
     name: "Ethiopian Highland Meadow",
-    description: "soft sage green hills, sunny yellow flowers, and sky blue air",
+    description:
+      "soft sage green hills, sunny yellow flowers, and sky blue air",
     sky: "#bde5ef",
     ground: "#96bd78",
     accent: "#f3c84b",
@@ -94,7 +95,8 @@ export const natureWorlds: readonly NatureWorld[] = [
   {
     id: "wet-season",
     name: "Wet-Season Flower Field",
-    description: "sky blue rain, coral pink flowers, and fresh spring green grass",
+    description:
+      "sky blue rain, coral pink flowers, and fresh spring green grass",
     sky: "#9bcfe4",
     ground: "#70aa72",
     accent: "#e9828f",
@@ -395,37 +397,138 @@ export const natureModes: readonly {
 ];
 
 export const habitatQuestions = [
-  { subject: "🐸", name: "frog", answer: "pond", options: ["pond", "desert", "tree nest"], icons: ["🪷", "🌵", "🪹"] },
-  { subject: "🦉", name: "owl", answer: "woodland", options: ["woodland", "ocean", "flower pot"], icons: ["🌲", "🌊", "🪴"] },
-  { subject: "🐼", name: "panda", answer: "bamboo forest", options: ["bamboo forest", "savannah", "moon pond"], icons: ["🎋", "🌾", "🌙"] },
-  { subject: "🦒", name: "giraffe", answer: "savannah", options: ["savannah", "snowy forest", "pond"], icons: ["🌾", "❄️", "🪷"] },
-  { subject: "🐢", name: "turtle", answer: "quiet pond", options: ["quiet pond", "tree top", "dry cave"], icons: ["💧", "🌳", "🪨"] },
-  { subject: "🐝", name: "bee", answer: "flower meadow", options: ["flower meadow", "deep ocean", "empty desert"], icons: ["🌸", "🌊", "🏜️"] },
+  {
+    subject: "🐸",
+    name: "frog",
+    answer: "pond",
+    options: ["pond", "desert", "tree nest"],
+    icons: ["🪷", "🌵", "🪹"],
+  },
+  {
+    subject: "🦉",
+    name: "owl",
+    answer: "woodland",
+    options: ["woodland", "ocean", "flower pot"],
+    icons: ["🌲", "🌊", "🪴"],
+  },
+  {
+    subject: "🐼",
+    name: "panda",
+    answer: "bamboo forest",
+    options: ["bamboo forest", "savannah", "moon pond"],
+    icons: ["🎋", "🌾", "🌙"],
+  },
+  {
+    subject: "🦒",
+    name: "giraffe",
+    answer: "savannah",
+    options: ["savannah", "snowy forest", "pond"],
+    icons: ["🌾", "❄️", "🪷"],
+  },
+  {
+    subject: "🐢",
+    name: "turtle",
+    answer: "quiet pond",
+    options: ["quiet pond", "tree top", "dry cave"],
+    icons: ["💧", "🌳", "🪨"],
+  },
+  {
+    subject: "🐝",
+    name: "bee",
+    answer: "flower meadow",
+    options: ["flower meadow", "deep ocean", "empty desert"],
+    icons: ["🌸", "🌊", "🏜️"],
+  },
 ] as const;
 
 export const familyQuestions = [
   { baby: "🐣", babyName: "chick", parent: "🐔", options: ["🐔", "🦊", "🐢"] },
-  { baby: "🦆", babyName: "duckling", parent: "🦢", options: ["🦢", "🦉", "🐇"] },
-  { baby: "🐘", babyName: "elephant calf", parent: "🐘", options: ["🐘", "🦒", "🐼"] },
-  { baby: "🐸", babyName: "tadpole growing into a frog", parent: "🐸", options: ["🐸", "🐢", "🦋"] },
-  { baby: "🐇", babyName: "rabbit kit", parent: "🐇", options: ["🐇", "🦔", "🦊"] },
-  { baby: "🦊", babyName: "fox kit", parent: "🦊", options: ["🦊", "🐼", "🦉"] },
+  {
+    baby: "🦆",
+    babyName: "duckling",
+    parent: "🦢",
+    options: ["🦢", "🦉", "🐇"],
+  },
+  {
+    baby: "🐘",
+    babyName: "elephant calf",
+    parent: "🐘",
+    options: ["🐘", "🦒", "🐼"],
+  },
+  {
+    baby: "🐸",
+    babyName: "tadpole growing into a frog",
+    parent: "🐸",
+    options: ["🐸", "🐢", "🦋"],
+  },
+  {
+    baby: "🐇",
+    babyName: "rabbit kit",
+    parent: "🐇",
+    options: ["🐇", "🦔", "🦊"],
+  },
+  {
+    baby: "🦊",
+    babyName: "fox kit",
+    parent: "🦊",
+    options: ["🦊", "🐼", "🦉"],
+  },
 ] as const;
 
 export const patternQuestions = [
-  { sequence: ["🍃", "🌸", "🍃", "🌸"], answer: "🍃", options: ["🍃", "🍄", "🐞"] },
-  { sequence: ["🐞", "🐞", "🦋", "🐞", "🐞"], answer: "🦋", options: ["🦋", "🐢", "🌻"] },
-  { sequence: ["🌱", "🌿", "🌳", "🌱", "🌿"], answer: "🌳", options: ["🌳", "🌸", "🍂"] },
-  { sequence: ["🌻", "🍄", "🌻", "🍄"], answer: "🌻", options: ["🌻", "🪻", "🐇"] },
-  { sequence: ["🐢", "🦊", "🦉", "🐢", "🦊"], answer: "🦉", options: ["🦉", "🐸", "🦔"] },
+  {
+    sequence: ["🍃", "🌸", "🍃", "🌸"],
+    answer: "🍃",
+    options: ["🍃", "🍄", "🐞"],
+  },
+  {
+    sequence: ["🐞", "🐞", "🦋", "🐞", "🐞"],
+    answer: "🦋",
+    options: ["🦋", "🐢", "🌻"],
+  },
+  {
+    sequence: ["🌱", "🌿", "🌳", "🌱", "🌿"],
+    answer: "🌳",
+    options: ["🌳", "🌸", "🍂"],
+  },
+  {
+    sequence: ["🌻", "🍄", "🌻", "🍄"],
+    answer: "🌻",
+    options: ["🌻", "🪻", "🐇"],
+  },
+  {
+    sequence: ["🐢", "🦊", "🦉", "🐢", "🦊"],
+    answer: "🦉",
+    options: ["🦉", "🐸", "🦔"],
+  },
 ] as const;
 
 export const sizeQuestions = [
-  { prompt: "Choose the biggest animal", answer: "🐘", options: ["🐞", "🐇", "🐘"] },
-  { prompt: "Choose the smallest animal", answer: "🐝", options: ["🦒", "🦊", "🐝"] },
-  { prompt: "Choose the tallest plant", answer: "🌳", options: ["🌱", "🌻", "🌳"] },
-  { prompt: "Choose the smallest plant", answer: "🌱", options: ["🌳", "🌿", "🌱"] },
-  { prompt: "Choose the biggest nature friend", answer: "🦒", options: ["🐢", "🦒", "🦋"] },
+  {
+    prompt: "Choose the biggest animal",
+    answer: "🐘",
+    options: ["🐞", "🐇", "🐘"],
+  },
+  {
+    prompt: "Choose the smallest animal",
+    answer: "🐝",
+    options: ["🦒", "🦊", "🐝"],
+  },
+  {
+    prompt: "Choose the tallest plant",
+    answer: "🌳",
+    options: ["🌱", "🌻", "🌳"],
+  },
+  {
+    prompt: "Choose the smallest plant",
+    answer: "🌱",
+    options: ["🌳", "🌿", "🌱"],
+  },
+  {
+    prompt: "Choose the biggest nature friend",
+    answer: "🦒",
+    options: ["🐢", "🦒", "🦋"],
+  },
 ] as const;
 
 export const shadowQuestions = [
@@ -437,11 +540,31 @@ export const shadowQuestions = [
 ] as const;
 
 export const differentQuestions = [
-  { items: ["🌸", "🌻", "🪻", "🐢"], answer: "🐢", reason: "The turtle is an animal; the others are flowers." },
-  { items: ["🦊", "🐇", "🦔", "🌳"], answer: "🌳", reason: "The tree is a plant; the others are animals." },
-  { items: ["🍄", "🍄", "🍄", "🌼"], answer: "🌼", reason: "The daisy is different from the mushrooms." },
-  { items: ["🐝", "🦋", "🦜", "🌵"], answer: "🌵", reason: "The cactus is a plant; the others can fly." },
-  { items: ["🍃", "🌿", "🌱", "🦉"], answer: "🦉", reason: "The owl is an animal; the others are green plants." },
+  {
+    items: ["🌸", "🌻", "🪻", "🐢"],
+    answer: "🐢",
+    reason: "The turtle is an animal; the others are flowers.",
+  },
+  {
+    items: ["🦊", "🐇", "🦔", "🌳"],
+    answer: "🌳",
+    reason: "The tree is a plant; the others are animals.",
+  },
+  {
+    items: ["🍄", "🍄", "🍄", "🌼"],
+    answer: "🌼",
+    reason: "The daisy is different from the mushrooms.",
+  },
+  {
+    items: ["🐝", "🦋", "🦜", "🌵"],
+    answer: "🌵",
+    reason: "The cactus is a plant; the others can fly.",
+  },
+  {
+    items: ["🍃", "🌿", "🌱", "🦉"],
+    answer: "🦉",
+    reason: "The owl is an animal; the others are green plants.",
+  },
 ] as const;
 
 export const countingQuestions = [
