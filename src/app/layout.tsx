@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { JsonLd } from "@/components/json-ld";
+import { PwaRegister } from "@/components/pwa-register";
 import { absoluteUrl, siteUrl } from "@/lib/site";
 
 import "./globals.css";
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s — Biloo Group",
   },
   description:
-    "Biloo Group is an Ethiopia-rooted technology company exploring artificial intelligence, cloud platforms, fintech, digital commerce, product innovation, and public-sector software for African markets.",
+    "Biloo Group is an Ethiopia-rooted technology company exploring artificial intelligence, cloud platforms, fintech, digital commerce, educational games, product innovation, and public-sector software for African markets.",
   alternates: {
     canonical: "/",
   },
@@ -73,6 +74,7 @@ export default function RootLayout({
   return (
     <html className={`${geistSans.variable} ${geistMono.variable}`} lang="en">
       <body className="antialiased">
+        <PwaRegister />
         <JsonLd
           data={[
             {
@@ -82,7 +84,7 @@ export default function RootLayout({
               name: "Biloo Group",
               alternateName: "Biloo",
               url: siteUrl,
-              email: "mahir@biloogroups.com",
+              email: "mahir@biloogroup.com",
               description:
                 "Biloo Group is an Ethiopia-rooted technology company building dependable digital platforms for African businesses and institutions.",
               founder: {
@@ -102,6 +104,7 @@ export default function RootLayout({
                 "Artificial intelligence",
                 "Cloud computing",
                 "Digital commerce",
+                "Educational technology",
                 "Financial technology",
                 "Software engineering",
                 "Public-sector technology",
@@ -115,7 +118,7 @@ export default function RootLayout({
               name: "Biloo Group",
               url: absoluteUrl(),
               description:
-                "Technology insights and strategic capabilities from Biloo Group.",
+                "Technology products, educational games, insights, and strategic capabilities from Biloo Group.",
               publisher: { "@id": `${siteUrl}/#organization` },
               inLanguage: "en",
             },
