@@ -4,6 +4,8 @@ import { ColorSortGame } from "@/components/color-sort-game";
 import { JsonLd } from "@/components/json-ld";
 import { absoluteUrl } from "@/lib/site";
 
+import styles from "./iq-game.module.css";
+
 export const metadata: Metadata = {
   title: "Nature Match — Animal and Plant Puzzle Game",
   description:
@@ -31,11 +33,12 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
+  viewportFit: "cover",
 };
 
 export default function IqGamePage() {
   return (
-    <>
+    <div className={styles.gamePage}>
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -72,6 +75,6 @@ export default function IqGamePage() {
         }}
       />
       <ColorSortGame />
-    </>
+    </div>
   );
 }
