@@ -1,1 +1,1 @@
-Rerun the validated Biloo Mezgeb import and preserve the exact Playwright browser diagnostics before enforcing the release gate.
+Import the corrected Mezgeb source, run the complete application and Playwright suites, and commit the Biloo Mezgeb release candidate.
