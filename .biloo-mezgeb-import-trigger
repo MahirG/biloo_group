@@ -1,1 +1,1 @@
-Run the default-branch Biloo Mezgeb importer against the preserved source snapshot and commit the validated result.
+Run the Biloo Mezgeb import again and preserve the exact generated-app lint diagnostics before enforcing the gate.
