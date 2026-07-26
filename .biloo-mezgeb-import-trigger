@@ -1,1 +1,1 @@
-Import the fully validated Mezgeb source, run all Biloo and desktop/mobile browser gates, and commit the deployable Biloo Mezgeb application.
+Import the clean validated source, pass all Biloo, Supabase, build, and desktop/mobile browser gates, and commit the production-ready Biloo Mezgeb application.
