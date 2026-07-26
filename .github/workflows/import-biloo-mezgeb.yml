@@ -1,0 +1,207 @@
+name: Import full Biloo Mezgeb application
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Biloo migration branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/import-full-biloo-mezgeb
+
+      - name: Checkout preserved Mezgeb source
+        uses: actions/checkout@v4
+        with:
+          repository: MahirG/MezgebOfficial
+          ref: archive/biloo-mezgeb-source
+          path: _mezgeb_source
+
+      - name: Copy and rebrand complete Mezgeb application
+        shell: bash
+        run: |
+          rm -rf apps/mezgeb
+          mkdir -p apps/mezgeb
+          rsync -a \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='.vercel' \
+            --exclude='.next' \
+            --exclude='node_modules' \
+            _mezgeb_source/ apps/mezgeb/
+          rm -rf _mezgeb_source
+
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          import re
+
+          app = Path('apps/mezgeb')
+          allowed = {'.ts', '.tsx', '.js', '.mjs', '.css', '.md', '.html', '.json', '.svg'}
+          files = []
+          for root_name in ('app', 'components', 'lib', 'scripts', 'tests', 'docs'):
+              root = app / root_name
+              if root.exists():
+                  files.extend(path for path in root.rglob('*') if path.is_file() and path.suffix in allowed)
+          for relative in ('README.md', 'SECURITY.md'):
+              path = app / relative
+              if path.exists():
+                  files.append(path)
+          email_templates = app / 'supabase' / 'email-templates'
+          if email_templates.exists():
+              files.extend(path for path in email_templates.rglob('*') if path.is_file() and path.suffix in allowed)
+
+          standalone_mezgeb = re.compile(r'(?<![A-Za-z0-9_])Mezgeb(?![A-Za-z0-9_])')
+          for path in files:
+              # Preserve technical identity contracts used by live auth and data.
+              relative = path.relative_to(app).as_posix()
+              if relative.startswith('lib/supabase/') or relative == 'lib/env.ts':
+                  continue
+              original = path.read_text(encoding='utf-8')
+              updated = standalone_mezgeb.sub('Biloo Mezgeb', original)
+              updated = updated.replace('MEZGEB RECEIPT', 'BILOO MEZGEB RECEIPT')
+              updated = updated.replace('MezgebOfficial', 'Biloo Mezgeb')
+              if updated != original:
+                  path.write_text(updated, encoding='utf-8')
+
+          package_path = app / 'package.json'
+          package = json.loads(package_path.read_text(encoding='utf-8'))
+          package['name'] = 'biloo-mezgeb'
+          package_path.write_text(json.dumps(package, indent=2) + '\n', encoding='utf-8')
+
+          layout = app / 'app' / 'layout.tsx'
+          layout_text = layout.read_text(encoding='utf-8')
+          if "import './biloo-brand.css';" not in layout_text:
+              layout_text = layout_text.replace("import './subscription-actions.css';", "import './subscription-actions.css';\nimport './biloo-brand.css';")
+          layout_text = layout_text.replace("themeColor: '#07111f'", "themeColor: '#0F172A'")
+          layout_text = layout_text.replace("icons: { icon: '/icon.svg', apple: '/icon.svg' }", "icons: { icon: '/biloo-mezgeb-mark.svg', apple: '/biloo-mezgeb-mark.svg' }")
+          layout.write_text(layout_text, encoding='utf-8')
+
+          (app / 'components' / 'logo.tsx').write_text('''export function Logo({ compact = false }: { compact?: boolean }) {
+            return (
+              <span className="brand" aria-label="Biloo Mezgeb home">
+                <span className="brandMark" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <circle cx="19" cy="24" r="8" stroke="currentColor" strokeWidth="3.5" />
+                    <circle cx="29" cy="24" r="8" stroke="currentColor" strokeWidth="3.5" />
+                    <path d="M22 18.4C24 16.6 26 16.6 28 18.4" stroke="#6F8FE8" strokeWidth="3.5" strokeLinecap="round" />
+                  </svg>
+                </span>
+                {!compact && <span>Biloo Mezgeb<small>መዝገብ · Business ledger</small></span>}
+              </span>
+            );
+          }
+          ''', encoding='utf-8')
+
+          (app / 'public' / 'biloo-mezgeb-mark.svg').write_text('''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-labelledby="title desc">
+            <title id="title">Biloo Mezgeb</title>
+            <desc id="desc">Biloo double-circle product mark.</desc>
+            <rect width="48" height="48" rx="15" fill="#0F172A"/>
+            <circle cx="19" cy="24" r="8" fill="none" stroke="#F8FAFC" stroke-width="3.5"/>
+            <circle cx="29" cy="24" r="8" fill="none" stroke="#F8FAFC" stroke-width="3.5"/>
+            <path d="M22 18.4C24 16.6 26 16.6 28 18.4" fill="none" stroke="#6F8FE8" stroke-width="3.5" stroke-linecap="round"/>
+          </svg>\n''', encoding='utf-8')
+
+          (app / 'app' / 'biloo-brand.css').write_text('''/* Biloo Mezgeb identity layer. Loaded last to preserve application behavior while making Biloo the authoritative visual brand. */
+          :root {
+            --bg: #f1f5f9;
+            --surface: #ffffff;
+            --text: #0f172a;
+            --muted: #64748b;
+            --blue: #1e3a8a;
+            --green: #15805f;
+            --rose: #be3a55;
+            --line: rgba(15, 23, 42, 0.1);
+            --shadow: 0 30px 90px rgba(15, 23, 42, 0.1);
+          }
+
+          ::selection { background: rgba(30, 58, 138, 0.24); color: #0f172a; }
+          body { background: #f1f5f9; color: #0f172a; accent-color: #1e3a8a; }
+          .siteHeader { background: rgba(248, 250, 252, 0.9); border-bottom-color: rgba(15, 23, 42, 0.08); }
+          .brandMark { background: #0f172a; color: #f8fafc; box-shadow: 0 10px 26px rgba(15, 23, 42, 0.2); }
+          .brandMark svg { width: 26px; height: 26px; }
+          .brand small { color: #64748b; }
+          .navLinks a { color: #475569; }
+          .navLinks a:hover, .textButton { color: #1e3a8a; }
+          .primary { background: #1e3a8a; color: #f8fafc; }
+          .primary:hover { background: #172f72; }
+          .hero { background: radial-gradient(circle at 72% 20%, rgba(30, 58, 138, 0.16), transparent 34%), linear-gradient(#f8fafc, #f1f5f9); }
+          .hero h1 span { background: linear-gradient(90deg, #1e3a8a, #3e63bd, #0f172a); background-clip: text; -webkit-background-clip: text; color: transparent; }
+          .primaryMetric, .secondaryDark, .darkStatement { background: #0f172a; }
+          .featureCard.large { background: radial-gradient(circle at 85% 15%, rgba(30, 58, 138, 0.14), transparent 32%), #fff; }
+          .pricing article.featured, .complianceCard { background: #0f172a; }
+          .siteFooter { background: #f8fafc; }
+          .authPage, .pageShell, .legalPage { color: #0f172a; }
+          .authCard, .dashboardShell, .appShell, .workspaceShell { --blue: #1e3a8a; --text: #0f172a; --muted: #64748b; }
+          :focus-visible { outline-color: #1e3a8a; }
+          @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; } }
+          ''', encoding='utf-8')
+
+          (app / 'BILOO_OWNERSHIP.md').write_text('''# Biloo Mezgeb ownership and continuity\n\nThis directory contains the complete Biloo-owned copy of the Mezgeb application.\n\n- Product name: **Biloo Mezgeb**\n- Biloo source location: `MahirG/biloo_group/apps/mezgeb`\n- Preserved source snapshot: `MahirG/MezgebOfficial` branch `archive/biloo-mezgeb-source`\n- Deployment branch: `biloo-mezgeb-production`\n- Existing Supabase project, authentication routes, environment keys and `mezgeb_*` database tables are intentionally unchanged.\n- The existing Vercel project remains the intended production target after its Git source is cut over to Biloo.\n- The inherited `/app` transaction experience still contains browser-local prototype storage for selected modules and must not be presented as fully persistent until those screens are connected to the existing tables.\n''', encoding='utf-8')
+          PY
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate Biloo Group site
+        shell: bash
+        run: |
+          npm install --no-audit --no-fund --silent
+          npm run lint
+          npm run typecheck
+          npm run build
+          npm run format:check
+
+      - name: Install Biloo Mezgeb dependencies
+        working-directory: apps/mezgeb
+        run: npm install --no-audit --no-fund --silent
+
+      - name: Format Biloo Mezgeb
+        working-directory: apps/mezgeb
+        run: npm run format
+
+      - name: Lint Biloo Mezgeb
+        working-directory: apps/mezgeb
+        run: npm run lint
+
+      - name: Typecheck Biloo Mezgeb
+        working-directory: apps/mezgeb
+        run: npm run typecheck
+
+      - name: Test Biloo Mezgeb
+        working-directory: apps/mezgeb
+        run: npm test
+
+      - name: Validate Supabase email templates
+        working-directory: apps/mezgeb
+        run: npm run email:validate
+
+      - name: Build Biloo Mezgeb
+        working-directory: apps/mezgeb
+        run: npm run build
+
+      - name: Install Chromium
+        run: npx --prefix apps/mezgeb playwright install --with-deps chromium
+
+      - name: Browser-test Biloo Mezgeb
+        working-directory: apps/mezgeb
+        run: npm run test:e2e
+
+      - name: Remove migration trigger
+        run: rm -f .biloo-mezgeb-import-trigger
+
+      - name: Commit complete Biloo Mezgeb application
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Import complete Biloo Mezgeb application"
+          git push origin HEAD:agent/import-full-biloo-mezgeb
