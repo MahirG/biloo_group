@@ -1,0 +1,34 @@
+name: Export Biloo Mezgeb production source
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    if: github.head_ref == 'agent/export-biloo-mezgeb-production'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Biloo Mezgeb production branch
+        uses: actions/checkout@v4
+        with:
+          ref: biloo-mezgeb-production
+
+      - name: Prepare clean deployment source
+        shell: bash
+        run: |
+          rm -rf .git .github .next node_modules test-results playwright-report coverage
+          rm -f '*.log'
+
+      - name: Upload production source
+        uses: actions/upload-artifact@v4
+        with:
+          name: biloo-mezgeb-production-source
+          path: .
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 1
