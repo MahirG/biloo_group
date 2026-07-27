@@ -41,6 +41,13 @@ a {
 
 button,
 summary,
+[role="button"] {
+  color: inherit;
+  font: inherit;
+}
+
+button,
+summary,
 [role="button"],
 a {
   -webkit-tap-highlight-color: rgba(30, 58, 138, 0.2);
@@ -92,6 +99,22 @@ a {
 .app-action {
   -webkit-user-select: none;
   user-select: none;
+}
+
+/*
+ * Contrast guard for action surfaces.
+ * A white or ivory button must never inherit white text from a dark parent.
+ * The higher-specificity rule also protects labels when utility ordering changes.
+ */
+a.app-action.bg-white,
+button.app-action.bg-white,
+summary.app-action.bg-white,
+[role="button"].app-action.bg-white,
+a.app-action.bg-ivory,
+button.app-action.bg-ivory,
+summary.app-action.bg-ivory,
+[role="button"].app-action.bg-ivory {
+  color: var(--graphite) !important;
 }
 
 .app-action:disabled,
