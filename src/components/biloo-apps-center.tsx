@@ -141,13 +141,17 @@ export function BilooAppsCenter() {
                       {item.id === "mezgeb" ? "መ" : "H"}
                     </span>
                     <span className="min-w-0">
-                      <strong className="block truncate text-sm">{item.shortName}</strong>
+                      <strong className="block truncate text-sm">
+                        {item.shortName}
+                      </strong>
                       <small
                         className={`mt-1 block text-xs ${
                           selected ? "text-muted" : "text-white/45"
                         }`}
                       >
-                        {item.id === "mezgeb" ? "Daily ledger" : "ERP workspace"}
+                        {item.id === "mezgeb"
+                          ? "Daily ledger"
+                          : "ERP workspace"}
                       </small>
                     </span>
                   </button>
@@ -208,7 +212,9 @@ export function BilooAppsCenter() {
                           What you can do
                         </h4>
                       </div>
-                      <span className="text-xs font-semibold text-white/35">04 modules</span>
+                      <span className="text-xs font-semibold text-white/35">
+                        04 modules
+                      </span>
                     </div>
                     <ul className="mt-6 grid gap-3 sm:grid-cols-2">
                       {details.capabilities.map((capability, index) => (
@@ -293,7 +299,9 @@ export function BilooAppsCenter() {
               className="flex items-center gap-3 rounded-2xl border border-graphite/8 bg-white/70 px-4 py-3 backdrop-blur-xl"
               key={item}
             >
-              <span className="font-mono text-xs text-sapphire">0{index + 1}</span>
+              <span className="font-mono text-xs text-sapphire">
+                0{index + 1}
+              </span>
               {item}
             </div>
           ))}

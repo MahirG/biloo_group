@@ -123,7 +123,11 @@ export function Hero() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             className="relative mx-auto w-full max-w-[36rem]"
             initial={{ opacity: 0, scale: 0.94, y: 26 }}
-            transition={{ delay: 0.2, duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
+            transition={{
+              delay: 0.2,
+              duration: 0.95,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
             <div className="absolute -inset-8 rounded-[3rem] bg-sapphire/20 blur-3xl" />
             <div className="relative overflow-hidden rounded-[2.6rem] border border-white/14 bg-white/8 p-3 shadow-[0_35px_100px_rgba(0,0,0,0.45)] backdrop-blur-2xl">
@@ -133,7 +137,9 @@ export function Hero() {
                     <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/45">
                       Biloo product universe
                     </p>
-                    <p className="mt-2 text-lg font-semibold">Choose your workspace</p>
+                    <p className="mt-2 text-lg font-semibold">
+                      Choose your workspace
+                    </p>
                   </div>
                   <div className="flex -space-x-2">
                     {products.map((product) => (
