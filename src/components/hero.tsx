@@ -76,7 +76,7 @@ export function Hero() {
             >
               Biloo Group creates dependable, beautifully considered technology
               for African businesses—combining local operating reality with
-              world-class product craft.
+              world-class product craft and operational clarity.
             </motion.p>
 
             <motion.div
