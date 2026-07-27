@@ -51,7 +51,9 @@ export default function AppsPage() {
             <span className="block text-white/50">One professional space.</span>
           </h1>
           <p className="mt-8 max-w-3xl text-lg leading-8 text-white/75 sm:text-xl">
-            Move between Mezgeb and HisabTech from a single Biloo Apps Center while each product keeps its own secure authentication, permissions, and production data.
+            Move between Mezgeb and HisabTech from a single Biloo Apps Center
+            while each product keeps its own secure authentication, permissions,
+            and production data.
           </p>
           <div className="mt-9 flex flex-wrap gap-3 text-sm font-semibold">
             {[

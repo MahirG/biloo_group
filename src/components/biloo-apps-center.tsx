@@ -67,7 +67,10 @@ export function BilooAppsCenter() {
   const details = workspaceDetails[activeId];
 
   return (
-    <section aria-labelledby="biloo-apps-center-heading" className="py-16 sm:py-24">
+    <section
+      aria-labelledby="biloo-apps-center-heading"
+      className="py-16 sm:py-24"
+    >
       <div className="container-shell">
         <div className="mb-8 max-w-3xl sm:mb-10">
           <p className="eyebrow text-sapphire">Biloo Apps Center</p>
@@ -78,7 +81,9 @@ export function BilooAppsCenter() {
             One Biloo space. Two focused business systems.
           </h2>
           <p className="mt-5 text-lg leading-8 text-muted">
-            Choose the product you need, review its role, and open the secure app or dashboard without mixing accounts, permissions, or production data.
+            Choose the product you need, review its role, and open the secure
+            app or dashboard without mixing accounts, permissions, or production
+            data.
           </p>
         </div>
 
@@ -214,7 +219,9 @@ export function BilooAppsCenter() {
         </div>
 
         <p className="mx-auto mt-6 max-w-3xl text-center text-sm leading-6 text-muted">
-          Biloo provides the shared access space. Each application opens in its own protected web context so its authentication, security headers, permissions, and data boundaries remain intact.
+          Biloo provides the shared access space. Each application opens in its
+          own protected web context so its authentication, security headers,
+          permissions, and data boundaries remain intact.
         </p>
       </div>
     </section>
