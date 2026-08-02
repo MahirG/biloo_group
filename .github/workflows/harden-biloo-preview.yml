@@ -1,0 +1,43 @@
+name: Harden BILOO preview copy
+
+on:
+  push:
+    branches:
+      - agent/biloo-launch-hardening
+
+permissions:
+  contents: write
+
+jobs:
+  harden:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/biloo-launch-hardening
+
+      - name: Correct preview status language
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("src/app/biloo/page.tsx")
+          content = path.read_text()
+          old = "● Addis Ababa operations live"
+          new = "● Addis Ababa pilot preview"
+          if old not in content:
+              raise SystemExit(f"Expected text not found: {old}")
+          path.write_text(content.replace(old, new, 1))
+          PY
+
+      - name: Remove one-time workflow
+        run: git rm .github/workflows/harden-biloo-preview.yml
+
+      - name: Commit launch hardening
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/app/biloo/page.tsx
+          git commit -m "Clarify BILOO pilot preview status"
+          git push origin HEAD:agent/biloo-launch-hardening
