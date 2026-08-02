@@ -9,7 +9,6 @@ import {
 } from "react";
 
 import {
-  catalog,
   initialDriverJobs,
   initialIncidents,
   initialNotifications,
@@ -25,18 +24,19 @@ import {
   type Role,
   type ServiceKey,
   type VendorOrder,
+  catalog,
 } from "@/data/biloo";
 
+import { CustomerDashboard } from "./customer-dashboard";
 import { AdminDashboard } from "./admin-dashboard";
+import { DriverDashboard } from "./driver-dashboard";
+import { VendorDashboard } from "./vendor-dashboard";
+import { Icon, serviceLabel } from "./ui";
 import { AppHeader, RoleRail } from "./app-shell";
 import { CartDrawer } from "./cart-drawer";
 import { CheckoutModal } from "./checkout-modal";
-import { CustomerDashboard } from "./customer-dashboard";
-import { DriverDashboard } from "./driver-dashboard";
 import { NotificationsDrawer } from "./notifications-drawer";
 import { TrackingModal } from "./tracking-modal";
-import { Icon, serviceLabel } from "./ui";
-import { VendorDashboard } from "./vendor-dashboard";
 
 const vendorStatusOrder: VendorOrder["status"][] = [
   "New",
@@ -54,14 +54,22 @@ function useStoredState<T>(
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
-    try {
-      const stored = window.localStorage.getItem(key);
-      if (stored) setValue(JSON.parse(stored) as T);
-    } catch {
-      // A corrupted or blocked storage entry should never break the app.
-    } finally {
-      setHydrated(true);
-    }
+    let cancelled = false;
+    const timeout = window.setTimeout(() => {
+      try {
+        const stored = window.localStorage.getItem(key);
+        if (stored && !cancelled) setValue(JSON.parse(stored) as T);
+      } catch {
+        // A corrupted or blocked storage entry should never break the app.
+      } finally {
+        if (!cancelled) setHydrated(true);
+      }
+    }, 0);
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timeout);
+    };
   }, [key]);
 
   useEffect(() => {
