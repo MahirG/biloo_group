@@ -192,7 +192,7 @@ export default function BilooAppPage() {
 
           <div className="hidden items-center gap-3 md:flex">
             <span className="rounded-full bg-emerald-50 px-4 py-2 text-xs font-bold text-emerald-700">
-              ● Addis Ababa operations live
+              ● Addis Ababa pilot preview
             </span>
             <button className="rounded-full border border-slate-200 px-4 py-2 text-sm font-bold transition hover:border-[#0b2a4a]">
               Help center
