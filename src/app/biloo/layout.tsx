@@ -3,20 +3,14 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "BILOO Super App",
   description:
-    "Preview the BILOO multi-service platform for food delivery, taxi booking, supermarket shopping, construction materials and car parts.",
+    "BILOO brings taxi booking, food delivery, supermarket shopping, construction materials and car parts into one connected platform.",
   alternates: { canonical: "/biloo" },
   openGraph: {
-    title: "BILOO — One App for Everyday Life",
+    title: "BILOO — One app. Every move.",
     description:
-      "An Ethiopia-first multi-service platform for rides, deliveries, shopping, construction supplies and automotive parts.",
+      "A multi-service platform for mobility, delivery, shopping and local commerce.",
     url: "/biloo",
     type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "BILOO — One App for Everyday Life",
-    description:
-      "An Ethiopia-first multi-service platform for rides, deliveries and everyday shopping.",
   },
 };
 
