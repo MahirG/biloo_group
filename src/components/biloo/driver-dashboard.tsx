@@ -1,9 +1,6 @@
 "use client";
 
-import type {
-  DriverJob,
-  IconName,
-} from "@/data/biloo";
+import type { DriverJob, IconName } from "@/data/biloo";
 
 import { formatETB, Icon, serviceLabel, StatusPill, Surface } from "./ui";
 
@@ -47,9 +44,7 @@ export function DriverDashboard({
           </div>
           <button
             className={`min-h-13 rounded-2xl px-7 text-sm font-black transition hover:-translate-y-0.5 ${
-              online
-                ? "bg-[#f2bd4b] text-[#082640]"
-                : "bg-white text-[#082640]"
+              online ? "bg-[#f2bd4b] text-[#082640]" : "bg-white text-[#082640]"
             }`}
             onClick={() => setOnline(!online)}
             type="button"
@@ -72,7 +67,10 @@ export function DriverDashboard({
                     {label}
                   </p>
                 </div>
-                <Icon className="size-5 text-[#f2bd4b]" name={icon as IconName} />
+                <Icon
+                  className="size-5 text-[#f2bd4b]"
+                  name={icon as IconName}
+                />
               </div>
             </div>
           ))}
@@ -93,7 +91,11 @@ export function DriverDashboard({
               </p>
 
               <div className="mt-6 space-y-4">
-                <RouteStop label="Pickup" location={activeJob.pickup} tone="green" />
+                <RouteStop
+                  label="Pickup"
+                  location={activeJob.pickup}
+                  tone="green"
+                />
                 <RouteStop
                   label="Drop-off"
                   location={activeJob.dropoff}

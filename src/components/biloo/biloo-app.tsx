@@ -113,9 +113,10 @@ export function BilooApp() {
     "biloo.orders",
     initialOrders,
   );
-  const [notifications, setNotifications] = useStoredState<
-    BilooNotification[]
-  >("biloo.notifications", initialNotifications);
+  const [notifications, setNotifications] = useStoredState<BilooNotification[]>(
+    "biloo.notifications",
+    initialNotifications,
+  );
   const [vendorOrders, setVendorOrders] = useStoredState<VendorOrder[]>(
     "biloo.vendor-orders",
     initialVendorOrders,
@@ -136,7 +137,9 @@ export function BilooApp() {
 
   const [driverOnline, setDriverOnline] = useState(true);
   const [driverJobs, setDriverJobs] = useState<DriverJob[]>(initialDriverJobs);
-  const [activeDriverJob, setActiveDriverJob] = useState<DriverJob | null>(null);
+  const [activeDriverJob, setActiveDriverJob] = useState<DriverJob | null>(
+    null,
+  );
   const [driverEarnings, setDriverEarnings] = useState(2460);
   const [driverCompleted, setDriverCompleted] = useState(14);
   const [storeOpen, setStoreOpen] = useState(true);
@@ -212,9 +215,7 @@ export function BilooApp() {
 
   function updateCartQuantity(itemId: string, quantity: number) {
     if (quantity <= 0) {
-      setCart((current) =>
-        current.filter((line) => line.item.id !== itemId),
-      );
+      setCart((current) => current.filter((line) => line.item.id !== itemId));
       return;
     }
     setCart((current) =>
@@ -303,7 +304,9 @@ export function BilooApp() {
       },
       () => {
         setLocationLabel("Home · Bole, Addis Ababa");
-        setToast("Location permission was not granted. Using your saved address.");
+        setToast(
+          "Location permission was not granted. Using your saved address.",
+        );
       },
       { enableHighAccuracy: true, maximumAge: 60000, timeout: 8000 },
     );

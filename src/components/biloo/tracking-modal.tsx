@@ -47,7 +47,10 @@ export function TrackingModal({
 
           <div className="mt-6 space-y-4">
             <TrackingStep done label="Order confirmed" />
-            <TrackingStep done={order.progress >= 35} label="Provider preparing" />
+            <TrackingStep
+              done={order.progress >= 35}
+              label="Provider preparing"
+            />
             <TrackingStep done={order.progress >= 60} label="Driver en route" />
             <TrackingStep done={order.progress >= 90} label="Arriving" />
           </div>

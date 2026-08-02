@@ -53,9 +53,8 @@ export function CustomerDashboard({
 }: CustomerDashboardProps) {
   const [pickup, setPickup] = useState("Bole, Addis Ababa");
   const [dropoff, setDropoff] = useState("Bole International Airport");
-  const [rideId, setRideId] = useState<(typeof rideTypes)[number]["id"]>(
-    "standard",
-  );
+  const [rideId, setRideId] =
+    useState<(typeof rideTypes)[number]["id"]>("standard");
 
   const selectedRide =
     rideTypes.find((ride) => ride.id === rideId) ?? rideTypes[0];
@@ -96,15 +95,17 @@ export function CustomerDashboard({
             </h1>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-white/62 sm:text-base">
               Book a taxi, order dinner, restock your home, source building
-              materials or find the right car part—with one identity, one
-              wallet and live tracking.
+              materials or find the right car part—with one identity, one wallet
+              and live tracking.
             </p>
 
             <label className="mt-7 flex max-w-3xl items-center gap-3 rounded-2xl bg-white p-2 pl-4 shadow-[0_18px_55px_rgba(0,0,0,0.2)]">
               <Icon className="size-5 shrink-0 text-slate-400" name="search" />
               <input
                 className="min-w-0 flex-1 bg-transparent py-2 text-sm font-semibold text-slate-900 outline-none placeholder:text-slate-400"
-                onChange={(event: ChangeEvent<HTMLInputElement>) => setSearch(event.target.value)}
+                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                  setSearch(event.target.value)
+                }
                 placeholder="Search food, groceries, cement, brake pads..."
                 value={search}
               />

@@ -43,7 +43,9 @@ export function TaxiBooking({
             </span>
             <input
               className="mt-2 w-full bg-transparent text-sm font-bold text-slate-800 outline-none"
-              onChange={(event: ChangeEvent<HTMLInputElement>) => setPickup(event.target.value)}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setPickup(event.target.value)
+              }
               value={pickup}
             />
           </label>
@@ -53,7 +55,9 @@ export function TaxiBooking({
             </span>
             <input
               className="mt-2 w-full bg-transparent text-sm font-bold text-slate-800 outline-none"
-              onChange={(event: ChangeEvent<HTMLInputElement>) => setDropoff(event.target.value)}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setDropoff(event.target.value)
+              }
               value={dropoff}
             />
           </label>

@@ -83,7 +83,9 @@ export function Modal({
             <Icon name="close" />
           </button>
         </div>
-        <div className="max-h-[calc(100svh-110px)] overflow-y-auto">{children}</div>
+        <div className="max-h-[calc(100svh-110px)] overflow-y-auto">
+          {children}
+        </div>
       </section>
     </div>
   );

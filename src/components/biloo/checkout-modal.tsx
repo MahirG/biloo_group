@@ -23,7 +23,8 @@ export function CheckoutModal({
     (total, line) => total + line.item.price * line.quantity,
     0,
   );
-  const total = subtotal + (cart.length ? 75 : 0) + Math.round(subtotal * 0.025);
+  const total =
+    subtotal + (cart.length ? 75 : 0) + Math.round(subtotal * 0.025);
 
   if (!open) return null;
 

@@ -64,7 +64,10 @@ export function VendorDashboard({
                     {label}
                   </p>
                 </div>
-                <Icon className="size-5 text-[#082640]" name={icon as IconName} />
+                <Icon
+                  className="size-5 text-[#082640]"
+                  name={icon as IconName}
+                />
               </div>
             </div>
           ))}

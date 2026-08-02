@@ -1,10 +1,5 @@
 export type Role = "customer" | "driver" | "vendor" | "admin";
-export type ServiceKey =
-  | "food"
-  | "taxi"
-  | "market"
-  | "construction"
-  | "parts";
+export type ServiceKey = "food" | "taxi" | "market" | "construction" | "parts";
 
 export type PaymentMethod = "wallet" | "card" | "cash";
 

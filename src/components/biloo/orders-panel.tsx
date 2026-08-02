@@ -25,7 +25,10 @@ export function OrdersPanel({
 
       <div className="mt-6 space-y-4">
         {orders.map((order) => (
-          <article className="rounded-[1.35rem] bg-[#f5f8fa] p-4" key={order.id}>
+          <article
+            className="rounded-[1.35rem] bg-[#f5f8fa] p-4"
+            key={order.id}
+          >
             <div className="flex items-start justify-between gap-4">
               <div className="min-w-0">
                 <p className="text-[10px] font-black uppercase tracking-[0.12em] text-slate-400">

@@ -26,8 +26,8 @@ export function AdminDashboard({
               Operations at a glance.
             </h1>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-white/60 sm:text-base">
-              Monitor marketplace activity, driver supply, payments, vendors
-              and service health across the platform.
+              Monitor marketplace activity, driver supply, payments, vendors and
+              service health across the platform.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -117,7 +117,10 @@ export function AdminDashboard({
                 <div className="mt-2 h-3 overflow-hidden rounded-full bg-slate-100">
                   <div
                     className="h-full rounded-full"
-                    style={{ backgroundColor: String(color), width: `${width}%` }}
+                    style={{
+                      backgroundColor: String(color),
+                      width: `${width}%`,
+                    }}
                   />
                 </div>
               </div>

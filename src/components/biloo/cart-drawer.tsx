@@ -88,8 +88,8 @@ export function CartDrawer({
                 </span>
                 <h3 className="mt-5 text-xl font-black">Your cart is empty</h3>
                 <p className="mx-auto mt-2 max-w-xs text-sm leading-6 text-slate-500">
-                  Add products from food, supermarket, construction or car
-                  parts to begin an order.
+                  Add products from food, supermarket, construction or car parts
+                  to begin an order.
                 </p>
               </div>
             </div>
@@ -121,7 +121,6 @@ export function CartDrawer({
     </Drawer>
   );
 }
-
 
 function SummaryLine({
   label,
