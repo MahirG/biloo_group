@@ -111,6 +111,17 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               <p className="mt-8 max-w-3xl text-lg leading-8 text-white/65 sm:text-xl">
                 {project.description}
               </p>
+              {project.prototypePath ? (
+                <Link
+                  className="focus-ring mt-8 inline-flex rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-sapphire transition hover:-translate-y-0.5"
+                  href={project.prototypePath}
+                >
+                  Open interactive foundation{" "}
+                  <span className="ml-2" aria-hidden="true">
+                    →
+                  </span>
+                </Link>
+              ) : null}
             </div>
             <span className="h-fit rounded-full border border-white/20 px-5 py-3 text-xs font-bold uppercase tracking-[0.12em] text-white/70">
               {project.status}

@@ -9,9 +9,36 @@ export type Project = {
   capabilities: readonly string[];
   safeguards: readonly string[];
   plannedDomain?: string;
+  prototypePath?: string;
 };
 
 export const projects: readonly Project[] = [
+  {
+    slug: "biloo",
+    name: "BILOO",
+    category: "Multi-service mobility and commerce platform",
+    status: "MVP foundation in development",
+    description:
+      "A modular super-app project bringing food delivery, taxi booking, supermarket shopping, construction-material ordering, and car-parts commerce into one trusted customer experience.",
+    audience:
+      "Customers, drivers, delivery partners, restaurants, supermarkets, construction suppliers, automotive-parts vendors, and operations teams beginning in Addis Ababa.",
+    purpose:
+      "Reduce the friction of using disconnected services by creating one identity, wallet, location, tracking, notification, support, and operations layer across everyday mobility and commerce.",
+    capabilities: [
+      "Customer application for five service verticals",
+      "Driver and delivery-partner dispatch workflows",
+      "Vendor order, catalog, inventory, and payout operations",
+      "Administrative command center and service-health monitoring",
+      "Live order and trip tracking with GPS-based service zones",
+      "Online payments, wallet, notifications, ratings, and support",
+    ],
+    safeguards: [
+      "The current route is an interactive product foundation, not a live transportation, delivery, or payment service.",
+      "Production launch requires verified payment, mapping, identity, driver-safety, vendor, privacy, and customer-support controls.",
+      "Pricing, service coverage, delivery promises, and launch dates must remain provisional until operations are tested.",
+    ],
+    prototypePath: "/biloo",
+  },
   {
     slug: "qabeza-erp",
     name: "Qabeza ERP",
