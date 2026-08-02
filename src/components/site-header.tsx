@@ -9,6 +9,7 @@ import { ProductAppsMenu } from "@/components/product-app-launcher";
 import { ProductQuickLaunch } from "@/components/product-quick-launch";
 
 const navItems = [
+  { href: "/biloo", label: "BILOO", descriptor: "New" },
   { href: "/projects", label: "Projects" },
   { href: "/solutions", label: "Solutions" },
   { href: "/iq-game", label: "Nature Match", descriptor: "Play ✨" },
