@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { BilooCustomerApp } from "@/components/biloo/customer-app";
+import { BilooCustomerApp } from "@/components/biloo/customer-app-v2";
 
 export const metadata: Metadata = {
   title: "Biloo | Everything you need, delivered",
