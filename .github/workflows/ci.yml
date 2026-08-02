@@ -5,18 +5,12 @@ on:
   push:
     branches: [main]
 
-permissions:
-  contents: write
-
 jobs:
   quality:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref || github.ref_name }}
-          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -25,23 +19,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
-      - name: Apply BILOO formatting
-        if: github.event_name == 'pull_request'
-        run: npx prettier --write src/components/biloo src/data/biloo.ts
-
-      - name: Commit BILOO formatting
-        if: github.event_name == 'pull_request'
-        run: |
-          if git diff --quiet; then
-            echo "No formatting changes required."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add src/components/biloo src/data/biloo.ts
-          git commit -m "Format BILOO MVP source"
-          git push origin HEAD:${{ github.head_ref }}
 
       - name: Lint
         run: npm run lint
