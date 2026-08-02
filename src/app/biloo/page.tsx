@@ -116,7 +116,12 @@ const driverJobs = [
 ];
 
 const vendorOrders = [
-  { id: "#20481", customer: "Samira K.", total: "ETB 1,680", status: "Preparing" },
+  {
+    id: "#20481",
+    customer: "Samira K.",
+    total: "ETB 1,680",
+    status: "Preparing",
+  },
   { id: "#20479", customer: "Yonas T.", total: "ETB 940", status: "New" },
   { id: "#20474", customer: "Hanan M.", total: "ETB 2,430", status: "Ready" },
 ];
@@ -135,7 +140,9 @@ function BrandMark() {
         BL
       </span>
       <div>
-        <p className="text-xl font-black tracking-[-0.05em] text-[#0b2a4a]">BILOO</p>
+        <p className="text-xl font-black tracking-[-0.05em] text-[#0b2a4a]">
+          BILOO
+        </p>
         <p className="text-[10px] font-bold uppercase tracking-[0.23em] text-slate-400">
           One app. Every move.
         </p>
@@ -162,7 +169,9 @@ export default function BilooAppPage() {
     const normalized = search.trim().toLowerCase();
     if (!normalized) return merchants;
     return merchants.filter((merchant) =>
-      `${merchant.name} ${merchant.category}`.toLowerCase().includes(normalized),
+      `${merchant.name} ${merchant.category}`
+        .toLowerCase()
+        .includes(normalized),
     );
   }, [search]);
 
@@ -226,12 +235,15 @@ export default function BilooAppPage() {
               MVP foundation
             </p>
             <p className="mt-3 text-sm font-semibold leading-6 text-slate-700">
-              Five service verticals sharing one identity, wallet, location, tracking and support layer.
+              Five service verticals sharing one identity, wallet, location,
+              tracking and support layer.
             </p>
             <div className="mt-5 h-2 overflow-hidden rounded-full bg-white">
               <div className="h-full w-[28%] rounded-full bg-[#e1a72f]" />
             </div>
-            <p className="mt-2 text-xs font-bold text-amber-800">Phase 1 · Foundation</p>
+            <p className="mt-2 text-xs font-bold text-amber-800">
+              Phase 1 · Foundation
+            </p>
           </div>
         </aside>
 
@@ -243,13 +255,16 @@ export default function BilooAppPage() {
                   <div>
                     <div className="flex items-center gap-2 text-xs font-bold text-white/65">
                       <span>Delivering to</span>
-                      <button className="text-[#f0bd4c]">Home · Bole, Addis Ababa⌄</button>
+                      <button className="text-[#f0bd4c]">
+                        Home · Bole, Addis Ababa⌄
+                      </button>
                     </div>
                     <h1 className="mt-5 max-w-2xl text-4xl font-black tracking-[-0.055em] sm:text-5xl">
                       What do you need today?
                     </h1>
                     <p className="mt-4 max-w-xl text-base leading-7 text-white/65 sm:text-lg">
-                      Food, transport, groceries, building supplies and vehicle parts—ordered from one trusted place.
+                      Food, transport, groceries, building supplies and vehicle
+                      parts—ordered from one trusted place.
                     </p>
                     <label className="mt-7 flex max-w-2xl items-center gap-3 rounded-2xl bg-white p-2 pl-4 shadow-xl">
                       <span className="text-slate-400">⌕</span>
@@ -273,7 +288,9 @@ export default function BilooAppPage() {
                         </p>
                         <p className="mt-2 text-3xl font-black">ETB 3,840.00</p>
                       </div>
-                      <span className="rounded-xl bg-white/10 px-3 py-2 text-xs font-bold">Wallet</span>
+                      <span className="rounded-xl bg-white/10 px-3 py-2 text-xs font-bold">
+                        Wallet
+                      </span>
                     </div>
                     <div className="mt-6 grid grid-cols-3 gap-2">
                       {[
@@ -286,7 +303,9 @@ export default function BilooAppPage() {
                           className="rounded-2xl bg-white/10 px-3 py-4 text-center transition hover:bg-white/15"
                         >
                           <span className="block text-xl">{icon}</span>
-                          <span className="mt-2 block text-[11px] font-bold text-white/75">{label}</span>
+                          <span className="mt-2 block text-[11px] font-bold text-white/75">
+                            {label}
+                          </span>
                         </button>
                       ))}
                     </div>
@@ -305,11 +324,17 @@ export default function BilooAppPage() {
                         : "border-slate-200 bg-white"
                     }`}
                   >
-                    <span className={`grid size-11 place-items-center rounded-2xl text-xl ${item.accent}`}>
+                    <span
+                      className={`grid size-11 place-items-center rounded-2xl text-xl ${item.accent}`}
+                    >
                       {item.icon}
                     </span>
-                    <span className="mt-5 block text-base font-black text-[#10243a]">{item.label}</span>
-                    <span className="mt-1 block text-xs leading-5 text-slate-400">{item.subtitle}</span>
+                    <span className="mt-5 block text-base font-black text-[#10243a]">
+                      {item.label}
+                    </span>
+                    <span className="mt-1 block text-xs leading-5 text-slate-400">
+                      {item.subtitle}
+                    </span>
                   </button>
                 ))}
               </section>
@@ -321,9 +346,13 @@ export default function BilooAppPage() {
                       <p className="text-xs font-black uppercase tracking-[0.16em] text-[#b27a10]">
                         Recommended nearby
                       </p>
-                      <h2 className="mt-2 text-2xl font-black tracking-[-0.035em]">Trusted places for you</h2>
+                      <h2 className="mt-2 text-2xl font-black tracking-[-0.035em]">
+                        Trusted places for you
+                      </h2>
                     </div>
-                    <button className="text-sm font-black text-[#0b2a4a]">See all →</button>
+                    <button className="text-sm font-black text-[#0b2a4a]">
+                      See all →
+                    </button>
                   </div>
 
                   <div className="mt-6 space-y-3">
@@ -337,19 +366,25 @@ export default function BilooAppPage() {
                         </span>
                         <span className="min-w-0 flex-1">
                           <span className="flex flex-wrap items-center gap-2">
-                            <span className="font-black text-[#10243a]">{merchant.name}</span>
+                            <span className="font-black text-[#10243a]">
+                              {merchant.name}
+                            </span>
                             <span className="rounded-full bg-[#fff6dd] px-2 py-1 text-[10px] font-black text-amber-700">
                               {merchant.badge}
                             </span>
                           </span>
-                          <span className="mt-1 block text-xs text-slate-500">{merchant.category}</span>
+                          <span className="mt-1 block text-xs text-slate-500">
+                            {merchant.category}
+                          </span>
                           <span className="mt-2 flex items-center gap-3 text-xs font-bold text-slate-500">
                             <span>★ {merchant.rating}</span>
                             <span>•</span>
                             <span>{merchant.fee}</span>
                           </span>
                         </span>
-                        <span className="grid size-9 shrink-0 place-items-center rounded-full bg-slate-100">→</span>
+                        <span className="grid size-9 shrink-0 place-items-center rounded-full bg-slate-100">
+                          →
+                        </span>
                       </button>
                     ))}
                     {filteredMerchants.length === 0 && (
@@ -363,8 +398,12 @@ export default function BilooAppPage() {
                 <section className="rounded-[2rem] border border-slate-200 bg-white p-5 sm:p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">Live tracking</p>
-                      <h2 className="mt-2 text-2xl font-black tracking-[-0.035em]">Active orders</h2>
+                      <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+                        Live tracking
+                      </p>
+                      <h2 className="mt-2 text-2xl font-black tracking-[-0.035em]">
+                        Active orders
+                      </h2>
                     </div>
                     <span className="rounded-full bg-emerald-50 px-3 py-2 text-xs font-black text-emerald-700">
                       2 active
@@ -373,12 +412,19 @@ export default function BilooAppPage() {
 
                   <div className="mt-6 space-y-4">
                     {activeOrders.map((order) => (
-                      <article key={order.id} className="rounded-2xl bg-[#f6f8fa] p-4">
+                      <article
+                        key={order.id}
+                        className="rounded-2xl bg-[#f6f8fa] p-4"
+                      >
                         <div className="flex items-start justify-between gap-4">
                           <div>
-                            <p className="text-xs font-black text-slate-400">{order.id}</p>
+                            <p className="text-xs font-black text-slate-400">
+                              {order.id}
+                            </p>
                             <h3 className="mt-1 font-black">{order.title}</h3>
-                            <p className="mt-2 text-xs leading-5 text-slate-500">{order.status}</p>
+                            <p className="mt-2 text-xs leading-5 text-slate-500">
+                              {order.status}
+                            </p>
                           </div>
                           <span className="rounded-xl bg-white px-3 py-2 text-xs font-black text-[#0b2a4a] shadow-sm">
                             {order.eta}
@@ -410,8 +456,12 @@ export default function BilooAppPage() {
                       <StatusDot active={driverOnline} />
                       {driverOnline ? "You are online" : "You are offline"}
                     </div>
-                    <h1 className="mt-4 text-4xl font-black tracking-[-0.05em]">Good evening, Dawit.</h1>
-                    <p className="mt-3 text-white/65">Ready for your next trip or delivery?</p>
+                    <h1 className="mt-4 text-4xl font-black tracking-[-0.05em]">
+                      Good evening, Dawit.
+                    </h1>
+                    <p className="mt-3 text-white/65">
+                      Ready for your next trip or delivery?
+                    </p>
                   </div>
                   <button
                     onClick={() => setDriverOnline((value) => !value)}
@@ -432,7 +482,9 @@ export default function BilooAppPage() {
                   ].map(([value, label]) => (
                     <div key={label} className="rounded-2xl bg-white/10 p-5">
                       <p className="text-2xl font-black">{value}</p>
-                      <p className="mt-2 text-xs font-semibold text-white/60">{label}</p>
+                      <p className="mt-2 text-xs font-semibold text-white/60">
+                        {label}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -442,30 +494,53 @@ export default function BilooAppPage() {
                 <section className="rounded-[2rem] border border-slate-200 bg-white p-6">
                   <div className="flex items-center justify-between gap-4">
                     <div>
-                      <p className="text-xs font-black uppercase tracking-[0.16em] text-amber-700">Incoming work</p>
-                      <h2 className="mt-2 text-2xl font-black">Available jobs nearby</h2>
+                      <p className="text-xs font-black uppercase tracking-[0.16em] text-amber-700">
+                        Incoming work
+                      </p>
+                      <h2 className="mt-2 text-2xl font-black">
+                        Available jobs nearby
+                      </h2>
                     </div>
-                    <span className="rounded-full bg-emerald-50 px-3 py-2 text-xs font-black text-emerald-700">Live</span>
+                    <span className="rounded-full bg-emerald-50 px-3 py-2 text-xs font-black text-emerald-700">
+                      Live
+                    </span>
                   </div>
                   <div className="mt-6 space-y-4">
                     {driverJobs.map((job) => (
-                      <article key={job.type} className="rounded-2xl border border-slate-200 p-5">
+                      <article
+                        key={job.type}
+                        className="rounded-2xl border border-slate-200 p-5"
+                      >
                         <div className="flex items-start justify-between gap-4">
                           <div>
-                            <p className="text-xs font-black uppercase tracking-[0.13em] text-[#0b2a4a]">{job.type}</p>
+                            <p className="text-xs font-black uppercase tracking-[0.13em] text-[#0b2a4a]">
+                              {job.type}
+                            </p>
                             <p className="mt-4 text-sm font-black">Pickup</p>
-                            <p className="mt-1 text-sm text-slate-500">{job.pickup}</p>
+                            <p className="mt-1 text-sm text-slate-500">
+                              {job.pickup}
+                            </p>
                             <p className="mt-3 text-sm font-black">Drop-off</p>
-                            <p className="mt-1 text-sm text-slate-500">{job.dropoff}</p>
+                            <p className="mt-1 text-sm text-slate-500">
+                              {job.dropoff}
+                            </p>
                           </div>
                           <div className="text-right">
-                            <p className="text-xl font-black text-[#0b2a4a]">{job.amount}</p>
-                            <p className="mt-1 text-xs font-bold text-slate-400">{job.distance}</p>
+                            <p className="text-xl font-black text-[#0b2a4a]">
+                              {job.amount}
+                            </p>
+                            <p className="mt-1 text-xs font-bold text-slate-400">
+                              {job.distance}
+                            </p>
                           </div>
                         </div>
                         <div className="mt-5 grid grid-cols-2 gap-3">
-                          <button className="rounded-xl border border-slate-200 py-3 text-sm font-black text-slate-500">Decline</button>
-                          <button className="rounded-xl bg-[#0b2a4a] py-3 text-sm font-black text-white">Accept job</button>
+                          <button className="rounded-xl border border-slate-200 py-3 text-sm font-black text-slate-500">
+                            Decline
+                          </button>
+                          <button className="rounded-xl bg-[#0b2a4a] py-3 text-sm font-black text-white">
+                            Accept job
+                          </button>
                         </div>
                       </article>
                     ))}
@@ -473,17 +548,25 @@ export default function BilooAppPage() {
                 </section>
 
                 <section className="rounded-[2rem] border border-slate-200 bg-white p-6">
-                  <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">Demand map</p>
-                  <h2 className="mt-2 text-2xl font-black">High-demand zones</h2>
+                  <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+                    Demand map
+                  </p>
+                  <h2 className="mt-2 text-2xl font-black">
+                    High-demand zones
+                  </h2>
                   <div className="relative mt-6 min-h-[420px] overflow-hidden rounded-[1.6rem] bg-[#e8edf1]">
                     <div className="absolute inset-0 opacity-50 [background-image:linear-gradient(#cbd5e1_1px,transparent_1px),linear-gradient(90deg,#cbd5e1_1px,transparent_1px)] [background-size:40px_40px]" />
                     <div className="absolute left-[18%] top-[24%] size-28 rounded-full bg-amber-400/40 blur-sm" />
                     <div className="absolute right-[12%] top-[42%] size-36 rounded-full bg-orange-400/35 blur-sm" />
                     <div className="absolute bottom-[14%] left-[37%] size-24 rounded-full bg-emerald-400/30 blur-sm" />
-                    <div className="absolute left-1/2 top-1/2 grid size-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-4 border-white bg-[#0b2a4a] text-white shadow-xl">●</div>
+                    <div className="absolute left-1/2 top-1/2 grid size-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-4 border-white bg-[#0b2a4a] text-white shadow-xl">
+                      ●
+                    </div>
                     <div className="absolute bottom-4 left-4 right-4 rounded-2xl bg-white/90 p-4 backdrop-blur">
                       <p className="text-sm font-black">Bole · 2.1× demand</p>
-                      <p className="mt-1 text-xs text-slate-500">Estimated 4-minute wait for the next request.</p>
+                      <p className="mt-1 text-xs text-slate-500">
+                        Estimated 4-minute wait for the next request.
+                      </p>
                     </div>
                   </div>
                 </section>
@@ -496,11 +579,19 @@ export default function BilooAppPage() {
               <section className="rounded-[2rem] bg-white p-6 shadow-sm sm:p-8">
                 <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <p className="text-xs font-black uppercase tracking-[0.17em] text-amber-700">Fresh Corner · Bole branch</p>
-                    <h1 className="mt-3 text-4xl font-black tracking-[-0.05em]">Store operations</h1>
-                    <p className="mt-3 text-slate-500">Your store is open and accepting orders.</p>
+                    <p className="text-xs font-black uppercase tracking-[0.17em] text-amber-700">
+                      Fresh Corner · Bole branch
+                    </p>
+                    <h1 className="mt-3 text-4xl font-black tracking-[-0.05em]">
+                      Store operations
+                    </h1>
+                    <p className="mt-3 text-slate-500">
+                      Your store is open and accepting orders.
+                    </p>
                   </div>
-                  <button className="rounded-2xl bg-emerald-50 px-5 py-3 text-sm font-black text-emerald-700">● Store open</button>
+                  <button className="rounded-2xl bg-emerald-50 px-5 py-3 text-sm font-black text-emerald-700">
+                    ● Store open
+                  </button>
                 </div>
                 <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
                   {[
@@ -511,7 +602,9 @@ export default function BilooAppPage() {
                   ].map(([value, label]) => (
                     <div key={label} className="rounded-2xl bg-[#f6f8fa] p-5">
                       <p className="text-2xl font-black">{value}</p>
-                      <p className="mt-2 text-xs font-bold text-slate-400">{label}</p>
+                      <p className="mt-2 text-xs font-bold text-slate-400">
+                        {label}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -521,42 +614,73 @@ export default function BilooAppPage() {
                 <section className="rounded-[2rem] border border-slate-200 bg-white p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-xs font-black uppercase tracking-[0.16em] text-[#0b2a4a]">Order queue</p>
+                      <p className="text-xs font-black uppercase tracking-[0.16em] text-[#0b2a4a]">
+                        Order queue
+                      </p>
                       <h2 className="mt-2 text-2xl font-black">Live orders</h2>
                     </div>
-                    <button className="rounded-xl bg-[#0b2a4a] px-4 py-3 text-xs font-black text-white">Manage all</button>
+                    <button className="rounded-xl bg-[#0b2a4a] px-4 py-3 text-xs font-black text-white">
+                      Manage all
+                    </button>
                   </div>
                   <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200">
                     <div className="hidden grid-cols-[0.7fr_1fr_0.8fr_0.8fr] gap-4 bg-slate-50 px-5 py-3 text-[11px] font-black uppercase tracking-[0.12em] text-slate-400 sm:grid">
-                      <span>Order</span><span>Customer</span><span>Total</span><span>Status</span>
+                      <span>Order</span>
+                      <span>Customer</span>
+                      <span>Total</span>
+                      <span>Status</span>
                     </div>
                     {vendorOrders.map((order) => (
-                      <div key={order.id} className="grid gap-3 border-t border-slate-100 px-5 py-4 first:border-t-0 sm:grid-cols-[0.7fr_1fr_0.8fr_0.8fr] sm:items-center">
+                      <div
+                        key={order.id}
+                        className="grid gap-3 border-t border-slate-100 px-5 py-4 first:border-t-0 sm:grid-cols-[0.7fr_1fr_0.8fr_0.8fr] sm:items-center"
+                      >
                         <span className="font-black">{order.id}</span>
-                        <span className="text-sm text-slate-500">{order.customer}</span>
-                        <span className="text-sm font-black">{order.total}</span>
-                        <span className="w-fit rounded-full bg-amber-50 px-3 py-2 text-xs font-black text-amber-700">{order.status}</span>
+                        <span className="text-sm text-slate-500">
+                          {order.customer}
+                        </span>
+                        <span className="text-sm font-black">
+                          {order.total}
+                        </span>
+                        <span className="w-fit rounded-full bg-amber-50 px-3 py-2 text-xs font-black text-amber-700">
+                          {order.status}
+                        </span>
                       </div>
                     ))}
                   </div>
                 </section>
 
                 <section className="rounded-[2rem] border border-slate-200 bg-white p-6">
-                  <p className="text-xs font-black uppercase tracking-[0.16em] text-rose-600">Inventory attention</p>
-                  <h2 className="mt-2 text-2xl font-black">Low-stock products</h2>
+                  <p className="text-xs font-black uppercase tracking-[0.16em] text-rose-600">
+                    Inventory attention
+                  </p>
+                  <h2 className="mt-2 text-2xl font-black">
+                    Low-stock products
+                  </h2>
                   <div className="mt-6 space-y-3">
                     {[
                       ["Sunflower oil 5L", "4 left", "Restock"],
                       ["Basmati rice 10kg", "7 left", "Restock"],
                       ["Baby diapers XL", "9 left", "Review"],
                     ].map(([name, stock, action]) => (
-                      <div key={name} className="flex items-center gap-4 rounded-2xl bg-[#f6f8fa] p-4">
-                        <span className="grid size-11 place-items-center rounded-xl bg-white">▣</span>
-                        <span className="min-w-0 flex-1">
-                          <span className="block truncate text-sm font-black">{name}</span>
-                          <span className="mt-1 block text-xs font-bold text-rose-600">{stock}</span>
+                      <div
+                        key={name}
+                        className="flex items-center gap-4 rounded-2xl bg-[#f6f8fa] p-4"
+                      >
+                        <span className="grid size-11 place-items-center rounded-xl bg-white">
+                          ▣
                         </span>
-                        <button className="rounded-xl bg-white px-3 py-2 text-xs font-black text-[#0b2a4a] shadow-sm">{action}</button>
+                        <span className="min-w-0 flex-1">
+                          <span className="block truncate text-sm font-black">
+                            {name}
+                          </span>
+                          <span className="mt-1 block text-xs font-bold text-rose-600">
+                            {stock}
+                          </span>
+                        </span>
+                        <button className="rounded-xl bg-white px-3 py-2 text-xs font-black text-[#0b2a4a] shadow-sm">
+                          {action}
+                        </button>
                       </div>
                     ))}
                   </div>
@@ -570,23 +694,43 @@ export default function BilooAppPage() {
               <section className="rounded-[2rem] bg-[#0b2a4a] p-6 text-white sm:p-8">
                 <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
                   <div>
-                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#f0bd4c]">BILOO command center</p>
-                    <h1 className="mt-4 text-4xl font-black tracking-[-0.05em] sm:text-5xl">Operations at a glance.</h1>
-                    <p className="mt-4 max-w-2xl text-white/65">Monitor marketplace activity, mobility supply, payments and service health across the platform.</p>
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#f0bd4c]">
+                      BILOO command center
+                    </p>
+                    <h1 className="mt-4 text-4xl font-black tracking-[-0.05em] sm:text-5xl">
+                      Operations at a glance.
+                    </h1>
+                    <p className="mt-4 max-w-2xl text-white/65">
+                      Monitor marketplace activity, mobility supply, payments
+                      and service health across the platform.
+                    </p>
                   </div>
                   <div className="flex gap-3">
-                    <button className="rounded-2xl bg-white/10 px-5 py-3 text-sm font-black">Export report</button>
-                    <button className="rounded-2xl bg-[#f0bd4c] px-5 py-3 text-sm font-black text-[#0b2a4a]">Create campaign</button>
+                    <button className="rounded-2xl bg-white/10 px-5 py-3 text-sm font-black">
+                      Export report
+                    </button>
+                    <button className="rounded-2xl bg-[#f0bd4c] px-5 py-3 text-sm font-black text-[#0b2a4a]">
+                      Create campaign
+                    </button>
                   </div>
                 </div>
               </section>
 
               <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
                 {adminStats.map((stat) => (
-                  <article key={stat.label} className="rounded-[1.6rem] border border-slate-200 bg-white p-5">
-                    <p className="text-xs font-bold text-slate-400">{stat.label}</p>
-                    <p className="mt-4 text-3xl font-black tracking-[-0.04em]">{stat.value}</p>
-                    <p className="mt-3 text-xs font-black text-emerald-600">{stat.change}</p>
+                  <article
+                    key={stat.label}
+                    className="rounded-[1.6rem] border border-slate-200 bg-white p-5"
+                  >
+                    <p className="text-xs font-bold text-slate-400">
+                      {stat.label}
+                    </p>
+                    <p className="mt-4 text-3xl font-black tracking-[-0.04em]">
+                      {stat.value}
+                    </p>
+                    <p className="mt-3 text-xs font-black text-emerald-600">
+                      {stat.change}
+                    </p>
                   </article>
                 ))}
               </section>
@@ -595,10 +739,16 @@ export default function BilooAppPage() {
                 <section className="rounded-[2rem] border border-slate-200 bg-white p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">Service performance</p>
-                      <h2 className="mt-2 text-2xl font-black">Orders by vertical</h2>
+                      <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+                        Service performance
+                      </p>
+                      <h2 className="mt-2 text-2xl font-black">
+                        Orders by vertical
+                      </h2>
                     </div>
-                    <button className="rounded-xl border border-slate-200 px-4 py-2 text-xs font-black">Today⌄</button>
+                    <button className="rounded-xl border border-slate-200 px-4 py-2 text-xs font-black">
+                      Today⌄
+                    </button>
                   </div>
                   <div className="mt-8 space-y-5">
                     {[
@@ -611,10 +761,15 @@ export default function BilooAppPage() {
                       <div key={String(label)}>
                         <div className="flex items-center justify-between text-sm">
                           <span className="font-black">{label}</span>
-                          <span className="font-bold text-slate-400">{value}</span>
+                          <span className="font-bold text-slate-400">
+                            {value}
+                          </span>
                         </div>
                         <div className="mt-2 h-3 overflow-hidden rounded-full bg-slate-100">
-                          <div className="h-full rounded-full bg-[#0b2a4a]" style={{ width: `${width}%` }} />
+                          <div
+                            className="h-full rounded-full bg-[#0b2a4a]"
+                            style={{ width: `${width}%` }}
+                          />
                         </div>
                       </div>
                     ))}
@@ -624,10 +779,16 @@ export default function BilooAppPage() {
                 <section className="rounded-[2rem] border border-slate-200 bg-white p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-xs font-black uppercase tracking-[0.16em] text-rose-600">Risk queue</p>
-                      <h2 className="mt-2 text-2xl font-black">Needs attention</h2>
+                      <p className="text-xs font-black uppercase tracking-[0.16em] text-rose-600">
+                        Risk queue
+                      </p>
+                      <h2 className="mt-2 text-2xl font-black">
+                        Needs attention
+                      </h2>
                     </div>
-                    <span className="rounded-full bg-rose-50 px-3 py-2 text-xs font-black text-rose-700">7 open</span>
+                    <span className="rounded-full bg-rose-50 px-3 py-2 text-xs font-black text-rose-700">
+                      7 open
+                    </span>
                   </div>
                   <div className="mt-6 space-y-3">
                     {[
@@ -635,12 +796,23 @@ export default function BilooAppPage() {
                       ["Driver verification backlog", "Medium", "36 min ago"],
                       ["Vendor cancellation spike", "Medium", "1 hr ago"],
                     ].map(([title, severity, time]) => (
-                      <button key={title} className="w-full rounded-2xl bg-[#f6f8fa] p-4 text-left">
+                      <button
+                        key={title}
+                        className="w-full rounded-2xl bg-[#f6f8fa] p-4 text-left"
+                      >
                         <div className="flex items-start justify-between gap-4">
-                          <span className="text-sm font-black leading-5">{title}</span>
-                          <span className={`rounded-full px-2 py-1 text-[10px] font-black ${severity === "High" ? "bg-rose-100 text-rose-700" : "bg-amber-100 text-amber-700"}`}>{severity}</span>
+                          <span className="text-sm font-black leading-5">
+                            {title}
+                          </span>
+                          <span
+                            className={`rounded-full px-2 py-1 text-[10px] font-black ${severity === "High" ? "bg-rose-100 text-rose-700" : "bg-amber-100 text-amber-700"}`}
+                          >
+                            {severity}
+                          </span>
                         </div>
-                        <span className="mt-2 block text-xs text-slate-400">{time}</span>
+                        <span className="mt-2 block text-xs text-slate-400">
+                          {time}
+                        </span>
                       </button>
                     ))}
                   </div>

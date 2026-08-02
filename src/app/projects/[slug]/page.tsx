@@ -116,7 +116,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   className="focus-ring mt-8 inline-flex rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-sapphire transition hover:-translate-y-0.5"
                   href={project.prototypePath}
                 >
-                  Open interactive foundation <span className="ml-2" aria-hidden="true">→</span>
+                  Open interactive foundation{" "}
+                  <span className="ml-2" aria-hidden="true">
+                    →
+                  </span>
                 </Link>
               ) : null}
             </div>
