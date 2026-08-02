@@ -86,7 +86,9 @@ export default function BilooPage() {
               <span className="block text-white/48">life needs every day.</span>
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-8 text-white/70 sm:text-xl">
-              Food, rides, groceries, construction materials and car parts—connected through one trusted account, one checkout and one live tracking experience.
+              Food, rides, groceries, construction materials and car
+              parts—connected through one trusted account, one checkout and one
+              live tracking experience.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link
@@ -109,9 +111,16 @@ export default function BilooPage() {
                 ["2", "mobile platforms"],
                 ["1", "shared account"],
               ].map(([value, label]) => (
-                <div className="rounded-2xl border border-white/12 bg-white/7 p-4" key={label}>
-                  <strong className="block text-2xl font-semibold text-[#d9ff73]">{value}</strong>
-                  <span className="mt-1 block text-xs font-bold uppercase tracking-wide text-white/48">{label}</span>
+                <div
+                  className="rounded-2xl border border-white/12 bg-white/7 p-4"
+                  key={label}
+                >
+                  <strong className="block text-2xl font-semibold text-[#d9ff73]">
+                    {value}
+                  </strong>
+                  <span className="mt-1 block text-xs font-bold uppercase tracking-wide text-white/48">
+                    {label}
+                  </span>
                 </div>
               ))}
             </div>
@@ -123,10 +132,14 @@ export default function BilooPage() {
               <div className="rounded-[2rem] bg-[#f5f7f2] p-4 text-[#10251d]">
                 <div className="flex items-center justify-between rounded-2xl bg-white px-4 py-3 shadow-sm">
                   <div>
-                    <p className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-emerald-800">Good evening</p>
+                    <p className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-emerald-800">
+                      Good evening
+                    </p>
                     <p className="mt-1 font-bold">Where should BILOO help?</p>
                   </div>
-                  <span className="grid h-11 w-11 place-items-center rounded-full bg-[#10251d] text-white">B</span>
+                  <span className="grid h-11 w-11 place-items-center rounded-full bg-[#10251d] text-white">
+                    B
+                  </span>
                 </div>
                 <div className="mt-4 grid grid-cols-2 gap-3">
                   {[
@@ -137,10 +150,17 @@ export default function BilooPage() {
                     ["🚗", "Car parts", "Verified"],
                     ["⌖", "Live track", "Active"],
                   ].map(([icon, label, meta]) => (
-                    <div className="rounded-2xl bg-white p-4 shadow-sm" key={label}>
+                    <div
+                      className="rounded-2xl bg-white p-4 shadow-sm"
+                      key={label}
+                    >
                       <div className="flex items-start justify-between gap-3">
-                        <span className="text-2xl" aria-hidden="true">{icon}</span>
-                        <span className="rounded-full bg-[#ecf5e7] px-2 py-1 text-[0.62rem] font-black uppercase tracking-wide text-emerald-800">{meta}</span>
+                        <span className="text-2xl" aria-hidden="true">
+                          {icon}
+                        </span>
+                        <span className="rounded-full bg-[#ecf5e7] px-2 py-1 text-[0.62rem] font-black uppercase tracking-wide text-emerald-800">
+                          {meta}
+                        </span>
                       </div>
                       <p className="mt-5 font-bold">{label}</p>
                     </div>
@@ -148,10 +168,16 @@ export default function BilooPage() {
                 </div>
                 <div className="mt-4 flex items-center justify-between rounded-2xl bg-[#d9ff73] p-4">
                   <div>
-                    <p className="text-xs font-black uppercase tracking-wide text-emerald-900">Order BL-2408</p>
-                    <p className="mt-1 font-bold">Driver arriving in 6 minutes</p>
+                    <p className="text-xs font-black uppercase tracking-wide text-emerald-900">
+                      Order BL-2408
+                    </p>
+                    <p className="mt-1 font-bold">
+                      Driver arriving in 6 minutes
+                    </p>
                   </div>
-                  <span className="text-2xl" aria-hidden="true">→</span>
+                  <span className="text-2xl" aria-hidden="true">
+                    →
+                  </span>
                 </div>
               </div>
             </div>
@@ -161,29 +187,45 @@ export default function BilooPage() {
 
       <BilooSuperApp />
 
-      <section className="border-y border-black/8 bg-white py-20 sm:py-28" id="platform">
+      <section
+        className="border-y border-black/8 bg-white py-20 sm:py-28"
+        id="platform"
+      >
         <div className="container-shell">
           <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
             <div>
-              <p className="eyebrow text-emerald-800">Complete operating system</p>
+              <p className="eyebrow text-emerald-800">
+                Complete operating system
+              </p>
               <h2 className="mt-6 text-4xl font-semibold tracking-[-0.055em] text-slate-950 sm:text-6xl">
                 More than a customer-facing app.
               </h2>
             </div>
             <p className="max-w-2xl text-lg leading-8 text-slate-600 lg:justify-self-end">
-              BILOO is structured as a coordinated marketplace: customers place demand, vendors fulfil inventory, drivers move people and goods, and administrators supervise quality, pricing and money movement.
+              BILOO is structured as a coordinated marketplace: customers place
+              demand, vendors fulfil inventory, drivers move people and goods,
+              and administrators supervise quality, pricing and money movement.
             </p>
           </div>
 
           <div className="mt-12 grid gap-4 md:grid-cols-2">
             {platformSurfaces.map((surface) => (
-              <article className="rounded-[1.75rem] border border-black/8 bg-[#f6f8f3] p-7" key={surface.title}>
+              <article
+                className="rounded-[1.75rem] border border-black/8 bg-[#f6f8f3] p-7"
+                key={surface.title}
+              >
                 <div className="flex items-start justify-between gap-6">
                   <div>
-                    <h3 className="text-2xl font-bold tracking-[-0.035em] text-slate-950">{surface.title}</h3>
-                    <p className="mt-4 max-w-xl leading-7 text-slate-600">{surface.copy}</p>
+                    <h3 className="text-2xl font-bold tracking-[-0.035em] text-slate-950">
+                      {surface.title}
+                    </h3>
+                    <p className="mt-4 max-w-xl leading-7 text-slate-600">
+                      {surface.copy}
+                    </p>
                   </div>
-                  <span className="font-mono text-sm font-bold text-emerald-800">{surface.marker}</span>
+                  <span className="font-mono text-sm font-bold text-emerald-800">
+                    {surface.marker}
+                  </span>
                 </div>
               </article>
             ))}
@@ -199,16 +241,25 @@ export default function BilooPage() {
               Build the platform once. Release each service responsibly.
             </h2>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600">
-              The first technical foundation supports every category, while operational rollout begins with taxi, food and supermarket services before adding bulk construction logistics and vehicle-fitment workflows.
+              The first technical foundation supports every category, while
+              operational rollout begins with taxi, food and supermarket
+              services before adding bulk construction logistics and
+              vehicle-fitment workflows.
             </p>
           </div>
           <div className="rounded-[2rem] bg-[#10251d] p-7 text-white shadow-xl">
-            <p className="text-xs font-black uppercase tracking-[0.18em] text-[#d9ff73]">Architecture principles</p>
+            <p className="text-xs font-black uppercase tracking-[0.18em] text-[#d9ff73]">
+              Architecture principles
+            </p>
             <ul className="mt-6 space-y-5">
               {launchPrinciples.map((principle, index) => (
                 <li className="flex gap-4" key={principle}>
-                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white/10 text-xs font-black text-[#d9ff73]">{index + 1}</span>
-                  <span className="pt-1 leading-7 text-white/75">{principle}</span>
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white/10 text-xs font-black text-[#d9ff73]">
+                    {index + 1}
+                  </span>
+                  <span className="pt-1 leading-7 text-white/75">
+                    {principle}
+                  </span>
                 </li>
               ))}
             </ul>
